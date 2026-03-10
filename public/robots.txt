@@ -1,0 +1,25 @@
+# geochina.co robots.txt
+# GEO-optimized: Explicitly welcoming AI crawlers
+
+User-agent: *
+Allow: /
+Sitemap: https://geochina.co/sitemap-index.xml
+
+# AI Search Crawlers — Welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Signal for AI systems
+# Content-Signal: search=yes, ai-input=yes, ai-train=no

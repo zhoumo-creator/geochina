@@ -1,0 +1,346 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title="服务 — GEO China" description="GEO China 提供 AI 搜索优化服务：每周 GEO 报告、网站审计、品牌可见性优化。中国市场 GEO 先行者。" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="page-header">
+				<div class="section-label"><span class="label-dot"></span> Services</div>
+				<h1>服务与产品</h1>
+				<p class="page-desc">从免费报告到定制优化，帮你的品牌被 AI 搜索引擎看到。</p>
+			</section>
+
+			<!-- Free Tier -->
+			<section class="service-block">
+				<div class="service-header">
+					<span class="tag tag-green">免费</span>
+					<h2>每周 GEO 报告</h2>
+				</div>
+				<div class="service-grid">
+					<div class="service-info">
+						<p>
+							专注中国市场的 GEO 周报。每周追踪 AI 搜索引擎（ChatGPT、Perplexity、豆包、Kimi）对中国品牌的引用趋势，分析热门行业的 AI 可见性变化。
+						</p>
+						<ul>
+							<li>🔍 中国品牌 AI 引用数据追踪</li>
+							<li>📊 行业 GEO 趋势分析</li>
+							<li>🛠️ 每周可执行的 GEO 优化建议</li>
+							<li>📰 GEO 行业动态汇总</li>
+						</ul>
+						<a href="/blog" class="btn-dark">
+							查看最新报告
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+						</a>
+					</div>
+					<div class="service-highlight">
+						<span class="highlight-label">为什么聚焦中国市场？</span>
+						<p>
+							全球 GEO 工具和报告都只覆盖英文市场。但中国有 <strong>百度文心</strong>、<strong>豆包</strong>、<strong>Kimi</strong>、<strong>通义千问</strong> 等本土 AI 搜索引擎，它们的引用逻辑与 ChatGPT/Perplexity 完全不同。
+						</p>
+						<p>GEO China 是唯一同时覆盖海外和中国本土 AI 搜索引擎的中文 GEO 报告。</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Paid Services -->
+			<section class="service-block">
+				<div class="service-header">
+					<span class="tag tag-blue">定制服务</span>
+					<h2>GEO 优化服务</h2>
+				</div>
+				<div class="services-list">
+					<div class="service-row">
+						<div class="service-row-info">
+							<span class="service-num">01</span>
+							<div>
+								<h3>GEO 网站审计</h3>
+								<p>全面诊断你的网站在 AI 搜索中的可见性——robots.txt、Schema、llms.txt、Citation Triggers、内容结构评估，输出详细报告 + 可执行优化方案。</p>
+							</div>
+						</div>
+						<span class="service-price">¥3,000 起</span>
+					</div>
+					<div class="service-row">
+						<div class="service-row-info">
+							<span class="service-num">02</span>
+							<div>
+								<h3>品牌 AI 可见性优化</h3>
+								<p>从策略到执行的全套 GEO 优化服务。包含竞品分析、内容策略、技术优化、Entity 信号建设，让 AI 搜索引擎主动推荐你的品牌。</p>
+							</div>
+						</div>
+						<span class="service-price">¥10,000 起/月</span>
+					</div>
+					<div class="service-row">
+						<div class="service-row-info">
+							<span class="service-num">03</span>
+							<div>
+								<h3>出海品牌 GEO 套餐</h3>
+								<p>专为中国出海品牌设计——英文内容 GEO 优化 + Reddit/论坛种草 + 海外 AI 搜索可见性监控。让 ChatGPT 和 Perplexity 向全球用户推荐你。</p>
+							</div>
+						</div>
+						<span class="service-price">¥15,000 起/月</span>
+					</div>
+				</div>
+				<p class="service-note">* 所有服务方案基于 GEO China 自研方法论，结合 Princeton GEO 学术框架与实操验证。</p>
+			</section>
+
+			<!-- Coming Soon -->
+			<section class="service-block coming-soon-section">
+				<div class="service-header">
+					<span class="tag tag-purple">Coming Soon</span>
+					<h2>即将推出</h2>
+				</div>
+				<div class="coming-grid">
+					<div class="coming-card">
+						<span class="coming-icon">🤖</span>
+						<h3>GEO Agent</h3>
+						<p>输入你的网站 URL，AI Agent 自动完成 GEO 审计、诊断、优化建议生成。</p>
+						<span class="coming-tag">SaaS · 2026 Q3</span>
+					</div>
+					<div class="coming-card">
+						<span class="coming-icon">📚</span>
+						<h3>GEO 系统课程</h3>
+						<p>从零到一掌握 GEO：16 周系统学习 + 实操项目 + 社群答疑。</p>
+						<span class="coming-tag">课程 · 2026 Q3</span>
+					</div>
+					<div class="coming-card">
+						<span class="coming-icon">⚡</span>
+						<h3>GEO API</h3>
+						<p>将 GEO 审计能力 API 化，供开发者和代理商集成到自己的产品中。</p>
+						<span class="coming-tag">API · 2026 Q4</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- CTA -->
+			<section class="cta-section">
+				<h2>开始优化你的 AI 可见性</h2>
+				<p>发邮件到 hello@geochina.co 咨询服务方案，<br/>或直接阅读我们的免费 GEO 报告。</p>
+				<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+					<a href="mailto:hello@geochina.co" class="btn-dark">
+						联系我们
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+					</a>
+					<a href="/blog" class="btn-outline">浏览免费报告</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.page-header {
+		padding: 3em 0 2em;
+	}
+	.page-header h1 {
+		margin-top: 0.5em;
+		margin-bottom: 0.3em;
+	}
+	.page-desc {
+		font-size: 1.1em;
+		color: var(--text-secondary);
+		max-width: 480px;
+	}
+	.section-label {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+	}
+	.label-dot {
+		width: 6px;
+		height: 6px;
+		background: var(--black);
+		display: inline-block;
+	}
+	.service-block {
+		padding: 3em 0;
+		border-top: 1px solid var(--border);
+	}
+	.service-header {
+		margin-bottom: 2em;
+	}
+	.service-header .tag {
+		margin-bottom: 1em;
+	}
+	.service-header h2 {
+		margin-top: 0.5em;
+	}
+	.service-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3em;
+	}
+	.service-info ul {
+		list-style: none;
+		padding: 0;
+		margin: 1.5em 0;
+	}
+	.service-info li {
+		padding: 8px 0;
+		color: var(--text-secondary);
+		font-size: 15px;
+		border-bottom: 1px solid var(--border-light);
+	}
+	.service-info li:last-child {
+		border-bottom: none;
+	}
+	.service-highlight {
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+		padding: 2em;
+	}
+	.highlight-label {
+		display: block;
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--black);
+		margin-bottom: 1em;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+	.service-highlight p {
+		font-size: 15px;
+		line-height: 1.75;
+	}
+	.services-list {
+		display: flex;
+		flex-direction: column;
+	}
+	.service-row {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 2em;
+		padding: 2em 0;
+		border-top: 1px solid var(--border-light);
+	}
+	.service-row-info {
+		display: flex;
+		gap: 1.5em;
+		flex: 1;
+	}
+	.service-num {
+		font-size: 14px;
+		color: var(--text-muted);
+		min-width: 30px;
+		padding-top: 2px;
+	}
+	.service-row h3 {
+		font-family: var(--font-sans);
+		font-size: 1.1em;
+		margin-bottom: 8px;
+	}
+	.service-row p {
+		font-size: 15px;
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin: 0;
+	}
+	.service-price {
+		font-family: var(--font-serif);
+		font-size: 1.2em;
+		color: var(--black);
+		white-space: nowrap;
+		padding-top: 2px;
+	}
+	.service-note {
+		margin-top: 1em;
+		font-size: 13px;
+		color: var(--text-muted);
+		font-style: italic;
+	}
+	.coming-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5em;
+	}
+	.coming-card {
+		padding: 2em;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+	}
+	.coming-icon {
+		font-size: 2em;
+		display: block;
+		margin-bottom: 12px;
+	}
+	.coming-card h3 {
+		font-family: var(--font-sans);
+		font-size: 1.1em;
+		margin-bottom: 8px;
+	}
+	.coming-card p {
+		font-size: 14px;
+		line-height: 1.65;
+		margin-bottom: 1em;
+	}
+	.coming-tag {
+		font-size: 12px;
+		color: var(--text-muted);
+		font-weight: 600;
+	}
+	.btn-dark {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 14px 28px;
+		background: var(--black);
+		color: white;
+		border-radius: var(--radius);
+		font-weight: 600;
+		font-size: 15px;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.btn-dark:hover {
+		background: #333;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+		color: white;
+	}
+	.btn-outline {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 14px 28px;
+		background: transparent;
+		border: 1.5px solid var(--border);
+		color: var(--text);
+		border-radius: var(--radius);
+		font-weight: 600;
+		font-size: 15px;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.btn-outline:hover {
+		border-color: var(--black);
+		background: var(--bg-soft);
+	}
+	.cta-section {
+		text-align: center;
+		padding: 5em 2em;
+		margin: 2em 0;
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+	}
+	.cta-section h2 { margin-bottom: 0.4em; font-size: 2em; }
+	.cta-section p { margin-bottom: 1.5em; font-size: 16px; }
+	@media (max-width: 720px) {
+		.service-grid { grid-template-columns: 1fr; }
+		.coming-grid { grid-template-columns: 1fr; }
+		.service-row { flex-direction: column; gap: 0.5em; }
+	}
+</style>

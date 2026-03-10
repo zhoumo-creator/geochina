@@ -1,0 +1,43 @@
+---
+interface Props {
+	lang?: string;
+}
+const { lang = 'zh' } = Astro.props;
+const isEn = lang === 'en';
+const prefix = isEn ? '/en' : '';
+const today = new Date();
+---
+
+<footer>
+	<div class="footer-inner">
+		<div class="footer-top">
+			<div class="footer-brand">
+				<span class="brand-dot"></span>
+				<span>geochina<sup>.co</sup></span>
+			</div>
+			<div class="footer-links">
+				<a href={`${prefix}/`}>{isEn ? 'Home' : '首页'}</a>
+				<a href="/blog">{isEn ? 'Blog' : '博客'}</a>
+				<a href={`${prefix}/services`}>{isEn ? 'Services' : '服务'}</a>
+				<a href={`${prefix}/about`}>{isEn ? 'About' : '关于'}</a>
+				<a href="/rss.xml">RSS</a>
+				<a href="/llms.txt">llms.txt</a>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<span>&copy; {today.getFullYear()} GEO China. {isEn ? 'Get cited by AI.' : '让 AI 看到你的品牌。'}</span>
+		</div>
+	</div>
+</footer>
+<style>
+	footer { border-top: 1px solid var(--border); margin-top: 4em; padding: 3em 1.5em; }
+	.footer-inner { max-width: var(--max-w-wide); margin: 0 auto; }
+	.footer-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2em; flex-wrap: wrap; gap: 1em; }
+	.footer-brand { display: flex; align-items: baseline; gap: 0; font-weight: 800; font-size: 1.05em; color: var(--black); }
+	.footer-brand sup { font-size: 0.6em; color: var(--text-muted); font-weight: 500; }
+	.brand-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; margin-right: 8px; position: relative; top: -1px; }
+	.footer-links { display: flex; gap: 24px; }
+	.footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+	.footer-links a:hover { color: var(--black); }
+	.footer-bottom { padding-top: 2em; border-top: 1px solid var(--border-light); font-size: 13px; color: var(--text-muted); }
+</style>

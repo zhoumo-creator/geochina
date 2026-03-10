@@ -1,0 +1,459 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import DitherIsland from '../components/DitherIsland.jsx';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+
+		<!-- Hero: Large Typography + Dither Canvas -->
+		<section class="hero">
+			<div class="hero-text">
+				<h1>
+					让 AI 搜索引擎<br/>引用你的内容。
+				</h1>
+				<a href="/blog" class="btn-dark">
+					Learn More
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+				</a>
+			</div>
+			<div class="hero-canvas">
+				<DitherIsland client:load />
+			</div>
+		</section>
+
+		<!-- Stats Strip -->
+		<section class="stats-strip">
+			<div class="stats-inner">
+				<div class="stat-item">
+					<span class="stat-value">33 <small>×</small></span>
+					<span class="stat-desc">Rootly 的 AI 引用率增长倍数，在实施 GEO 策略后的显著提升</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-value">78.72 <small>%</small></span>
+					<span class="stat-desc">GEO 优化后内容被 AI 摘要引用的概率，基于 Princeton 研究数据</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-value">100 <small>M</small></span>
+					<span class="stat-desc">每周通过 AI 搜索引擎获取信息的中文用户数量（估算）</span>
+				</div>
+			</div>
+			<div class="scroll-hint">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+				SCROLL DOWN
+			</div>
+		</section>
+
+		<!-- Technology Section -->
+		<main>
+			<section class="tech-section">
+				<div class="section-label"><span class="label-dot"></span> GEO 方法论</div>
+				<div class="tech-list">
+					<a href="/blog" class="tech-row">
+						<span class="tech-num">01</span>
+						<span class="tech-title">Citation Triggers</span>
+						<span class="tech-arrow">↗</span>
+					</a>
+					<a href="/blog" class="tech-row">
+						<span class="tech-num">02</span>
+						<span class="tech-title">Entity-first 策略</span>
+						<span class="tech-arrow">↗</span>
+					</a>
+					<a href="/blog" class="tech-row">
+						<span class="tech-num">03</span>
+						<span class="tech-title">结构化数据 for AI</span>
+						<span class="tech-arrow">↗</span>
+					</a>
+					<a href="/blog" class="tech-row">
+						<span class="tech-num">04</span>
+						<span class="tech-title">AI 爬虫管理</span>
+						<span class="tech-arrow">↗</span>
+					</a>
+				</div>
+			</section>
+
+			<!-- What is GEO -->
+			<section class="what-section">
+				<div class="what-grid">
+					<div class="what-left">
+						<div class="section-label"><span class="label-dot"></span> 概念</div>
+						<h2>SEO 优化排名。<br/>GEO 优化引用。</h2>
+					</div>
+					<div class="what-right">
+						<p>
+							传统 SEO 的目标是让你出现在 Google 搜索结果的第一页。
+							GEO 的目标是让 AI——ChatGPT、Perplexity、Google AI Overview——在回答用户问题时，主动引用你的内容作为信息来源。
+						</p>
+						<p>
+							根据 Princeton 大学的研究，结构化的 GEO 策略可以将内容在 AI 生成回答中的可见度提升高达 <strong>40%</strong>。
+							而来自 AI 引荐的流量，其转化率通常是传统搜索流量的 <strong>5 倍</strong>。
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Cases -->
+			<section class="cases-section">
+				<div class="section-label"><span class="label-dot"></span> 真实案例</div>
+				<h2>已经验证的增长引擎</h2>
+				<div class="cases-grid">
+					<div class="case-card">
+						<span class="case-value">10×</span>
+						<p>Rootly — AI 引用率增长</p>
+					</div>
+					<div class="case-card">
+						<span class="case-value">1,119%</span>
+						<p>电商品牌 — AI 流量年增长</p>
+					</div>
+					<div class="case-card">
+						<span class="case-value">6×</span>
+						<p>Grüns — 60 天 AI 声量提升</p>
+					</div>
+					<div class="case-card">
+						<span class="case-value">+32%</span>
+						<p>Smart Rent — 6 周 SQL 增长</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Blog -->
+			<section class="blog-section">
+				<h2>最新文章</h2>
+				<div class="posts-list">
+					{posts.map((post) => (
+						<a href={`/blog/${post.id}/`} class="post-row">
+							<div class="post-info">
+								<time datetime={post.data.pubDate.toISOString()}>
+									{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+								</time>
+								<h3>{post.data.title}</h3>
+							</div>
+							<span class="post-arrow">→</span>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<!-- CTA -->
+			<section class="cta-section">
+				<h2>开始你的 GEO 学习之旅</h2>
+				<p>中文互联网第一个系统化 GEO 学习站。</p>
+				<a href="/blog" class="btn-dark">
+					浏览文章
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+				</a>
+			</section>
+		</main>
+		<Footer />
+
+		<!-- Mount Dither React Island -->
+
+	</body>
+</html>
+
+<style>
+	/* ==================== HERO ==================== */
+	.hero {
+		max-width: var(--max-w-wide);
+		margin: 0 auto;
+		padding: 4em 1.5em 0;
+		display: grid;
+		grid-template-columns: 1fr 1.4fr;
+		gap: 3em;
+		align-items: center;
+	}
+	.hero h1 {
+		font-size: 3.2em;
+		line-height: 1.15;
+		letter-spacing: -0.03em;
+		margin-bottom: 1em;
+	}
+	.btn-dark {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 14px 28px;
+		background: var(--black);
+		color: white;
+		border-radius: var(--radius);
+		font-weight: 600;
+		font-size: 15px;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.btn-dark:hover {
+		background: #333;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+		color: white;
+	}
+	.hero-canvas {
+		width: 100%;
+		height: 340px;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		background: #f0f0ec;
+	}
+
+	/* ==================== STATS ==================== */
+	.stats-strip {
+		max-width: var(--max-w-wide);
+		margin: 0 auto;
+		padding: 4em 1.5em 3em;
+		border-bottom: 1px solid var(--border);
+		position: relative;
+	}
+	.stats-inner {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 3em;
+	}
+	.stat-value {
+		display: block;
+		font-family: var(--font-serif);
+		font-size: 3.5em;
+		font-weight: 400;
+		color: var(--black);
+		letter-spacing: -0.02em;
+		line-height: 1;
+		margin-bottom: 16px;
+	}
+	.stat-value small {
+		font-size: 0.5em;
+		color: var(--text-muted);
+		font-weight: 400;
+	}
+	.stat-desc {
+		display: block;
+		font-size: 14px;
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+	.scroll-hint {
+		position: absolute;
+		bottom: 2em;
+		left: 1.5em;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		color: var(--text-muted);
+	}
+
+	/* ==================== TECH ==================== */
+	.tech-section {
+		padding: 4em 0 2em;
+		border-bottom: 1px solid var(--border);
+	}
+	.section-label {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin-bottom: 2em;
+	}
+	.label-dot {
+		width: 6px;
+		height: 6px;
+		background: var(--black);
+		display: inline-block;
+	}
+	.tech-list {
+		display: flex;
+		flex-direction: column;
+	}
+	.tech-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1.4em 0;
+		border-top: 1px solid var(--border-light);
+		text-decoration: none;
+		color: var(--text);
+		transition: padding-left 0.2s;
+	}
+	.tech-row:hover {
+		padding-left: 12px;
+	}
+	.tech-num {
+		font-size: 14px;
+		color: var(--text-muted);
+		min-width: 40px;
+	}
+	.tech-title {
+		flex: 1;
+		font-size: 1.15em;
+		font-weight: 700;
+	}
+	.tech-arrow {
+		font-size: 1.2em;
+		color: var(--text-muted);
+		transition: transform 0.2s;
+	}
+	.tech-row:hover .tech-arrow {
+		transform: translate(3px, -3px);
+		color: var(--black);
+	}
+
+	/* ==================== WHAT ==================== */
+	.what-section {
+		padding: 4em 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.what-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4em;
+	}
+	.what-left h2 {
+		font-size: 2.2em;
+		margin-top: 0.5em;
+	}
+	.what-right p {
+		font-size: 16px;
+		color: var(--text-secondary);
+		line-height: 1.85;
+	}
+	.what-right strong {
+		color: var(--black);
+	}
+
+	/* ==================== CASES ==================== */
+	.cases-section {
+		padding: 4em 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.cases-section h2 {
+		margin-bottom: 1.5em;
+	}
+	.cases-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0;
+	}
+	.case-card {
+		padding: 2em 1.5em;
+		border-left: 1px solid var(--border);
+	}
+	.case-card:first-child {
+		border-left: none;
+		padding-left: 0;
+	}
+	.case-value {
+		display: block;
+		font-family: var(--font-serif);
+		font-size: 2.8em;
+		font-weight: 400;
+		color: var(--black);
+		letter-spacing: -0.02em;
+		line-height: 1;
+		margin-bottom: 14px;
+	}
+	.case-card p {
+		font-size: 14px;
+		color: var(--text-secondary);
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	/* ==================== BLOG ==================== */
+	.blog-section {
+		padding: 4em 0 2em;
+	}
+	.blog-section h2 {
+		margin-bottom: 1em;
+	}
+	.post-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1.5em 0;
+		border-top: 1px solid var(--border-light);
+		text-decoration: none;
+		transition: padding-left 0.2s;
+	}
+	.post-row:last-child {
+		border-bottom: 1px solid var(--border-light);
+	}
+	.post-row:hover {
+		padding-left: 12px;
+	}
+	.post-info time {
+		font-size: 13px;
+		color: var(--text-muted);
+		display: block;
+		margin-bottom: 4px;
+	}
+	.post-info h3 {
+		font-family: 'Inter', 'Noto Sans SC', sans-serif;
+		font-size: 1.05em;
+		font-weight: 700;
+		color: var(--black);
+		transition: color 0.15s;
+	}
+	.post-row:hover h3 {
+		color: var(--accent);
+	}
+	.post-arrow {
+		font-size: 1.3em;
+		color: var(--text-muted);
+		transition: transform 0.15s;
+	}
+	.post-row:hover .post-arrow {
+		transform: translateX(4px);
+		color: var(--black);
+	}
+
+	/* ==================== CTA ==================== */
+	.cta-section {
+		text-align: center;
+		padding: 5em 2em;
+		margin: 2em 0;
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+	}
+	.cta-section h2 {
+		margin-bottom: 0.4em;
+		font-size: 2em;
+	}
+	.cta-section p {
+		margin-bottom: 1.5em;
+		font-size: 16px;
+	}
+
+	/* ==================== RESPONSIVE ==================== */
+	@media (max-width: 720px) {
+		.hero {
+			grid-template-columns: 1fr;
+			padding-top: 2.5em;
+		}
+		.hero h1 { font-size: 2.4em; }
+		.hero-canvas { height: 280px; }
+		.stats-inner { grid-template-columns: 1fr; gap: 2em; }
+		.stat-value { font-size: 2em; }
+		.scroll-hint { display: none; }
+		.what-grid { grid-template-columns: 1fr; gap: 1.5em; }
+		.cases-grid { grid-template-columns: 1fr 1fr; }
+		.case-card { border-left: none; border-top: 1px solid var(--border); padding-left: 0; }
+		.case-card:first-child, .case-card:nth-child(2) { border-top: none; }
+	}
+</style>

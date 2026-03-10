@@ -1,0 +1,21 @@
+# GEO China — geochina.co
+# AI 搜索优化（Generative Engine Optimization）中文第一站
+
+## About
+GEO China 是中文互联网第一个系统化 GEO 学习站。我们专注于帮助品牌和内容创作者被 AI 搜索引擎（ChatGPT、Perplexity、Google AI Overview）引用和推荐。
+
+## Content
+- /blog/ — GEO 实战教程、案例拆解、方法论研究
+- /about/ — 关于 GEO China 和学习者故事
+
+## Topics
+- Generative Engine Optimization (GEO) 生成式引擎优化
+- AI Search Optimization (ASO) AI 搜索优化
+- Citation Triggers — 如何触发 AI 引用
+- Structured Data for AI — AI 友好的结构化数据
+- AI Crawler Management — AI 爬虫管理（GPTBot / ClaudeBot / Google-Extended）
+- E-E-A-T in GEO — GEO 时代的权威性建设
+- GEO Case Studies — GEO 实战案例
+
+## Contact
+Website: https://geochina.co

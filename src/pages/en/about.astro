@@ -1,0 +1,106 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="About — GEO China" description="GEO China is the #1 Chinese resource for Generative Engine Optimization. We bridge the gap between global GEO methodologies and the Chinese AI search ecosystem." />
+	</head>
+	<body>
+		<Header lang="en" />
+		<main>
+			<section class="page-header">
+				<div class="section-label"><span class="label-dot"></span> About</div>
+				<h1>About GEO China</h1>
+			</section>
+
+			<section class="about-grid">
+				<div class="about-main">
+					<p class="lead">
+						GEO China (geochina.co) is the <strong>first systematic GEO learning platform</strong> in the Chinese internet.
+					</p>
+
+					<h2>What We Do</h2>
+					<p>
+						GEO (Generative Engine Optimization) is the new paradigm of search optimization in the AI era.
+						As more users turn to ChatGPT, Perplexity, and Google AI Overview for information,
+						traditional SEO is no longer enough.
+					</p>
+					<p>
+						We study the methodologies of GEO pioneers (Princeton research team, Jason Barnard, Kevin Indig, Lily Ray),
+						validate them through real-world implementation, and translate our findings for the Chinese community.
+					</p>
+
+					<h2>Why China Focus</h2>
+					<p>
+						While tools like Semrush and Ahrefs cover English GEO, the Chinese market has its own unique AI search ecosystem:
+						Baidu Wenxin, Doubao, Kimi, and Tongyi Qianwen. These platforms have entirely different citation logic
+						that requires specialized research and strategy.
+					</p>
+					<p>
+						GEO China is the only Chinese resource that covers both international and domestic AI search engines.
+					</p>
+
+					<h2>Content Focus</h2>
+					<ul>
+						<li>🔬 <strong>Methodology Deep-dives</strong> — Analyzing GEO pioneer frameworks</li>
+						<li>📊 <strong>Weekly GEO Reports</strong> — China market AI citation data</li>
+						<li>🧪 <strong>GEO Lab</strong> — Real experiments on live websites, open data</li>
+						<li>🔧 <strong>Tutorials</strong> — Citation Triggers, Schema, AI crawler config</li>
+						<li>🛠️ <strong>Tool Reviews</strong> — GEO tool evaluation and comparison</li>
+					</ul>
+
+					<h2>Contact</h2>
+					<p>
+						Email: <a href="mailto:hello@geochina.co">hello@geochina.co</a><br/>
+						Web: <a href="https://geochina.co">geochina.co</a>
+					</p>
+				</div>
+				<aside class="about-sidebar">
+					<div class="sidebar-card">
+						<h3>GEO at a Glance</h3>
+						<p>GEO = Getting AI search engines to cite your content.</p>
+						<ul>
+							<li>Princeton research: GEO boosts AI visibility by <strong>40%</strong></li>
+							<li>AI referral converts at <strong>5×</strong> traditional search</li>
+							<li>ChatGPT has <strong>800M+</strong> weekly active users</li>
+						</ul>
+					</div>
+					<div class="sidebar-card">
+						<h3>Services</h3>
+						<p>We offer GEO audits, brand optimization, and global expansion packages.</p>
+						<a href="/en/services">View Services →</a>
+					</div>
+				</aside>
+			</section>
+		</main>
+		<Footer lang="en" />
+	</body>
+</html>
+
+<style>
+	.page-header { padding: 3em 0 2em; }
+	.page-header h1 { margin-top: 0.5em; }
+	.section-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+	.label-dot { width: 6px; height: 6px; background: var(--black); display: inline-block; }
+	.about-grid { display: grid; grid-template-columns: 1fr 300px; gap: 4em; padding-bottom: 4em; }
+	.about-main { border-top: 1px solid var(--border); padding-top: 2em; }
+	.lead { font-size: 1.25em; color: var(--text) !important; line-height: 1.75; margin-bottom: 2em; }
+	.about-main h2 { font-size: 1.4em; margin-top: 2.5em; margin-bottom: 0.6em; padding-bottom: 0.4em; border-bottom: 1px solid var(--border-light); }
+	.about-main p { font-size: 16px; line-height: 1.85; }
+	.about-main ul { list-style: none; padding: 0; margin: 1em 0; }
+	.about-main li { padding: 10px 0; font-size: 15px; color: var(--text-secondary); border-bottom: 1px solid var(--border-light); }
+	.about-main li:last-child { border-bottom: none; }
+	.about-sidebar { padding-top: 2em; display: flex; flex-direction: column; gap: 1.5em; }
+	.sidebar-card { background: var(--bg-section); padding: 2em; border-radius: var(--radius-lg); }
+	.sidebar-card h3 { font-family: var(--font-sans); font-size: 1em; margin-bottom: 10px; }
+	.sidebar-card p { font-size: 14px; line-height: 1.65; }
+	.sidebar-card ul { list-style: none; padding: 0; margin: 1em 0 0; }
+	.sidebar-card li { font-size: 14px; padding: 6px 0; color: var(--text-secondary); border-bottom: 1px solid rgba(0,0,0,0.06); }
+	.sidebar-card li:last-child { border-bottom: none; }
+	.sidebar-card a { font-size: 14px; font-weight: 600; color: var(--accent); }
+	@media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; gap: 2em; } }
+</style>

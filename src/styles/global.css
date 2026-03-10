@@ -1,0 +1,303 @@
+/*
+  GEO China — geochina.co
+  Clean, professional light theme inspired by biotx-style design
+  Large typography, generous whitespace, colorful accents
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Serif+Display&family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+	--black: #111111;
+	--text: #1a1a1a;
+	--text-secondary: #555555;
+	--text-muted: #888888;
+	--border: #e8e8e8;
+	--border-light: #f0f0f0;
+	--bg: #ffffff;
+	--bg-soft: #fafafa;
+	--bg-section: #f5f5f0;
+	--accent: #1a7a4c;
+	--accent-hover: #15613c;
+	--accent-light: #e8f5ee;
+	--blue: #2563eb;
+	--purple: #7c3aed;
+	--orange: #ea580c;
+	--radius: 8px;
+	--radius-lg: 16px;
+	--max-w: 720px;
+	--max-w-wide: 960px;
+	--font-serif: 'DM Serif Display', 'Noto Serif SC', Georgia, serif;
+	--font-sans: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: var(--font-sans);
+	margin: 0;
+	padding: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-size: 17px;
+	line-height: 1.75;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+main {
+	width: var(--max-w);
+	max-width: calc(100% - 3em);
+	margin: auto;
+	padding: 2em 0;
+}
+
+/* Typography — large, confident, editorial */
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-serif);
+	color: var(--black);
+	line-height: 1.25;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+
+h1 {
+	font-size: 3.2em;
+	font-weight: 900;
+	line-height: 1.15;
+	letter-spacing: -0.025em;
+}
+
+h2 { font-size: 2em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.15em; }
+
+strong, b { font-weight: 700; }
+
+a {
+	color: var(--accent);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-color: rgba(26, 122, 76, 0.3);
+	transition: all 0.15s;
+}
+
+a:hover {
+	text-decoration-color: var(--accent);
+}
+
+p {
+	margin-bottom: 1em;
+	color: var(--text-secondary);
+}
+
+/* Prose — blog content */
+.prose {
+	font-size: 1.05em;
+	line-height: 1.85;
+}
+
+.prose p {
+	margin-bottom: 1.6em;
+	color: var(--text-secondary);
+}
+
+.prose h2 {
+	margin-top: 2.8em;
+	margin-bottom: 0.6em;
+	padding-bottom: 0.4em;
+	border-bottom: 1px solid var(--border);
+}
+
+.prose h3 {
+	margin-top: 2em;
+	margin-bottom: 0.5em;
+}
+
+.prose ul, .prose ol {
+	margin-bottom: 1.5em;
+	padding-left: 1.2em;
+	color: var(--text-secondary);
+}
+
+.prose li {
+	margin-bottom: 0.5em;
+}
+
+.prose li::marker {
+	color: var(--accent);
+}
+
+.prose blockquote {
+	border-left: 3px solid var(--accent);
+	padding: 1em 1.5em;
+	margin: 2em 0;
+	background: var(--bg-soft);
+	border-radius: 0 var(--radius) var(--radius) 0;
+	color: var(--text-secondary);
+}
+
+.prose table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 2em 0;
+	font-size: 0.92em;
+}
+
+.prose th {
+	text-align: left;
+	padding: 14px 18px;
+	background: var(--bg-section);
+	border-bottom: 2px solid var(--border);
+	color: var(--black);
+	font-weight: 600;
+	font-family: 'Inter', 'Noto Sans SC', sans-serif;
+}
+
+.prose td {
+	padding: 14px 18px;
+	border-bottom: 1px solid var(--border-light);
+	color: var(--text-secondary);
+}
+
+.prose tbody tr:hover {
+	background: var(--bg-soft);
+}
+
+.prose img {
+	max-width: 100%;
+	height: auto;
+	border-radius: var(--radius);
+	margin: 2em 0;
+}
+
+.prose strong {
+	color: var(--black);
+}
+
+.prose hr {
+	border: none;
+	border-top: 1px solid var(--border);
+	margin: 2.5em 0;
+}
+
+code {
+	padding: 3px 7px;
+	background: var(--bg-section);
+	border-radius: 4px;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.88em;
+	color: var(--orange);
+}
+
+pre {
+	padding: 1.5em;
+	border-radius: var(--radius);
+	background: #1a1a2e !important;
+	overflow-x: auto;
+	margin: 2em 0;
+}
+
+pre > code {
+	all: unset;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.88em;
+	color: #e0e0e8;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid var(--border);
+	margin: 2em 0;
+}
+
+/* Components */
+.tag {
+	display: inline-block;
+	padding: 4px 12px;
+	border-radius: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.tag-green {
+	background: var(--accent-light);
+	color: var(--accent);
+}
+
+.tag-blue {
+	background: #eff6ff;
+	color: var(--blue);
+}
+
+.tag-purple {
+	background: #f5f3ff;
+	color: var(--purple);
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 14px 28px;
+	border-radius: var(--radius);
+	font-weight: 600;
+	font-size: 15px;
+	text-decoration: none;
+	transition: all 0.2s;
+	cursor: pointer;
+	border: none;
+	font-family: inherit;
+}
+
+.btn-primary {
+	background: var(--accent);
+	color: white;
+}
+
+.btn-primary:hover {
+	background: var(--accent-hover);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(26, 122, 76, 0.25);
+	color: white;
+}
+
+.btn-outline {
+	background: transparent;
+	border: 1.5px solid var(--border);
+	color: var(--text);
+}
+
+.btn-outline:hover {
+	border-color: var(--text);
+	background: var(--bg-soft);
+}
+
+.btn svg {
+	width: 16px;
+	height: 16px;
+}
+
+@media (max-width: 720px) {
+	body { font-size: 16px; }
+	main { padding: 1em 0; max-width: calc(100% - 2em); }
+	h1 { font-size: 2.2em; }
+	h2 { font-size: 1.6em; }
+}
+
+.sr-only {
+	border: 0; padding: 0; margin: 0;
+	position: absolute !important;
+	height: 1px; width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
