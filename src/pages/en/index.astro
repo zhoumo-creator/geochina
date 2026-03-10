@@ -143,10 +143,16 @@ const posts = (await getCollection('blog')).sort(
 			<section class="cta-section">
 				<h2>Start Your GEO Journey</h2>
 				<p>The #1 Chinese resource for Generative Engine Optimization.</p>
-				<a href="/en/services" class="btn-dark">
-					View Services
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-				</a>
+				<div class="cta-buttons">
+					<a href="/en/services" class="btn-dark">
+						View Services
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+					</a>
+					<a href="mailto:hi@geochina.co" class="btn-outline">
+						Contact Us
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+					</a>
+				</div>
 			</section>
 		</main>
 		<Footer lang="en" />
@@ -208,6 +214,9 @@ const posts = (await getCollection('blog')).sort(
 	.cta-section { text-align: center; padding: 5em 2em; margin: 2em 0; background: var(--bg-section); border-radius: var(--radius-lg); }
 	.cta-section h2 { margin-bottom: 0.4em; font-size: 2em; }
 	.cta-section p { margin-bottom: 1.5em; font-size: 16px; }
+	.cta-buttons { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
+	.btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: transparent; color: var(--black); border: 1.5px solid var(--black); border-radius: var(--radius); font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s; }
+	.btn-outline:hover { background: var(--black); color: white; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 	@media (max-width: 720px) {
 		.hero { grid-template-columns: 1fr; padding-top: 2.5em; }
 		.hero h1 { font-size: 2.4em; }
