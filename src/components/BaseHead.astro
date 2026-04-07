@@ -60,6 +60,29 @@ const { title, description, image = FallbackImage } = Astro.props;
 	"@type": "Organization",
 	"name": "GEO China",
 	"url": "https://geochina.co",
-	"description": "GEO（Generative Engine Optimization）中文第一站。学习如何让你的品牌被 AI 搜索引擎引用。",
-	"sameAs": []
+	"description": "GEO（Generative Engine Optimization）中文第一站。学习如何让你的品牌被 AI 搜索引擎引用——实战教程、案例拆解、工具推荐。",
+	"sameAs": [],
+	"knowsAbout": [
+		"Generative Engine Optimization",
+		"AI Search Optimization",
+		"Citation Triggers",
+		"Structured Data for AI",
+		"AI Crawler Management"
+	]
+})} />
+
+<!-- Schema.org WebSite -->
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"name": "GEO China",
+	"alternateName": "GEO 中国",
+	"url": "https://geochina.co",
+	"description": "中文互联网第一个系统化 GEO（Generative Engine Optimization）学习站。覆盖 AI 搜索优化方法论、Citation Triggers、结构化数据、AI 爬虫管理等核心话题。",
+	"inLanguage": ["zh-CN", "en"],
+	"publisher": {
+		"@type": "Organization",
+		"name": "GEO China",
+		"url": "https://geochina.co"
+	}
 })} />

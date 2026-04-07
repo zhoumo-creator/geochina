@@ -14,6 +14,33 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="zh-CN">
 	<head>
 		<BaseHead title={title} description={description} />
+		<!-- Schema.org Article -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Article",
+			"headline": title,
+			"description": description,
+			"datePublished": pubDate.toISOString(),
+			"dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
+			"author": {
+				"@type": "Organization",
+				"name": "GEO China",
+				"url": "https://geochina.co"
+			},
+			"publisher": {
+				"@type": "Organization",
+				"name": "GEO China",
+				"url": "https://geochina.co"
+			},
+			"mainEntityOfPage": {
+				"@type": "WebPage",
+				"@id": Astro.url.href
+			},
+			"about": [
+				"Generative Engine Optimization",
+				"AI Search Optimization"
+			]
+		})} />
 	</head>
 	<body>
 		<Header />
