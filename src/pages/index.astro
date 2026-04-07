@@ -60,6 +60,18 @@ const posts = (await getCollection('blog'))
 			</div>
 		</section>
 
+		<!-- Partners / Ecosystem -->
+		<section class="partners-section">
+			<div class="partners-inner">
+				<p class="partners-title">合作生态与品牌</p>
+				<div class="partners-logos">
+					<img src="/partners/voyaga.jpeg" alt="Voyaga" class="partner-img rounded" />
+					<img src="/partners/speedrun.svg" alt="a16z SPEEDRUN" class="partner-img" />
+					<span class="partner-text">youragent<span>.cc</span></span>
+				</div>
+			</div>
+		</section>
+
 		<!-- Technology Section -->
 		<main>
 			<section class="tech-section">
@@ -475,6 +487,16 @@ const posts = (await getCollection('blog'))
 		transform: translateY(-1px);
 		box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 	}
+
+	/* ==================== PARTNERS ==================== */
+	.partners-section { max-width: var(--max-w-wide); margin: 0 auto; padding: 4em 1.5em; border-bottom: 1px solid var(--border); text-align: center; }
+	.partners-title { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2.5em; }
+	.partners-logos { display: flex; align-items: center; justify-content: center; gap: 5em; flex-wrap: wrap; filter: grayscale(100%) opacity(0.7); transition: all 0.3s ease; }
+	.partners-logos:hover { filter: grayscale(0%) opacity(1); }
+	.partner-img { height: 32px; object-fit: contain; }
+	.partner-img.rounded { border-radius: 6px; }
+	.partner-text { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -0.02em; }
+	.partner-text span { font-size: 0.6em; color: var(--text-muted); font-weight: 500; }
 
 	/* ==================== RESPONSIVE ==================== */
 	@media (max-width: 720px) {
