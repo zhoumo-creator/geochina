@@ -114,29 +114,6 @@ const posts = (await getCollection('blog'))
 				</div>
 			</section>
 
-			<section class="cases-section">
-				<div class="section-label"><span class="label-dot"></span> Real Cases</div>
-				<h2>A proven growth engine</h2>
-				<div class="cases-grid">
-					<div class="case-card">
-						<span class="case-value">10×</span>
-						<p>Rootly — AI citation rate growth</p>
-					</div>
-					<div class="case-card">
-						<span class="case-value">1,119%</span>
-						<p>E-commerce brand — AI traffic YoY</p>
-					</div>
-					<div class="case-card">
-						<span class="case-value">6×</span>
-						<p>Grüns — AI visibility in 60 days</p>
-					</div>
-					<div class="case-card">
-						<span class="case-value">+32%</span>
-						<p>Smart Rent — SQL growth in 6 weeks</p>
-					</div>
-				</div>
-			</section>
-
 			<section class="blog-section">
 				<h2>Latest Articles</h2>
 				<div class="posts-list">
@@ -208,13 +185,6 @@ const posts = (await getCollection('blog'))
 	.what-left h2 { font-size: 2.2em; margin-top: 0.5em; }
 	.what-right p { font-size: 16px; color: var(--text-secondary); line-height: 1.85; }
 	.what-right strong { color: var(--black); }
-	.cases-section { padding: 4em 0; border-bottom: 1px solid var(--border); }
-	.cases-section h2 { margin-bottom: 1.5em; }
-	.cases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-	.case-card { padding: 2em 1.5em; border-left: 1px solid var(--border); }
-	.case-card:first-child { border-left: none; padding-left: 0; }
-	.case-value { display: block; font-family: var(--font-serif); font-size: 2.8em; font-weight: 400; color: var(--black); letter-spacing: -0.02em; line-height: 1; margin-bottom: 14px; }
-	.case-card p { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
 	.blog-section { padding: 4em 0 2em; }
 	.blog-section h2 { margin-bottom: 1em; }
 	.post-row { display: flex; align-items: center; justify-content: space-between; padding: 1.5em 0; border-top: 1px solid var(--border-light); text-decoration: none; transition: padding-left 0.2s; }
@@ -249,8 +219,5 @@ const posts = (await getCollection('blog'))
 		.stat-value { font-size: 2em; }
 		.scroll-hint { display: none; }
 		.what-grid { grid-template-columns: 1fr; gap: 1.5em; }
-		.cases-grid { grid-template-columns: 1fr 1fr; }
-		.case-card { border-left: none; border-top: 1px solid var(--border); padding-left: 0; }
-		.case-card:first-child, .case-card:nth-child(2) { border-top: none; }
 	}
 </style>

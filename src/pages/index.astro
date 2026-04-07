@@ -120,30 +120,6 @@ const posts = (await getCollection('blog'))
 				</div>
 			</section>
 
-			<!-- Cases -->
-			<section class="cases-section">
-				<div class="section-label"><span class="label-dot"></span> 真实案例</div>
-				<h2>已经验证的增长引擎</h2>
-				<div class="cases-grid">
-					<div class="case-card">
-						<span class="case-value">10×</span>
-						<p>Rootly — AI 引用率增长</p>
-					</div>
-					<div class="case-card">
-						<span class="case-value">1,119%</span>
-						<p>电商品牌 — AI 流量年增长</p>
-					</div>
-					<div class="case-card">
-						<span class="case-value">6×</span>
-						<p>Grüns — 60 天 AI 声量提升</p>
-					</div>
-					<div class="case-card">
-						<span class="case-value">+32%</span>
-						<p>Smart Rent — 6 周 SQL 增长</p>
-					</div>
-				</div>
-			</section>
-
 			<!-- Blog -->
 			<section class="blog-section">
 				<h2>最新文章</h2>
@@ -358,44 +334,6 @@ const posts = (await getCollection('blog'))
 		color: var(--black);
 	}
 
-	/* ==================== CASES ==================== */
-	.cases-section {
-		padding: 4em 0;
-		border-bottom: 1px solid var(--border);
-	}
-	.cases-section h2 {
-		margin-bottom: 1.5em;
-	}
-	.cases-grid {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 0;
-	}
-	.case-card {
-		padding: 2em 1.5em;
-		border-left: 1px solid var(--border);
-	}
-	.case-card:first-child {
-		border-left: none;
-		padding-left: 0;
-	}
-	.case-value {
-		display: block;
-		font-family: var(--font-serif);
-		font-size: 2.8em;
-		font-weight: 400;
-		color: var(--black);
-		letter-spacing: -0.02em;
-		line-height: 1;
-		margin-bottom: 14px;
-	}
-	.case-card p {
-		font-size: 14px;
-		color: var(--text-secondary);
-		margin: 0;
-		line-height: 1.5;
-	}
-
 	/* ==================== BLOG ==================== */
 	.blog-section {
 		padding: 4em 0 2em;
@@ -510,8 +448,5 @@ const posts = (await getCollection('blog'))
 		.stat-value { font-size: 2em; }
 		.scroll-hint { display: none; }
 		.what-grid { grid-template-columns: 1fr; gap: 1.5em; }
-		.cases-grid { grid-template-columns: 1fr 1fr; }
-		.case-card { border-left: none; border-top: 1px solid var(--border); padding-left: 0; }
-		.case-card:first-child, .case-card:nth-child(2) { border-top: none; }
 	}
 </style>
