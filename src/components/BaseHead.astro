@@ -13,6 +13,13 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = FallbackImage } = Astro.props;
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isEn = path.startsWith('/en');
+const zhPath = isEn ? (path === '/en' ? '/' : path.replace(/^\/en/, '')) : path;
+const enPath = isEn ? path : (path === '/' ? '/en' : `/en${path}`);
+const zhURL = new URL(zhPath, Astro.site);
+const enURL = new URL(enPath, Astro.site);
 ---
 
 <!-- Global Metadata -->
@@ -30,6 +37,11 @@ const { title, description, image = FallbackImage } = Astro.props;
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+
+<!-- hreflang -->
+<link rel="alternate" hreflang="zh-CN" href={zhURL} />
+<link rel="alternate" hreflang="en" href={enURL} />
+<link rel="alternate" hreflang="x-default" href={zhURL} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -59,7 +71,9 @@ const { title, description, image = FallbackImage } = Astro.props;
 	"@type": "Organization",
 	"name": "GEO China",
 	"url": "https://geochina.co",
-	"description": "GEO（Generative Engine Optimization）中文第一站。学习如何让你的品牌被 AI 搜索引擎引用——实战教程、案例拆解、工具推荐。",
+	"description": "中文 B2B 团队的 AI 增长伙伴。SEO/GEO Agent 每周自动交付可合并 PR，覆盖 9 大 AI 搜索引擎。",
+	"email": "hi@geochina.co",
+	"contactPoint": { "@type": "ContactPoint", "email": "hi@geochina.co", "contactType": "sales" },
 	"sameAs": [],
 	"knowsAbout": [
 		"Generative Engine Optimization",
@@ -77,11 +91,86 @@ const { title, description, image = FallbackImage } = Astro.props;
 	"name": "GEO China",
 	"alternateName": "GEO 中国",
 	"url": "https://geochina.co",
-	"description": "中文互联网第一个系统化 GEO（Generative Engine Optimization）学习站。覆盖 AI 搜索优化方法论、Citation Triggers、结构化数据、AI 爬虫管理等核心话题。",
+	"description": "GEO China — 中文 B2B 团队的 AI 增长伙伴。SEO/GEO Agent 自动交付可合并 PR，覆盖中西方 9 大 AI 搜索引擎。",
 	"inLanguage": ["zh-CN", "en"],
 	"publisher": {
 		"@type": "Organization",
 		"name": "GEO China",
 		"url": "https://geochina.co"
 	}
+})} />
+
+<!-- Schema.org FAQPage -->
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": [
+		{
+			"@type": "Question",
+			"name": "什么是 GEO（Generative Engine Optimization）？",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "GEO（生成式引擎优化）是让 AI 搜索引擎（ChatGPT、Perplexity、Google AI Overview、豆包、Kimi 等）在回答用户问题时主动引用你的内容的优化策略。与传统 SEO 优化搜索排名不同，GEO 优化的是 AI 引用率。Princeton 研究表明，结构化 GEO 策略可将 AI 可见度提升 40% 以上。"
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "GEO 和 SEO 有什么区别？",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "SEO 优化的是搜索排名（在 Google 第一页出现），GEO 优化的是 AI 引用（被 ChatGPT/Perplexity 等引用为信息来源）。SEO 产出是报告和建议，GEO Agent 产出是可合并的代码 PR。AI 引荐流量的转化率通常是传统搜索流量的 5 倍。"
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "GEO China 的 Agent 覆盖哪些 AI 搜索引擎？",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "GEO China Agent 覆盖中西方 9 大 AI 搜索引擎：中国 5 大引擎（豆包、Kimi、元宝、文心、通义）+ 西方 4 大引擎（ChatGPT、Perplexity、Claude、Google AI Overview）。这是目前市场上唯一同时覆盖中国和西方 AI 搜索引擎的 GEO 产品。"
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "GEO Agent 如何工作？",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "GEO Agent 每周自动扫描你的网站在 9 大 AI 搜索引擎中的可见度，生成可直接合并的 Pull Request（PR）。你只需点击 Merge，优化即生效。代码 100% 归你所有，支持 30 天退款，随时可停服。起价 ¥199/月。"
+			}
+		}
+	]
+})} />
+
+<!-- Schema.org Service -->
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"serviceType": "AI Search Optimization",
+	"name": "GEO China SEO/GEO Agent",
+	"description": "自动化 GEO 优化 Agent，覆盖中西方 9 大 AI 搜索引擎，每周交付可合并 PR。",
+	"provider": {
+		"@type": "Organization",
+		"name": "GEO China",
+		"url": "https://geochina.co"
+	},
+	"areaServed": ["CN", "US", "GB", "SG", "HK"],
+	"availableChannel": {
+		"@type": "ServiceChannel",
+		"serviceUrl": "https://geochina.co/services"
+	},
+	"offers": [
+		{
+			"@type": "Offer",
+			"name": "Solo Agent",
+			"price": "199",
+			"priceCurrency": "CNY",
+			"priceSpecification": { "@type": "UnitPriceSpecification", "unitText": "月" }
+		},
+		{
+			"@type": "Offer",
+			"name": "Pro Matrix",
+			"price": "1499",
+			"priceCurrency": "CNY",
+			"priceSpecification": { "@type": "UnitPriceSpecification", "unitText": "月" }
+		}
+	]
 })} />

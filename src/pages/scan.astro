@@ -1,0 +1,156 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead
+			title="免费 AI 可见性扫描 | GEO China"
+			description="输入你的网站，30 秒看到你在豆包/Kimi/元宝/文心/通义 + ChatGPT/Perplexity/Claude/Google AIO 9 大 AI 引擎中的可见性快照。"
+		/>
+	</head>
+	<body>
+		<Header />
+
+		<main>
+			<section class="scan-hero">
+				<div class="section-label"><span class="label-dot"></span> 免费工具</div>
+				<h1>30 秒看到你在 9 大 AI 引擎里的可见性</h1>
+				<p class="lead">
+					输入你的官网地址，我们在豆包 / Kimi / 元宝 / 文心 / 通义 + ChatGPT / Perplexity / Claude / Google AIO 上模拟提问，看哪些引擎已经引用你、哪些还没有。
+				</p>
+
+				<div class="scan-box">
+					<div class="scan-coming">
+						<span class="badge">即将上线</span>
+						<p>
+							自动扫描工具正在搭建中。<br/>
+							当前阶段，发邮件给我们 → 24 小时内人工返还你的 9 引擎可见性报告（免费、无需注册）。
+						</p>
+						<a href="mailto:hi@geochina.co?subject=申请%20AI%20可见性免费扫描&body=我的网站：%0A目标市场：%0A联系方式：" class="btn-cta">
+							申请人工扫描 →
+						</a>
+					</div>
+				</div>
+
+				<ul class="trust-band">
+					<li><span class="trust-check">✓</span> 免费</li>
+					<li><span class="trust-check">✓</span> 无需注册</li>
+					<li><span class="trust-check">✓</span> 24 小时内返还</li>
+				</ul>
+			</section>
+		</main>
+
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.scan-hero {
+		padding: 4em 0 6em;
+	}
+	.section-label {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin-bottom: 1.5em;
+	}
+	.label-dot {
+		width: 6px;
+		height: 6px;
+		background: var(--accent);
+		display: inline-block;
+	}
+	.scan-hero h1 {
+		font-size: 2.6em;
+		line-height: 1.2;
+		margin-bottom: 0.6em;
+	}
+	.lead {
+		font-size: 1.15em;
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin-bottom: 2.4em;
+		max-width: 640px;
+	}
+	.scan-box {
+		background: var(--bg-section);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 3em 2.5em;
+		margin-bottom: 2em;
+	}
+	.scan-coming {
+		text-align: left;
+		max-width: 560px;
+	}
+	.badge {
+		display: inline-block;
+		background: var(--gold);
+		color: var(--black);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		padding: 4px 10px;
+		border-radius: 4px;
+		margin-bottom: 1em;
+	}
+	.scan-coming p {
+		font-size: 1em;
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin-bottom: 1.6em;
+	}
+	.btn-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 14px 28px;
+		background: var(--cta);
+		color: white;
+		border-radius: var(--radius);
+		font-weight: 600;
+		font-size: 15px;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.btn-cta:hover {
+		background: var(--cta-hover);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 16px rgba(217, 75, 59, 0.3);
+		color: white;
+	}
+	.trust-band {
+		display: flex;
+		gap: 1.6em;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		flex-wrap: wrap;
+	}
+	.trust-band li {
+		font-size: 13px;
+		color: var(--text-muted);
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
+	.trust-check {
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	@media (max-width: 720px) {
+		.scan-hero h1 { font-size: 1.8em; }
+		.scan-box { padding: 2em 1.5em; }
+	}
+</style>

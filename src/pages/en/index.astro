@@ -13,29 +13,64 @@ const posts = (await getCollection('blog'))
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title="GEO China — Omni-Channel Growth & AI Search Ecosystem | Integrated Marketing" description="GEO China helps global and local brands generate high ROI growth through cross-platform seeding (Reddit, X, Xiaohongshu) and AI search engines." />
+		<BaseHead
+			title="GEO China — AI-Driven Growth Agent for Chinese-speaking B2B teams"
+			description="GEO Agent that ships merge-ready PRs across 9 AI engines (Doubao, Kimi, Yuanbao, Wenxin, Tongyi + ChatGPT, Perplexity, Claude, Google AIO). Plus a vetted provider network for cross-platform integrated marketing across Reddit, X, Xiaohongshu, and more."
+		/>
 	</head>
 	<body>
 		<Header lang="en" />
 
+		<!-- Hero: Large Typography + Dither Canvas -->
 		<section class="hero">
 			<div class="hero-text">
+				<div class="section-label hero-label"><span class="label-dot"></span> AI-DRIVEN GROWTH AGENT</div>
 				<h1>
-					AI-Powered Search,<br/>Omni-Channel Growth.
+					You set direction.<br/>Agents ship the work.
 				</h1>
-				<p style="font-size: 1.1em; color: var(--text-secondary); margin-top: -0.5em; margin-bottom: 2em; line-height: 1.6; max-width: 400px;">
-					China's most cost-effective integrated marketing and strategy provider. Bridging Reddit, X, Xiaohongshu, and AI Search to build a complete online-to-offline growth loop.
+				<p class="hero-subhead">
+					A GEO Agent for Chinese-speaking B2B teams. Coverage across 9 AI engines, merge-ready PRs every week — you click Merge, rankings move.
 				</p>
-				<a href="/en/services" class="btn-dark">
-					Learn More
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-				</a>
+				<div class="hero-ctas">
+					<a href="/scan" class="btn-cta">
+						Free AI Visibility Scan
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+					</a>
+					<a href="/en/services" class="btn-outline-dark">
+						See PR Demo
+					</a>
+				</div>
+				<ul class="trust-band">
+					<li><span class="trust-check">✓</span> 30-day refund</li>
+					<li><span class="trust-check">✓</span> Code stays with you</li>
+					<li><span class="trust-check">✓</span> Cancel anytime</li>
+				</ul>
 			</div>
 			<div class="hero-canvas">
 				<DitherIsland client:load />
 			</div>
 		</section>
 
+		<!-- Engines Strip -->
+		<section class="engines-strip">
+			<div class="engines-inner">
+				<p class="engines-title">9 AI engines covered</p>
+				<div class="engines-track">
+					<span class="engine-tag cn">豆包 Doubao</span>
+					<span class="engine-tag cn">Kimi</span>
+					<span class="engine-tag cn">元宝 Yuanbao</span>
+					<span class="engine-tag cn">文心 Wenxin</span>
+					<span class="engine-tag cn">通义 Tongyi</span>
+					<span class="engines-divider"></span>
+					<span class="engine-tag west">ChatGPT</span>
+					<span class="engine-tag west">Perplexity</span>
+					<span class="engine-tag west">Claude</span>
+					<span class="engine-tag west">Google AIO</span>
+				</div>
+			</div>
+		</section>
+
+		<!-- Stats Strip -->
 		<section class="stats-strip">
 			<div class="stats-inner">
 				<div class="stat-item">
@@ -44,19 +79,16 @@ const posts = (await getCollection('blog'))
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">78.72 <small>%</small></span>
-					<span class="stat-desc">Probability of being cited in AI-generated summaries with GEO optimization</span>
+					<span class="stat-desc">Probability of being cited in AI summaries with structured GEO</span>
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">100 <small>M</small></span>
-					<span class="stat-desc">Weekly users getting information through AI search engines in China</span>
+					<span class="stat-desc">Weekly users getting answers via AI search engines in China</span>
 				</div>
-			</div>
-			<div class="scroll-hint">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-				SCROLL DOWN
 			</div>
 		</section>
 
+		<!-- Partners -->
 		<section class="partners-section">
 			<div class="partners-inner">
 				<p class="partners-title">Trusted By & Associated Ecosystem</p>
@@ -69,32 +101,34 @@ const posts = (await getCollection('blog'))
 		</section>
 
 		<main>
+			<!-- Tech / What we do -->
 			<section class="tech-section">
-				<div class="section-label"><span class="label-dot"></span> Core Expertise & Services</div>
+				<div class="section-label"><span class="label-dot"></span> What the Agent Does</div>
 				<div class="tech-list">
 					<a href="/en/services" class="tech-row">
 						<span class="tech-num">01</span>
-						<span class="tech-title">AI Visibility & GEO Audits</span>
+						<span class="tech-title">9-engine AI Visibility Tracking (Chinese 5 + Western 4)</span>
 						<span class="tech-arrow">↗</span>
 					</a>
 					<a href="/en/services" class="tech-row">
 						<span class="tech-num">02</span>
-						<span class="tech-title">Cross-Platform Community Seeding (Reddit/X)</span>
+						<span class="tech-title">Merge-Ready PR Bots (Schema · Meta · Internal Link · robots)</span>
 						<span class="tech-arrow">↗</span>
 					</a>
 					<a href="/en/services" class="tech-row">
 						<span class="tech-num">03</span>
-						<span class="tech-title">Long-term Content Growth Strategy</span>
+						<span class="tech-title">5-Layer Competitor Reverse-Engineering</span>
 						<span class="tech-arrow">↗</span>
 					</a>
 					<a href="/en/services" class="tech-row">
 						<span class="tech-num">04</span>
-						<span class="tech-title">High-Value Offline Salons & Sponsorships</span>
+						<span class="tech-title">Cross-Platform Integrated Marketing (via vetted provider network)</span>
 						<span class="tech-arrow">↗</span>
 					</a>
 				</div>
 			</section>
 
+			<!-- What is GEO -->
 			<section class="what-section">
 				<div class="what-grid">
 					<div class="what-left">
@@ -103,17 +137,66 @@ const posts = (await getCollection('blog'))
 					</div>
 					<div class="what-right">
 						<p>
-							Traditional SEO aims to get your website on the first page of Google search results.
-							GEO aims to get AI systems — ChatGPT, Perplexity, Google AI Overview — to actively cite your content as an information source.
+							Traditional SEO aims to put you on Google's first page. GEO aims to make AI answer engines — ChatGPT, Perplexity, Doubao, Kimi, Google AI Overview — actively cite your content as a source.
 						</p>
 						<p>
-							According to Princeton research, structured GEO strategies can increase content visibility in AI-generated answers by up to <strong>40%</strong>.
-							Traffic referred by AI typically converts at <strong>5×</strong> the rate of traditional search.
+							Per Princeton research, structured GEO can lift content visibility in AI-generated answers by up to <strong>40%</strong>. AI-referred traffic typically converts at <strong>5×</strong> the rate of traditional search.
 						</p>
 					</div>
 				</div>
 			</section>
 
+			<!-- Comparison Table -->
+			<section class="compare-section">
+				<div class="section-label"><span class="label-dot"></span> Compare</div>
+				<h2>GEO Agent vs Traditional SEO Tools</h2>
+				<p class="compare-lead">Traditional tools stop at "telling you what to fix." GEO Agent ships the fix.</p>
+				<div class="compare-wrap">
+					<table class="compare-table">
+						<thead>
+							<tr>
+								<th></th>
+								<th class="col-us">GEO China Agent</th>
+								<th>Ahrefs / SEMrush</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Deliverable</td>
+								<td class="col-us">Merge-ready PRs (code-level)</td>
+								<td>PDF / dashboard reports</td>
+							</tr>
+							<tr>
+								<td>Execution</td>
+								<td class="col-us">Agent auto-executes</td>
+								<td>5+ manual steps required</td>
+							</tr>
+							<tr>
+								<td>Chinese AI engines</td>
+								<td class="col-us">5 engines covered</td>
+								<td>Not supported</td>
+							</tr>
+							<tr>
+								<td>Optimization target</td>
+								<td class="col-us">AI citation rate (GEO)</td>
+								<td>Search ranking (SEO)</td>
+							</tr>
+							<tr>
+								<td>Code ownership</td>
+								<td class="col-us">100% yours</td>
+								<td>N/A</td>
+							</tr>
+							<tr>
+								<td>Starting price</td>
+								<td class="col-us">$99/mo</td>
+								<td>$99/mo (reports only)</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<!-- Blog -->
 			<section class="blog-section">
 				<h2>Latest Articles</h2>
 				<div class="posts-list">
@@ -131,48 +214,137 @@ const posts = (await getCollection('blog'))
 				</div>
 			</section>
 
+			<!-- CTA -->
 			<section class="cta-section">
-				<h2>Start Your GEO Journey</h2>
-				<p>The #1 Chinese resource for Generative Engine Optimization.</p>
+				<h2>Start with a free scan</h2>
+				<p>Mix and match Agent + Services. We listen first, then quote — and we'll tell you if we're not the fit.</p>
 				<div class="cta-buttons">
-					<a href="/en/services" class="btn-dark">
-						View Services
+					<a href="/scan" class="btn-cta">
+						Free AI Visibility Scan
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
 					</a>
-					<a href="mailto:hi@geochina.co" class="btn-outline">
-						Contact Us
-						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-					</a>
+					<a href="mailto:hi@geochina.co" class="btn-outline-dark">Email Us Directly</a>
 				</div>
 			</section>
+
+			<p class="page-updated">Last updated: May 2026</p>
 		</main>
 		<Footer lang="en" />
 	</body>
 </html>
 
 <style>
+	main {
+		width: var(--max-w-wide);
+		max-width: calc(100% - 3em);
+	}
+
+	/* HERO */
 	.hero {
 		max-width: var(--max-w-wide);
 		margin: 0 auto;
-		padding: 4em 1.5em 0;
+		padding: 6em 1.5em 2em;
 		display: grid;
-		grid-template-columns: 1fr 1.4fr;
-		gap: 3em;
+		grid-template-columns: 1fr 1.1fr;
+		gap: 4em;
 		align-items: center;
 	}
-	.hero h1 { font-size: 3.2em; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 1em; }
-	.btn-dark { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--black); color: white; border-radius: var(--radius); font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s; }
-	.btn-dark:hover { background: #333; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); color: white; }
-	.hero-canvas { width: 100%; height: 340px; border-radius: var(--radius-lg); overflow: hidden; background: #f0f0ec; }
+	.hero h1 {
+		font-size: 4.4em;
+		line-height: 1.08;
+		letter-spacing: -0.035em;
+		margin-bottom: 0.5em;
+	}
+	.hero-label { margin-bottom: 1.5em; }
+	.hero-subhead {
+		font-size: 1.1em;
+		color: var(--text-secondary);
+		margin-top: 0;
+		margin-bottom: 1.8em;
+		line-height: 1.7;
+		max-width: 520px;
+	}
+	.hero-ctas {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+		margin-bottom: 1.6em;
+	}
+	.hero-canvas {
+		width: 100%;
+		height: 480px;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		background: #f0f0ec;
+	}
+
+	/* Engines strip */
+	.engines-strip {
+		background: var(--accent-deep);
+		padding: 1.4em 0;
+		overflow: hidden;
+	}
+	.engines-inner {
+		max-width: var(--max-w-wide);
+		margin: 0 auto;
+		padding: 0 1.5em;
+		display: flex;
+		align-items: center;
+		gap: 2.5em;
+	}
+	.engines-title {
+		font-size: 11px;
+		color: rgba(255,255,255,0.55);
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		white-space: nowrap;
+		margin: 0;
+	}
+	.engines-track {
+		display: flex;
+		align-items: center;
+		gap: 1.8em;
+		flex: 1;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+	.engines-track::-webkit-scrollbar { display: none; }
+	.engine-tag {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 14px;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+	.engine-tag.cn { color: var(--gold); }
+	.engine-tag.west { color: rgba(255,255,255,0.85); }
+	.engines-divider {
+		height: 16px;
+		width: 1px;
+		background: rgba(255,255,255,0.25);
+		flex-shrink: 0;
+	}
+
+	/* Stats */
 	.stats-strip { max-width: var(--max-w-wide); margin: 0 auto; padding: 4em 1.5em 3em; border-bottom: 1px solid var(--border); position: relative; }
 	.stats-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3em; }
 	.stat-value { display: block; font-family: var(--font-serif); font-size: 3.5em; font-weight: 400; color: var(--black); letter-spacing: -0.02em; line-height: 1; margin-bottom: 16px; }
 	.stat-value small { font-size: 0.5em; color: var(--text-muted); font-weight: 400; }
 	.stat-desc { display: block; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
-	.scroll-hint { position: absolute; bottom: 2em; left: 1.5em; display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--text-muted); }
+
+	/* Partners */
+	.partners-section { max-width: var(--max-w-wide); margin: 0 auto; padding: 4em 1.5em; border-bottom: 1px solid var(--border); text-align: center; }
+	.partners-title { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2.5em; }
+	.partners-logos { display: flex; align-items: center; justify-content: center; gap: 5em; flex-wrap: wrap; filter: grayscale(100%) opacity(0.7); transition: all 0.3s ease; }
+	.partners-logos:hover { filter: grayscale(0%) opacity(1); }
+	.partner-img { height: 32px; object-fit: contain; }
+	.partner-img.rounded { border-radius: 6px; }
+	.partner-text { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -0.02em; }
+	.partner-text span { font-size: 0.6em; color: var(--text-muted); font-weight: 500; }
+
+	/* Tech */
 	.tech-section { padding: 4em 0 2em; border-bottom: 1px solid var(--border); }
-	.section-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2em; }
-	.label-dot { width: 6px; height: 6px; background: var(--black); display: inline-block; }
 	.tech-list { display: flex; flex-direction: column; }
 	.tech-row { display: flex; align-items: center; justify-content: space-between; padding: 1.4em 0; border-top: 1px solid var(--border-light); text-decoration: none; color: var(--text); transition: padding-left 0.2s; }
 	.tech-row:hover { padding-left: 12px; }
@@ -180,11 +352,15 @@ const posts = (await getCollection('blog'))
 	.tech-title { flex: 1; font-size: 1.15em; font-weight: 700; }
 	.tech-arrow { font-size: 1.2em; color: var(--text-muted); transition: transform 0.2s; }
 	.tech-row:hover .tech-arrow { transform: translate(3px, -3px); color: var(--black); }
+
+	/* What */
 	.what-section { padding: 4em 0; border-bottom: 1px solid var(--border); }
 	.what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4em; }
-	.what-left h2 { font-size: 2.2em; margin-top: 0.5em; }
+	.what-left h2 { font-size: 2.4em; margin-top: 0.5em; }
 	.what-right p { font-size: 16px; color: var(--text-secondary); line-height: 1.85; }
 	.what-right strong { color: var(--black); }
+
+	/* Blog */
 	.blog-section { padding: 4em 0 2em; }
 	.blog-section h2 { margin-bottom: 1em; }
 	.post-row { display: flex; align-items: center; justify-content: space-between; padding: 1.5em 0; border-top: 1px solid var(--border-light); text-decoration: none; transition: padding-left 0.2s; }
@@ -195,29 +371,36 @@ const posts = (await getCollection('blog'))
 	.post-row:hover h3 { color: var(--accent); }
 	.post-arrow { font-size: 1.3em; color: var(--text-muted); transition: transform 0.15s; }
 	.post-row:hover .post-arrow { transform: translateX(4px); color: var(--black); }
-	.cta-section { text-align: center; padding: 5em 2em; margin: 2em 0; background: var(--bg-section); border-radius: var(--radius-lg); }
-	.cta-section h2 { margin-bottom: 0.4em; font-size: 2em; }
-	.cta-section p { margin-bottom: 1.5em; font-size: 16px; }
+
+	/* CTA */
+	.cta-section { text-align: center; padding: 5em 2em; margin: 3em 0; background: var(--bg-section); border-radius: var(--radius-lg); }
+	.cta-section h2 { margin-bottom: 0.4em; font-size: 2.2em; }
+	.cta-section p { margin-bottom: 1.8em; font-size: 1.05em; }
 	.cta-buttons { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
-	.btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: transparent; color: var(--black); border: 1.5px solid var(--black); border-radius: var(--radius); font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s; }
-	.btn-outline:hover { background: var(--black); color: white; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
-	
-	.partners-section { max-width: var(--max-w-wide); margin: 0 auto; padding: 4em 1.5em; border-bottom: 1px solid var(--border); text-align: center; }
-	.partners-title { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2.5em; }
-	.partners-logos { display: flex; align-items: center; justify-content: center; gap: 5em; flex-wrap: wrap; filter: grayscale(100%) opacity(0.7); transition: all 0.3s ease; }
-	.partners-logos:hover { filter: grayscale(0%) opacity(1); }
-	.partner-img { height: 32px; object-fit: contain; }
-	.partner-img.rounded { border-radius: 6px; }
-	.partner-text { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -0.02em; }
-	.partner-text span { font-size: 0.6em; color: var(--text-muted); font-weight: 500; }
+
+	/* Compare */
+	.compare-section { padding: 4em 0; border-bottom: 1px solid var(--border); }
+	.compare-section h2 { margin-top: 0.5em; margin-bottom: 0.3em; font-size: 2em; }
+	.compare-lead { font-size: 15px; color: var(--text-secondary); margin-bottom: 2em; }
+	.compare-wrap { overflow-x: auto; }
+	.compare-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+	.compare-table th, .compare-table td { padding: 1em 1.2em; text-align: left; border-bottom: 1px solid var(--border-light); }
+	.compare-table thead th { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); border-bottom: 2px solid var(--border); }
+	.compare-table thead th.col-us { color: var(--accent); }
+	.compare-table td:first-child { font-weight: 600; color: var(--text-secondary); min-width: 110px; }
+	.compare-table td.col-us { color: var(--accent); font-weight: 600; }
+	.compare-table tbody tr:hover { background: var(--bg-soft); }
+	.page-updated { text-align: center; font-size: 12px; color: var(--text-muted); padding: 2em 0 0; margin: 0; }
 
 	@media (max-width: 720px) {
 		.hero { grid-template-columns: 1fr; padding-top: 2.5em; }
 		.hero h1 { font-size: 2.4em; }
 		.hero-canvas { height: 280px; }
+		.hero-ctas { flex-direction: column; align-items: stretch; }
+		.btn-cta, .btn-outline-dark { justify-content: center; }
+		.engines-inner { flex-direction: column; align-items: flex-start; gap: 0.9em; }
 		.stats-inner { grid-template-columns: 1fr; gap: 2em; }
 		.stat-value { font-size: 2em; }
-		.scroll-hint { display: none; }
 		.what-grid { grid-template-columns: 1fr; gap: 1.5em; }
 	}
 </style>

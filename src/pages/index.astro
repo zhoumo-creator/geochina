@@ -22,19 +22,49 @@ const posts = (await getCollection('blog'))
 		<!-- Hero: Large Typography + Dither Canvas -->
 		<section class="hero">
 			<div class="hero-text">
+				<div class="section-label hero-label"><span class="label-dot"></span> AI-DRIVEN GROWTH AGENT</div>
 				<h1>
-					AI 赋能搜索，<br/>全域增长驱动。
+					你定方向，<br/>Agent 干活。
 				</h1>
-				<p style="font-size: 1.1em; color: var(--text-secondary); margin-top: -0.5em; margin-bottom: 2em; line-height: 1.6; max-width: 400px;">
-					中国最具性价比的整合营销与策略服务商。打通 Reddit、X、小红书与 AI 搜索，构建线上线下全域转化闭环。
+				<p class="hero-subhead">
+					中文 B2B 团队的 GEO Agent。覆盖中西方 9 大 AI 引擎，每周交付可合并 PR —— 你点 Merge，排名自己动。
 				</p>
-				<a href="/blog" class="btn-dark">
-					Learn More
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-				</a>
+				<div class="hero-ctas">
+					<a href="/scan" class="btn-cta">
+						免费扫我的 AI 可见性
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+					</a>
+					<a href="/services" class="btn-outline-dark">
+						看 PR 演示
+					</a>
+				</div>
+				<ul class="trust-band">
+					<li><span class="trust-check">✓</span> 30 天退款</li>
+					<li><span class="trust-check">✓</span> 代码归你</li>
+					<li><span class="trust-check">✓</span> 随时停服</li>
+				</ul>
 			</div>
 			<div class="hero-canvas">
 				<DitherIsland client:load />
+			</div>
+		</section>
+
+		<!-- Engines Strip (Dark Band) -->
+		<section class="engines-strip">
+			<div class="engines-inner">
+				<p class="engines-title">覆盖中西方 9 大 AI 引擎</p>
+				<div class="engines-track">
+					<span class="engine-tag cn">豆包</span>
+					<span class="engine-tag cn">Kimi</span>
+					<span class="engine-tag cn">元宝</span>
+					<span class="engine-tag cn">文心</span>
+					<span class="engine-tag cn">通义</span>
+					<span class="engines-divider"></span>
+					<span class="engine-tag west">ChatGPT</span>
+					<span class="engine-tag west">Perplexity</span>
+					<span class="engine-tag west">Claude</span>
+					<span class="engine-tag west">Google AIO</span>
+				</div>
 			</div>
 		</section>
 
@@ -120,6 +150,56 @@ const posts = (await getCollection('blog'))
 				</div>
 			</section>
 
+			<!-- Comparison Table -->
+			<section class="compare-section">
+				<div class="section-label"><span class="label-dot"></span> 对比</div>
+				<h2>GEO Agent vs 传统 SEO 工具</h2>
+				<p class="compare-lead">传统工具停在「告诉你该做什么」。GEO Agent 直接「帮你做完」。</p>
+				<div class="compare-wrap">
+					<table class="compare-table">
+						<thead>
+							<tr>
+								<th></th>
+								<th class="col-us">GEO China Agent</th>
+								<th>Ahrefs / SEMrush</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>交付物</td>
+								<td class="col-us">可合并 PR（代码级）</td>
+								<td>PDF / 仪表盘报告</td>
+							</tr>
+							<tr>
+								<td>执行方</td>
+								<td class="col-us">Agent 自动执行</td>
+								<td>需人工操作 5+ 步</td>
+							</tr>
+							<tr>
+								<td>中国 AI 引擎</td>
+								<td class="col-us">覆盖 5 大引擎</td>
+								<td>不支持</td>
+							</tr>
+							<tr>
+								<td>优化目标</td>
+								<td class="col-us">AI 引用率（GEO）</td>
+								<td>搜索排名（SEO）</td>
+							</tr>
+							<tr>
+								<td>代码归属</td>
+								<td class="col-us">100% 归客户</td>
+								<td>N/A</td>
+							</tr>
+							<tr>
+								<td>起价</td>
+								<td class="col-us">¥199/月</td>
+								<td>$99/月（仅报告）</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+
 			<!-- Blog -->
 			<section class="blog-section">
 				<h2>最新文章</h2>
@@ -153,6 +233,8 @@ const posts = (await getCollection('blog'))
 					</a>
 				</div>
 			</section>
+
+			<p class="page-updated">最后更新：2026 年 5 月</p>
 		</main>
 		<Footer />
 
@@ -162,21 +244,84 @@ const posts = (await getCollection('blog'))
 </html>
 
 <style>
+	/* ==================== HOMEPAGE WIDE LAYOUT ==================== */
+	main {
+		width: var(--max-w-wide);
+		max-width: calc(100% - 3em);
+	}
+
 	/* ==================== HERO ==================== */
 	.hero {
 		max-width: var(--max-w-wide);
 		margin: 0 auto;
-		padding: 4em 1.5em 0;
+		padding: 6em 1.5em 2em;
 		display: grid;
-		grid-template-columns: 1fr 1.4fr;
-		gap: 3em;
+		grid-template-columns: 1fr 1.1fr;
+		gap: 4em;
 		align-items: center;
 	}
 	.hero h1 {
-		font-size: 3.2em;
-		line-height: 1.15;
-		letter-spacing: -0.03em;
-		margin-bottom: 1em;
+		font-size: 4.4em;
+		line-height: 1.08;
+		letter-spacing: -0.035em;
+		margin-bottom: 0.5em;
+	}
+	.hero-label {
+		margin-bottom: 1.5em;
+	}
+	.hero-label .label-dot {
+		background: var(--accent);
+	}
+	.hero-subhead {
+		font-size: 1.1em;
+		color: var(--text-secondary);
+		margin-top: 0;
+		margin-bottom: 1.8em;
+		line-height: 1.7;
+		max-width: 460px;
+	}
+	.hero-ctas {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+		margin-bottom: 1.6em;
+	}
+	.btn-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 14px 28px;
+		background: var(--cta);
+		color: white;
+		border-radius: var(--radius);
+		font-weight: 600;
+		font-size: 15px;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.btn-cta:hover {
+		background: var(--cta-hover);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 16px rgba(217, 75, 59, 0.3);
+		color: white;
+	}
+	.btn-outline-dark {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 14px 24px;
+		background: transparent;
+		color: var(--black);
+		border: 1.5px solid var(--black);
+		border-radius: var(--radius);
+		font-weight: 600;
+		font-size: 15px;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.btn-outline-dark:hover {
+		background: var(--black);
+		color: white;
 	}
 	.btn-dark {
 		display: inline-flex;
@@ -197,12 +342,82 @@ const posts = (await getCollection('blog'))
 		box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 		color: white;
 	}
+	.trust-band {
+		display: flex;
+		gap: 1.6em;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		flex-wrap: wrap;
+	}
+	.trust-band li {
+		font-size: 13px;
+		color: var(--text-muted);
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
+	.trust-check {
+		color: var(--accent);
+		font-weight: 700;
+	}
 	.hero-canvas {
 		width: 100%;
-		height: 340px;
+		height: 480px;
 		border-radius: var(--radius-lg);
 		overflow: hidden;
 		background: #f0f0ec;
+	}
+	.hero-subhead {
+		max-width: 520px;
+	}
+
+	/* ==================== ENGINES STRIP ==================== */
+	.engines-strip {
+		background: var(--accent-deep);
+		padding: 1.4em 0;
+		overflow: hidden;
+	}
+	.engines-inner {
+		max-width: var(--max-w-wide);
+		margin: 0 auto;
+		padding: 0 1.5em;
+		display: flex;
+		align-items: center;
+		gap: 2.5em;
+	}
+	.engines-title {
+		font-size: 11px;
+		color: rgba(255,255,255,0.55);
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		white-space: nowrap;
+		margin: 0;
+	}
+	.engines-track {
+		display: flex;
+		align-items: center;
+		gap: 1.8em;
+		flex: 1;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+	.engines-track::-webkit-scrollbar { display: none; }
+	.engine-tag {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 14px;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+	.engine-tag.cn { color: var(--gold); }
+	.engine-tag.west { color: rgba(255,255,255,0.85); }
+	.engines-divider {
+		height: 16px;
+		width: 1px;
+		background: rgba(255,255,255,0.25);
+		flex-shrink: 0;
 	}
 
 	/* ==================== STATS ==================== */
@@ -436,6 +651,68 @@ const posts = (await getCollection('blog'))
 	.partner-text { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -0.02em; }
 	.partner-text span { font-size: 0.6em; color: var(--text-muted); font-weight: 500; }
 
+	/* ==================== COMPARE TABLE ==================== */
+	.compare-section {
+		padding: 4em 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.compare-section h2 {
+		margin-top: 0.5em;
+		margin-bottom: 0.3em;
+		font-size: 2em;
+	}
+	.compare-lead {
+		font-size: 15px;
+		color: var(--text-secondary);
+		margin-bottom: 2em;
+	}
+	.compare-wrap {
+		overflow-x: auto;
+	}
+	.compare-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 15px;
+	}
+	.compare-table th,
+	.compare-table td {
+		padding: 1em 1.2em;
+		text-align: left;
+		border-bottom: 1px solid var(--border-light);
+	}
+	.compare-table thead th {
+		font-size: 13px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--text-muted);
+		border-bottom: 2px solid var(--border);
+	}
+	.compare-table thead th.col-us {
+		color: var(--accent);
+	}
+	.compare-table td:first-child {
+		font-weight: 600;
+		color: var(--text-secondary);
+		min-width: 110px;
+	}
+	.compare-table td.col-us {
+		color: var(--accent);
+		font-weight: 600;
+	}
+	.compare-table tbody tr:hover {
+		background: var(--bg-soft);
+	}
+
+	/* ==================== UPDATED ==================== */
+	.page-updated {
+		text-align: center;
+		font-size: 12px;
+		color: var(--text-muted);
+		padding: 2em 0 0;
+		margin: 0;
+	}
+
 	/* ==================== RESPONSIVE ==================== */
 	@media (max-width: 720px) {
 		.hero {
@@ -444,6 +721,9 @@ const posts = (await getCollection('blog'))
 		}
 		.hero h1 { font-size: 2.4em; }
 		.hero-canvas { height: 280px; }
+		.hero-ctas { flex-direction: column; align-items: stretch; }
+		.btn-cta, .btn-outline-dark { justify-content: center; }
+		.engines-inner { flex-direction: column; align-items: flex-start; gap: 0.9em; }
 		.stats-inner { grid-template-columns: 1fr; gap: 2em; }
 		.stat-value { font-size: 2em; }
 		.scroll-hint { display: none; }
