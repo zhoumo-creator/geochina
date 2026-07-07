@@ -1,6 +1,6 @@
 # geochina.co robots.txt
-# GEO-optimized: Explicitly welcoming AI crawlers
-# Updated: 2026-03-11
+# GEO-optimized: Explicitly welcoming AI crawlers (Chinese + global engines)
+# Updated: 2026-07-07
 
 User-agent: *
 Allow: /
@@ -26,11 +26,25 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+# Chinese AI Search Ecosystem — Welcome
+# Bytespider = Doubao/Toutiao ecosystem; blocking it kills Doubao visibility
+User-agent: Bytespider
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
 # AI Training Crawlers — Block
 User-agent: CCBot
-Disallow: /
-
-User-agent: Bytespider
 Disallow: /
 
 User-agent: Diffbot

@@ -8,8 +8,8 @@ import Header from '../components/Header.astro';
 <html lang="zh-CN">
 	<head>
 		<BaseHead
-			title="免费 AI 可见性扫描 | GEO China"
-			description="输入你的网站，30 秒看到你在豆包/Kimi/元宝/文心/通义 + ChatGPT/Perplexity/Claude/Google AIO 9 大 AI 引擎中的可见性快照。"
+			title="免费中文 GEO 扫描 — 你的网站，AI 引擎推荐吗？ | GEO China"
+			description="输入你的网站，60 秒生成中文 AI 引擎（豆包/Kimi/元宝/文心/通义）+ 海外 AI 引擎双轨就绪度报告：爬虫可达性、SSR、结构化数据、可引用性打分和优化清单。"
 		/>
 	</head>
 	<body>
@@ -18,39 +18,198 @@ import Header from '../components/Header.astro';
 		<main>
 			<section class="scan-hero">
 				<div class="section-label"><span class="label-dot"></span> 免费工具</div>
-				<h1>30 秒看到你在 9 大 AI 引擎里的可见性</h1>
+				<h1>你的网站，中文 AI 引擎推荐吗？</h1>
 				<p class="lead">
-					输入你的官网地址，我们在豆包 / Kimi / 元宝 / 文心 / 通义 + ChatGPT / Perplexity / Claude / Google AIO 上模拟提问，看哪些引擎已经引用你、哪些还没有。
+					豆包、Kimi、元宝、文心、通义正在替你的客户做推荐。输入网址，60 秒看到你的「AI 引擎就绪度」——中文引擎和海外引擎双轨打分，附最该先做的优化清单。
 				</p>
 
 				<div class="scan-box">
-					<div class="scan-coming">
-						<span class="badge">即将上线</span>
-						<p>
-							自动扫描工具正在搭建中。<br/>
-							当前阶段，发邮件给我们 → 24 小时内人工返还你的 9 引擎可见性报告（免费、无需注册）。
-						</p>
-						<a href="mailto:hi@geochina.co?subject=申请%20AI%20可见性免费扫描&body=我的网站：%0A目标市场：%0A联系方式：" class="btn-cta">
-							申请人工扫描 →
-						</a>
-					</div>
+					<form id="scan-form" class="scan-form">
+						<input
+							id="scan-url"
+							type="text"
+							placeholder="输入你的网站，例如 example.com"
+							autocomplete="url"
+							required
+						/>
+						<button type="submit" class="btn-cta" id="scan-btn">免费扫描 →</button>
+					</form>
+					<p class="scan-hint" id="scan-status"></p>
 				</div>
 
 				<ul class="trust-band">
 					<li><span class="trust-check">✓</span> 免费</li>
 					<li><span class="trust-check">✓</span> 无需注册</li>
-					<li><span class="trust-check">✓</span> 24 小时内返还</li>
+					<li><span class="trust-check">✓</span> 60 秒出结果</li>
 				</ul>
+			</section>
+
+			<section class="scan-result" id="result" hidden>
+				<div class="score-panel">
+					<div class="score-main">
+						<div class="score-ring" id="score-ring"><span id="score-overall">0</span></div>
+						<div class="score-caption">AI 引擎就绪度</div>
+					</div>
+					<div class="score-tracks">
+						<div class="track">
+							<div class="track-head"><strong>中文引擎轨</strong><span id="score-cn">0</span>/100</div>
+							<div class="bar"><div class="bar-fill cn" id="bar-cn"></div></div>
+							<p class="track-note">豆包 · Kimi · 元宝 · 文心 · 通义</p>
+						</div>
+						<div class="track">
+							<div class="track-head"><strong>海外引擎轨</strong><span id="score-global">0</span>/100</div>
+							<div class="bar"><div class="bar-fill gl" id="bar-global"></div></div>
+							<p class="track-note">ChatGPT · Perplexity · Claude · Gemini</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="result-grid">
+					<div class="card">
+						<h3>中文引擎爬虫可达性</h3>
+						<table class="mini-table" id="table-cn"></table>
+						<p class="card-note">⚠️ 出海教程常建议屏蔽 Bytespider——但做中文市场恰恰要放行它，否则豆包看不到你。</p>
+					</div>
+					<div class="card">
+						<h3>海外引擎爬虫可达性</h3>
+						<table class="mini-table" id="table-global"></table>
+					</div>
+					<div class="card">
+						<h3>基础设施检查</h3>
+						<ul class="check-list" id="check-list"></ul>
+					</div>
+					<div class="card">
+						<h3>可引用性元素</h3>
+						<ul class="check-list" id="trigger-list"></ul>
+						<p class="card-note">AI 回答时偏爱直接引用表格、数据和步骤——这些元素越多，被"抄进"答案的机会越大。</p>
+					</div>
+				</div>
+
+				<div class="card actions-card">
+					<h3>🎯 最该先做的优化</h3>
+					<ol class="action-list" id="action-list"></ol>
+				</div>
+
+				<div class="cta-block">
+					<h3>想知道豆包、Kimi 现在到底怎么回答你所在行业的问题？</h3>
+					<p>
+						以上是网站体检。<strong>真实的可见度</strong>——5 大中文引擎会不会推荐你、推荐了哪个竞品、引用了谁——需要逐个引擎真实提问验证。我们每周帮客户盯着这些变化，并直接交付内容和修改。
+					</p>
+					<div class="cta-row">
+						<a class="btn-cta" href="mailto:hi@geochina.co?subject=我要5引擎真实可见度报告&body=我的网站：%0A所在行业：">获取 5 引擎真实可见度报告 →</a>
+						<span class="cta-alt">或加微信：<code>Moumlbius</code></span>
+					</div>
+				</div>
 			</section>
 		</main>
 
 		<Footer />
+
+		<script>
+			const form = document.getElementById('scan-form');
+			const statusEl = document.getElementById('scan-status');
+			const btn = document.getElementById('scan-btn');
+			const result = document.getElementById('result');
+
+			const STATUS_STEPS = [
+				'正在抓取网站…',
+				'检查 robots.txt 里的 AI 爬虫配置…',
+				'分析结构化数据和可引用性元素…',
+				'计算双轨就绪度…',
+			];
+
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				const url = document.getElementById('scan-url').value.trim();
+				if (!url) return;
+
+				btn.disabled = true;
+				btn.textContent = '扫描中…';
+				result.hidden = true;
+				let step = 0;
+				statusEl.textContent = STATUS_STEPS[0];
+				const ticker = setInterval(() => {
+					step = Math.min(step + 1, STATUS_STEPS.length - 1);
+					statusEl.textContent = STATUS_STEPS[step];
+				}, 2500);
+
+				try {
+					const res = await fetch('/api/scan', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ url }),
+					});
+					const data = await res.json();
+					clearInterval(ticker);
+					if (!data.ok) {
+						statusEl.textContent = '❌ ' + (data.error || '扫描失败，请稍后重试');
+						return;
+					}
+					statusEl.textContent = data.cached ? '✓ 完成（7 天内扫描过，展示缓存结果）' : '✓ 扫描完成';
+					render(data);
+				} catch {
+					clearInterval(ticker);
+					statusEl.textContent = '❌ 网络错误，请稍后重试';
+				} finally {
+					btn.disabled = false;
+					btn.textContent = '免费扫描 →';
+				}
+			});
+
+			function statusIcon(s) {
+				return s === 'blocked' ? '🚫 已屏蔽' : s === 'allowed' ? '✅ 明确放行' : '✓ 默认放行';
+			}
+
+			function render(d) {
+				document.getElementById('score-overall').textContent = d.scores.overall;
+				document.getElementById('score-cn').textContent = d.scores.china;
+				document.getElementById('score-global').textContent = d.scores.global;
+				document.getElementById('bar-cn').style.width = d.scores.china + '%';
+				document.getElementById('bar-global').style.width = d.scores.global + '%';
+
+				const ring = document.getElementById('score-ring');
+				const hue = d.scores.overall >= 70 ? '145' : d.scores.overall >= 45 ? '38' : '8';
+				ring.style.borderColor = `hsl(${hue} 70% 45%)`;
+
+				const row = (c) =>
+					`<tr><td><strong>${c.engine}</strong><span class="crawler-name">${c.name}</span></td><td>${statusIcon(c.status)}</td></tr>`;
+				document.getElementById('table-cn').innerHTML = d.crawlers.cn.map(row).join('');
+				document.getElementById('table-global').innerHTML = d.crawlers.global.map(row).join('');
+
+				const ck = d.checks;
+				const checks = [
+					[ck.ssr, '服务端渲染（AI 爬虫不执行 JS）'],
+					[ck.robotsTxt, 'robots.txt'],
+					[ck.sitemap, `sitemap.xml${ck.sitemapUrls ? `（${ck.sitemapUrls} 个 URL）` : ''}`],
+					[ck.llmsTxt, 'llms.txt'],
+					[ck.schemaTypes.length > 0, `结构化数据${ck.schemaTypes.length ? '：' + ck.schemaTypes.slice(0, 3).join(', ') : ''}`],
+					[ck.hasUpdateTimestamp, '页面更新时间标记'],
+				];
+				document.getElementById('check-list').innerHTML = checks
+					.map(([ok, label]) => `<li>${ok ? '✅' : '❌'} ${label}</li>`)
+					.join('');
+
+				document.getElementById('trigger-list').innerHTML = ck.triggers
+					.map((t) => `<li>${t.found ? '✅' : '❌'} ${t.label} <span class="stars">${'⭐'.repeat(t.stars)}</span></li>`)
+					.join('');
+
+				document.getElementById('action-list').innerHTML = d.actions
+					.map(
+						(a) =>
+							`<li><span class="pri pri-${a.priority}">${a.priority}</span><div><strong>${a.title}</strong><p>${a.why}</p></div></li>`
+					)
+					.join('');
+
+				result.hidden = false;
+				result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+		</script>
 	</body>
 </html>
 
 <style>
 	.scan-hero {
-		padding: 4em 0 6em;
+		padding: 4em 0 3em;
 	}
 	.section-label {
 		display: flex;
@@ -85,30 +244,29 @@ import Header from '../components/Header.astro';
 		background: var(--bg-section);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-lg);
-		padding: 3em 2.5em;
+		padding: 2em 2.5em;
 		margin-bottom: 2em;
 	}
-	.scan-coming {
-		text-align: left;
-		max-width: 560px;
+	.scan-form {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
 	}
-	.badge {
-		display: inline-block;
-		background: var(--gold);
-		color: var(--black);
-		font-size: 11px;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		padding: 4px 10px;
-		border-radius: 4px;
-		margin-bottom: 1em;
+	.scan-form input {
+		flex: 1;
+		min-width: 240px;
+		padding: 14px 16px;
+		font-size: 15px;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		background: var(--bg, #fff);
+		color: inherit;
 	}
-	.scan-coming p {
-		font-size: 1em;
-		color: var(--text-secondary);
-		line-height: 1.7;
-		margin-bottom: 1.6em;
+	.scan-hint {
+		margin: 0.9em 0 0;
+		font-size: 13px;
+		color: var(--text-muted);
+		min-height: 1.2em;
 	}
 	.btn-cta {
 		display: inline-flex;
@@ -117,6 +275,8 @@ import Header from '../components/Header.astro';
 		padding: 14px 28px;
 		background: var(--cta);
 		color: white;
+		border: none;
+		cursor: pointer;
 		border-radius: var(--radius);
 		font-weight: 600;
 		font-size: 15px;
@@ -128,6 +288,10 @@ import Header from '../components/Header.astro';
 		transform: translateY(-1px);
 		box-shadow: 0 4px 16px rgba(217, 75, 59, 0.3);
 		color: white;
+	}
+	.btn-cta:disabled {
+		opacity: 0.6;
+		cursor: wait;
 	}
 	.trust-band {
 		display: flex;
@@ -149,8 +313,183 @@ import Header from '../components/Header.astro';
 		font-weight: 700;
 	}
 
+	/* ─── 结果区 ─── */
+	.scan-result {
+		padding: 1em 0 5em;
+	}
+	.score-panel {
+		display: flex;
+		gap: 3em;
+		align-items: center;
+		flex-wrap: wrap;
+		background: var(--bg-section);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 2.5em;
+		margin-bottom: 1.5em;
+	}
+	.score-ring {
+		width: 110px;
+		height: 110px;
+		border: 6px solid var(--accent);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 2.4em;
+		font-weight: 700;
+	}
+	.score-caption {
+		text-align: center;
+		margin-top: 0.6em;
+		font-size: 13px;
+		color: var(--text-muted);
+	}
+	.score-tracks {
+		flex: 1;
+		min-width: 260px;
+		display: flex;
+		flex-direction: column;
+		gap: 1.4em;
+	}
+	.track-head {
+		display: flex;
+		justify-content: space-between;
+		font-size: 14px;
+		margin-bottom: 6px;
+	}
+	.bar {
+		height: 10px;
+		background: var(--border);
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	.bar-fill {
+		height: 100%;
+		width: 0;
+		border-radius: 5px;
+		transition: width 0.8s ease;
+	}
+	.bar-fill.cn { background: #d94b3b; }
+	.bar-fill.gl { background: #3b6fd9; }
+	.track-note {
+		margin: 6px 0 0;
+		font-size: 12px;
+		color: var(--text-muted);
+	}
+	.result-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5em;
+		margin-bottom: 1.5em;
+	}
+	.card {
+		background: var(--bg-section);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1.6em;
+	}
+	.card h3 {
+		font-size: 1.05em;
+		margin: 0 0 0.9em;
+	}
+	.card-note {
+		font-size: 12px;
+		color: var(--text-muted);
+		line-height: 1.6;
+		margin: 0.9em 0 0;
+	}
+	.mini-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 14px;
+	}
+	.mini-table td {
+		padding: 7px 4px;
+		border-bottom: 1px solid var(--border);
+	}
+	.crawler-name {
+		display: block;
+		font-size: 11px;
+		color: var(--text-muted);
+	}
+	.check-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		font-size: 14px;
+		line-height: 2;
+	}
+	.stars {
+		font-size: 10px;
+		opacity: 0.75;
+	}
+	.actions-card {
+		margin-bottom: 1.5em;
+	}
+	.action-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+	.action-list li {
+		display: flex;
+		gap: 12px;
+		align-items: flex-start;
+	}
+	.action-list p {
+		margin: 4px 0 0;
+		font-size: 13px;
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+	.pri {
+		flex-shrink: 0;
+		font-size: 11px;
+		font-weight: 700;
+		padding: 3px 8px;
+		border-radius: 4px;
+		color: #fff;
+		margin-top: 2px;
+	}
+	.pri-P0 { background: #c53030; }
+	.pri-P1 { background: #d4740e; }
+	.pri-P2 { background: #b8860b; }
+	.pri-P3 { background: #6b7280; }
+	.cta-block {
+		background: var(--bg-section);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 2.5em;
+		text-align: left;
+	}
+	.cta-block h3 {
+		margin: 0 0 0.6em;
+		font-size: 1.3em;
+	}
+	.cta-block p {
+		color: var(--text-secondary);
+		line-height: 1.7;
+		max-width: 640px;
+		margin-bottom: 1.4em;
+	}
+	.cta-row {
+		display: flex;
+		gap: 1.4em;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.cta-alt {
+		font-size: 14px;
+		color: var(--text-muted);
+	}
+
 	@media (max-width: 720px) {
 		.scan-hero h1 { font-size: 1.8em; }
-		.scan-box { padding: 2em 1.5em; }
+		.scan-box { padding: 1.5em; }
+		.score-panel { padding: 1.5em; gap: 1.5em; }
 	}
 </style>
