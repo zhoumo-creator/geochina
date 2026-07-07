@@ -32,7 +32,7 @@ import Header from '../components/Header.astro';
 							autocomplete="url"
 							required
 						/>
-						<button type="submit" class="btn-cta" id="scan-btn">免费扫描 →</button>
+						<button type="submit" class="btn-primary" id="scan-btn">免费扫描</button>
 					</form>
 					<p class="scan-hint" id="scan-status"></p>
 				</div>
@@ -52,23 +52,24 @@ import Header from '../components/Header.astro';
 					</div>
 					<div class="score-tracks">
 						<div class="track">
-							<div class="track-head"><strong>中文引擎轨</strong><span id="score-cn">0</span>/100</div>
+							<div class="track-head"><strong>中文引擎轨</strong><span id="score-cn">0</span></div>
 							<div class="bar"><div class="bar-fill cn" id="bar-cn"></div></div>
 							<p class="track-note">豆包 · Kimi · 元宝 · 文心 · 通义</p>
 						</div>
 						<div class="track">
-							<div class="track-head"><strong>海外引擎轨</strong><span id="score-global">0</span>/100</div>
+							<div class="track-head"><strong>海外引擎轨</strong><span id="score-global">0</span></div>
 							<div class="bar"><div class="bar-fill gl" id="bar-global"></div></div>
 							<p class="track-note">ChatGPT · Perplexity · Claude · Gemini</p>
 						</div>
 					</div>
+					<button class="btn-secondary" id="download-btn">下载报告</button>
 				</div>
 
 				<div class="result-grid">
 					<div class="card">
 						<h3>中文引擎爬虫可达性</h3>
 						<table class="mini-table" id="table-cn"></table>
-						<p class="card-note">⚠️ 出海教程常建议屏蔽 Bytespider——但做中文市场恰恰要放行它，否则豆包看不到你。</p>
+						<p class="card-note">出海教程常建议屏蔽 Bytespider——但做中文市场恰恰要放行它，否则豆包看不到你。</p>
 					</div>
 					<div class="card">
 						<h3>海外引擎爬虫可达性</h3>
@@ -86,7 +87,7 @@ import Header from '../components/Header.astro';
 				</div>
 
 				<div class="card actions-card">
-					<h3>🎯 最该先做的优化</h3>
+					<h3>最该先做的优化</h3>
 					<ol class="action-list" id="action-list"></ol>
 				</div>
 
@@ -96,8 +97,8 @@ import Header from '../components/Header.astro';
 						以上是网站体检。<strong>真实的可见度</strong>——5 大中文引擎会不会推荐你、推荐了哪个竞品、引用了谁——需要逐个引擎真实提问验证。我们每周帮客户盯着这些变化，并直接交付内容和修改。
 					</p>
 					<div class="cta-row">
-						<a class="btn-cta" href="mailto:hi@geochina.co?subject=我要5引擎真实可见度报告&body=我的网站：%0A所在行业：">获取 5 引擎真实可见度报告 →</a>
-						<span class="cta-alt">或加微信：<code>Moumlbius</code></span>
+						<button class="btn-primary" id="wechat-btn" data-wechat="Moumlbius">复制微信号，聊聊你的行业</button>
+						<span class="cta-alt">或邮件 hi@geochina.co</span>
 					</div>
 				</div>
 			</section>
@@ -110,6 +111,7 @@ import Header from '../components/Header.astro';
 			const statusEl = document.getElementById('scan-status');
 			const btn = document.getElementById('scan-btn');
 			const result = document.getElementById('result');
+			let lastData = null;
 
 			const STATUS_STEPS = [
 				'正在抓取网站…',
@@ -142,22 +144,109 @@ import Header from '../components/Header.astro';
 					const data = await res.json();
 					clearInterval(ticker);
 					if (!data.ok) {
-						statusEl.textContent = '❌ ' + (data.error || '扫描失败，请稍后重试');
+						statusEl.textContent = data.error || '扫描失败，请稍后重试';
 						return;
 					}
-					statusEl.textContent = data.cached ? '✓ 完成（7 天内扫描过，展示缓存结果）' : '✓ 扫描完成';
+					statusEl.textContent = data.cached ? '完成（7 天内扫描过，展示缓存结果）' : '扫描完成';
+					lastData = data;
 					render(data);
 				} catch {
 					clearInterval(ticker);
-					statusEl.textContent = '❌ 网络错误，请稍后重试';
+					statusEl.textContent = '网络错误，请稍后重试';
 				} finally {
 					btn.disabled = false;
-					btn.textContent = '免费扫描 →';
+					btn.textContent = '免费扫描';
 				}
 			});
 
-			function statusIcon(s) {
-				return s === 'blocked' ? '🚫 已屏蔽' : s === 'allowed' ? '✅ 明确放行' : '✓ 默认放行';
+			// 一键复制微信号
+			document.getElementById('wechat-btn').addEventListener('click', async (e) => {
+				const el = e.currentTarget;
+				try {
+					await navigator.clipboard.writeText(el.dataset.wechat);
+					const old = el.textContent;
+					el.textContent = '已复制微信号 Moumlbius ✓';
+					setTimeout(() => (el.textContent = old), 2500);
+				} catch {
+					el.textContent = '微信号：Moumlbius（请手动复制）';
+				}
+			});
+
+			// 一键下载 Markdown 报告
+			document.getElementById('download-btn').addEventListener('click', () => {
+				if (!lastData) return;
+				const md = buildReport(lastData);
+				const host = new URL(lastData.url).hostname.replace(/\./g, '-');
+				const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+				const a = document.createElement('a');
+				a.href = URL.createObjectURL(blob);
+				a.download = `geo-report-${host}-${lastData.scannedAt.slice(0, 10)}.md`;
+				a.click();
+				URL.revokeObjectURL(a.href);
+			});
+
+			function statusLabel(s) {
+				return s === 'blocked' ? '已屏蔽' : s === 'allowed' ? '明确放行' : '默认放行';
+			}
+			function statusDot(s) {
+				const cls = s === 'blocked' ? 'dot-bad' : s === 'allowed' ? 'dot-good' : 'dot-ok';
+				return `<span class="dot ${cls}"></span>${statusLabel(s)}`;
+			}
+			function checkDot(ok) {
+				return `<span class="dot ${ok ? 'dot-good' : 'dot-bad'}"></span>`;
+			}
+
+			function buildReport(d) {
+				const line = (c) => `| ${c.engine} | ${c.name} | ${statusLabel(c.status)} |`;
+				const ck = d.checks;
+				const checks = [
+					[ck.ssr, '服务端渲染（AI 爬虫不执行 JS）'],
+					[ck.robotsTxt, 'robots.txt'],
+					[ck.sitemap, `sitemap${ck.sitemapUrls ? `（${ck.sitemapUrls} 个 URL）` : ''}`],
+					[ck.llmsTxt, 'llms.txt'],
+					[ck.schemaTypes.length > 0, `结构化数据${ck.schemaTypes.length ? '：' + ck.schemaTypes.join(', ') : ''}`],
+					[ck.hasUpdateTimestamp, '页面更新时间标记'],
+				];
+				return `# AI 引擎就绪度报告：${new URL(d.url).hostname}
+
+> 扫描时间：${d.scannedAt.slice(0, 10)} ｜ 工具：geochina.co/scan（免费）
+
+## 总分：${d.scores.overall} / 100
+
+| 轨道 | 得分 |
+|---|---|
+| 中文引擎轨（豆包 · Kimi · 元宝 · 文心 · 通义） | ${d.scores.china} |
+| 海外引擎轨（ChatGPT · Perplexity · Claude · Gemini） | ${d.scores.global} |
+
+## 中文引擎爬虫可达性
+
+| 引擎 | 爬虫 | 状态 |
+|---|---|---|
+${d.crawlers.cn.map(line).join('\n')}
+
+## 海外引擎爬虫可达性
+
+| 引擎 | 爬虫 | 状态 |
+|---|---|---|
+${d.crawlers.global.map(line).join('\n')}
+
+## 基础设施检查
+
+${checks.map(([ok, label]) => `- ${ok ? '✅' : '❌'} ${label}`).join('\n')}
+
+## 可引用性元素
+
+${ck.triggers.map((t) => `- ${t.found ? '✅' : '❌'} ${t.label}`).join('\n')}
+
+## 最该先做的优化
+
+${d.actions.map((a, i) => `${i + 1}. **[${a.priority}] ${a.title}**\n   ${a.why}`).join('\n\n')}
+
+---
+
+想知道 5 大中文引擎现在怎么回答你所在行业的问题、推荐了谁？
+微信 Moumlbius ｜ hi@geochina.co ｜ https://geochina.co
+`;
 			}
 
 			function render(d) {
@@ -168,11 +257,10 @@ import Header from '../components/Header.astro';
 				document.getElementById('bar-global').style.width = d.scores.global + '%';
 
 				const ring = document.getElementById('score-ring');
-				const hue = d.scores.overall >= 70 ? '145' : d.scores.overall >= 45 ? '38' : '8';
-				ring.style.borderColor = `hsl(${hue} 70% 45%)`;
+				ring.className = 'score-ring ' + (d.scores.overall >= 70 ? 'ring-good' : d.scores.overall >= 45 ? 'ring-mid' : 'ring-bad');
 
 				const row = (c) =>
-					`<tr><td><strong>${c.engine}</strong><span class="crawler-name">${c.name}</span></td><td>${statusIcon(c.status)}</td></tr>`;
+					`<tr><td><strong>${c.engine}</strong><span class="crawler-name">${c.name}</span></td><td class="td-status">${statusDot(c.status)}</td></tr>`;
 				document.getElementById('table-cn').innerHTML = d.crawlers.cn.map(row).join('');
 				document.getElementById('table-global').innerHTML = d.crawlers.global.map(row).join('');
 
@@ -180,17 +268,17 @@ import Header from '../components/Header.astro';
 				const checks = [
 					[ck.ssr, '服务端渲染（AI 爬虫不执行 JS）'],
 					[ck.robotsTxt, 'robots.txt'],
-					[ck.sitemap, `sitemap.xml${ck.sitemapUrls ? `（${ck.sitemapUrls} 个 URL）` : ''}`],
+					[ck.sitemap, `sitemap${ck.sitemapUrls ? `（${ck.sitemapUrls} 个 URL）` : ''}`],
 					[ck.llmsTxt, 'llms.txt'],
 					[ck.schemaTypes.length > 0, `结构化数据${ck.schemaTypes.length ? '：' + ck.schemaTypes.slice(0, 3).join(', ') : ''}`],
 					[ck.hasUpdateTimestamp, '页面更新时间标记'],
 				];
 				document.getElementById('check-list').innerHTML = checks
-					.map(([ok, label]) => `<li>${ok ? '✅' : '❌'} ${label}</li>`)
+					.map(([ok, label]) => `<li>${checkDot(ok)} ${label}</li>`)
 					.join('');
 
 				document.getElementById('trigger-list').innerHTML = ck.triggers
-					.map((t) => `<li>${t.found ? '✅' : '❌'} ${t.label} <span class="stars">${'⭐'.repeat(t.stars)}</span></li>`)
+					.map((t) => `<li>${checkDot(t.found)} ${t.label}</li>`)
 					.join('');
 
 				document.getElementById('action-list').innerHTML = d.actions
@@ -208,8 +296,9 @@ import Header from '../components/Header.astro';
 </html>
 
 <style>
+	/* ─── Apple 扁平风：大留白、软灰卡片、胶囊按钮、无边框无投影 ─── */
 	.scan-hero {
-		padding: 4em 0 3em;
+		padding: 4.5em 0 3em;
 	}
 	.section-label {
 		display: flex;
@@ -225,42 +314,47 @@ import Header from '../components/Header.astro';
 	.label-dot {
 		width: 6px;
 		height: 6px;
+		border-radius: 50%;
 		background: var(--accent);
 		display: inline-block;
 	}
 	.scan-hero h1 {
-		font-size: 2.6em;
-		line-height: 1.2;
-		margin-bottom: 0.6em;
+		font-size: 2.8em;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+		font-weight: 700;
+		margin-bottom: 0.5em;
 	}
 	.lead {
-		font-size: 1.15em;
+		font-size: 1.12em;
 		color: var(--text-secondary);
 		line-height: 1.7;
-		margin-bottom: 2.4em;
+		margin-bottom: 2.2em;
 		max-width: 640px;
 	}
 	.scan-box {
-		background: var(--bg-section);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-lg);
-		padding: 2em 2.5em;
-		margin-bottom: 2em;
+		margin-bottom: 1.6em;
+		max-width: 640px;
 	}
 	.scan-form {
 		display: flex;
-		gap: 12px;
+		gap: 10px;
 		flex-wrap: wrap;
 	}
 	.scan-form input {
 		flex: 1;
 		min-width: 240px;
-		padding: 14px 16px;
-		font-size: 15px;
-		border: 1px solid var(--border);
-		border-radius: var(--radius);
-		background: var(--bg, #fff);
+		padding: 15px 20px;
+		font-size: 16px;
+		border: none;
+		border-radius: 14px;
+		background: #f5f5f7;
 		color: inherit;
+		outline: none;
+		transition: box-shadow 0.2s;
+	}
+	.scan-form input:focus {
+		box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.25);
 	}
 	.scan-hint {
 		margin: 0.9em 0 0;
@@ -268,30 +362,44 @@ import Header from '../components/Header.astro';
 		color: var(--text-muted);
 		min-height: 1.2em;
 	}
-	.btn-cta {
+	.btn-primary {
 		display: inline-flex;
 		align-items: center;
-		gap: 8px;
-		padding: 14px 28px;
-		background: var(--cta);
-		color: white;
+		justify-content: center;
+		padding: 15px 30px;
+		background: #0071e3;
+		color: #fff;
 		border: none;
 		cursor: pointer;
-		border-radius: var(--radius);
-		font-weight: 600;
+		border-radius: 980px;
+		font-weight: 500;
 		font-size: 15px;
 		text-decoration: none;
-		transition: all 0.2s;
+		transition: background 0.2s;
 	}
-	.btn-cta:hover {
-		background: var(--cta-hover);
-		transform: translateY(-1px);
-		box-shadow: 0 4px 16px rgba(217, 75, 59, 0.3);
-		color: white;
+	.btn-primary:hover {
+		background: #0077ed;
+		color: #fff;
 	}
-	.btn-cta:disabled {
-		opacity: 0.6;
+	.btn-primary:disabled {
+		opacity: 0.55;
 		cursor: wait;
+	}
+	.btn-secondary {
+		display: inline-flex;
+		align-items: center;
+		padding: 11px 24px;
+		background: transparent;
+		color: #0071e3;
+		border: 1px solid #0071e3;
+		cursor: pointer;
+		border-radius: 980px;
+		font-weight: 500;
+		font-size: 14px;
+		transition: background 0.2s;
+	}
+	.btn-secondary:hover {
+		background: rgba(0, 113, 227, 0.08);
 	}
 	.trust-band {
 		display: flex;
@@ -322,26 +430,30 @@ import Header from '../components/Header.astro';
 		gap: 3em;
 		align-items: center;
 		flex-wrap: wrap;
-		background: var(--bg-section);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-lg);
+		background: #f5f5f7;
+		border-radius: 20px;
 		padding: 2.5em;
-		margin-bottom: 1.5em;
+		margin-bottom: 1.4em;
 	}
 	.score-ring {
-		width: 110px;
-		height: 110px;
-		border: 6px solid var(--accent);
+		width: 112px;
+		height: 112px;
+		border: 4px solid #d2d2d7;
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 2.4em;
+		font-size: 2.5em;
 		font-weight: 700;
+		letter-spacing: -0.02em;
+		background: #fff;
 	}
+	.ring-good { border-color: #34c759; }
+	.ring-mid { border-color: #ff9f0a; }
+	.ring-bad { border-color: #ff3b30; }
 	.score-caption {
 		text-align: center;
-		margin-top: 0.6em;
+		margin-top: 0.7em;
 		font-size: 13px;
 		color: var(--text-muted);
 	}
@@ -356,48 +468,53 @@ import Header from '../components/Header.astro';
 		display: flex;
 		justify-content: space-between;
 		font-size: 14px;
-		margin-bottom: 6px;
+		margin-bottom: 7px;
+	}
+	.track-head span {
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
 	}
 	.bar {
-		height: 10px;
-		background: var(--border);
-		border-radius: 5px;
+		height: 8px;
+		background: #e8e8ed;
+		border-radius: 4px;
 		overflow: hidden;
 	}
 	.bar-fill {
 		height: 100%;
 		width: 0;
-		border-radius: 5px;
+		border-radius: 4px;
 		transition: width 0.8s ease;
 	}
-	.bar-fill.cn { background: #d94b3b; }
-	.bar-fill.gl { background: #3b6fd9; }
+	.bar-fill.cn { background: #ff3b30; }
+	.bar-fill.gl { background: #0071e3; }
 	.track-note {
-		margin: 6px 0 0;
+		margin: 7px 0 0;
 		font-size: 12px;
 		color: var(--text-muted);
 	}
 	.result-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.5em;
-		margin-bottom: 1.5em;
+		gap: 1.4em;
+		margin-bottom: 1.4em;
 	}
 	.card {
-		background: var(--bg-section);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-lg);
-		padding: 1.6em;
+		background: #f5f5f7;
+		border-radius: 20px;
+		padding: 1.8em;
 	}
 	.card h3 {
-		font-size: 1.05em;
-		margin: 0 0 0.9em;
+		font-size: 1.02em;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		margin: 0 0 1em;
 	}
 	.card-note {
 		font-size: 12px;
 		color: var(--text-muted);
 		line-height: 1.6;
-		margin: 0.9em 0 0;
+		margin: 1em 0 0;
 	}
 	.mini-table {
 		width: 100%;
@@ -405,8 +522,17 @@ import Header from '../components/Header.astro';
 		font-size: 14px;
 	}
 	.mini-table td {
-		padding: 7px 4px;
-		border-bottom: 1px solid var(--border);
+		padding: 9px 4px;
+		border-bottom: 1px solid #e8e8ed;
+	}
+	.mini-table tr:last-child td {
+		border-bottom: none;
+	}
+	.td-status {
+		white-space: nowrap;
+		text-align: right;
+		color: var(--text-secondary);
+		font-size: 13px;
 	}
 	.crawler-name {
 		display: block;
@@ -418,14 +544,21 @@ import Header from '../components/Header.astro';
 		padding: 0;
 		margin: 0;
 		font-size: 14px;
-		line-height: 2;
+		line-height: 2.1;
 	}
-	.stars {
-		font-size: 10px;
-		opacity: 0.75;
+	.dot {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		margin-right: 8px;
+		vertical-align: middle;
 	}
+	.dot-good { background: #34c759; }
+	.dot-ok { background: #a2d39b; }
+	.dot-bad { background: #ff3b30; }
 	.actions-card {
-		margin-bottom: 1.5em;
+		margin-bottom: 1.4em;
 	}
 	.action-list {
 		list-style: none;
@@ -433,7 +566,7 @@ import Header from '../components/Header.astro';
 		margin: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 1em;
+		gap: 1.1em;
 	}
 	.action-list li {
 		display: flex;
@@ -449,32 +582,31 @@ import Header from '../components/Header.astro';
 	.pri {
 		flex-shrink: 0;
 		font-size: 11px;
-		font-weight: 700;
-		padding: 3px 8px;
-		border-radius: 4px;
-		color: #fff;
-		margin-top: 2px;
+		font-weight: 600;
+		padding: 4px 10px;
+		border-radius: 980px;
+		margin-top: 1px;
 	}
-	.pri-P0 { background: #c53030; }
-	.pri-P1 { background: #d4740e; }
-	.pri-P2 { background: #b8860b; }
-	.pri-P3 { background: #6b7280; }
+	.pri-P0 { background: #ffe5e3; color: #d70015; }
+	.pri-P1 { background: #ffefd6; color: #c93400; }
+	.pri-P2 { background: #fff8dd; color: #8a6d00; }
+	.pri-P3 { background: #e8e8ed; color: #515154; }
 	.cta-block {
-		background: var(--bg-section);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-lg);
-		padding: 2.5em;
-		text-align: left;
+		background: #f5f5f7;
+		border-radius: 20px;
+		padding: 2.6em;
 	}
 	.cta-block h3 {
 		margin: 0 0 0.6em;
-		font-size: 1.3em;
+		font-size: 1.35em;
+		font-weight: 600;
+		letter-spacing: -0.015em;
 	}
 	.cta-block p {
 		color: var(--text-secondary);
 		line-height: 1.7;
 		max-width: 640px;
-		margin-bottom: 1.4em;
+		margin-bottom: 1.5em;
 	}
 	.cta-row {
 		display: flex;
@@ -488,8 +620,8 @@ import Header from '../components/Header.astro';
 	}
 
 	@media (max-width: 720px) {
-		.scan-hero h1 { font-size: 1.8em; }
-		.scan-box { padding: 1.5em; }
-		.score-panel { padding: 1.5em; gap: 1.5em; }
+		.scan-hero h1 { font-size: 1.9em; }
+		.score-panel { padding: 1.6em; gap: 1.6em; }
+		.card { padding: 1.4em; }
 	}
 </style>
