@@ -26,3 +26,4 @@ pnpm-debug.log*
 
 # vercel build output
 .vercel/
+geo-report-*.md
