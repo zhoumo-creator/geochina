@@ -34,8 +34,8 @@ const posts = (await getCollection('blog'))
 						免费扫我的 AI 可见性
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
 					</a>
-					<a href="/services" class="btn-outline-dark">
-						看 PR 演示
+					<a href="/skills" class="btn-outline-dark">
+						看开源 Skills
 					</a>
 				</div>
 				<ul class="trust-band">
@@ -104,28 +104,27 @@ const posts = (await getCollection('blog'))
 
 		<!-- Technology Section -->
 		<main>
-			<section class="tech-section">
-				<div class="section-label"><span class="label-dot"></span> 核心专长与服务</div>
-				<div class="tech-list">
-					<a href="/services" class="tech-row">
-						<span class="tech-num">01</span>
-						<span class="tech-title">AI 可见性与 GEO 审计</span>
-						<span class="tech-arrow">↗</span>
+			<section class="pillars-section">
+				<div class="section-label"><span class="label-dot"></span> 三个入口，一条路径</div>
+				<h2 class="pillars-title">先体验，再上手，最后交给我们</h2>
+				<div class="pillars-grid">
+					<a href="/scan" class="pillar-card">
+						<span class="pillar-num">01 · 免费工具</span>
+						<h3>在线 GEO 扫描</h3>
+						<p>输入网址，60 秒拿到中文引擎 + 海外引擎双轨就绪度报告：爬虫可达性、SSR、结构化数据、可引用性，附最该先做的优化清单。</p>
+						<span class="pillar-link">免费扫描 →</span>
 					</a>
-					<a href="/services" class="tech-row">
-						<span class="tech-num">02</span>
-						<span class="tech-title">跨平台社区发帖种草 (Reddit/X/小红书)</span>
-						<span class="tech-arrow">↗</span>
+					<a href="/skills" class="pillar-card">
+						<span class="pillar-num">02 · 开源 Skills</span>
+						<h3>GEO Skills 精选 + 自研</h3>
+						<p>市面上的开源 GEO skills 我们逐个精读拆解、只留能出活的；「中文 5 引擎监控」这个开源空白，我们自己在补，陆续开源。</p>
+						<span class="pillar-link">看 Skills →</span>
 					</a>
-					<a href="/services" class="tech-row">
-						<span class="tech-num">03</span>
-						<span class="tech-title">长周期内容增长策略</span>
-						<span class="tech-arrow">↗</span>
-					</a>
-					<a href="/services" class="tech-row">
-						<span class="tech-num">04</span>
-						<span class="tech-title">高价值线下沙龙与赞助整合</span>
-						<span class="tech-arrow">↗</span>
+					<a href="/services" class="pillar-card">
+						<span class="pillar-num">03 · 订阅服务</span>
+						<h3>每周交付的 GEO Agent</h3>
+						<p>不想自己动手？订阅后每周直接收到：5 大中文引擎可见度看板、竞品动态、可发布内容和可合并修改——你点 Merge 就行。</p>
+						<span class="pillar-link">了解服务 →</span>
 					</a>
 				</div>
 			</section>
@@ -220,11 +219,11 @@ const posts = (await getCollection('blog'))
 
 			<!-- CTA -->
 			<section class="cta-section">
-				<h2>开始你的 GEO 学习之旅</h2>
-				<p>中文互联网第一个系统化 GEO 学习站。</p>
+				<h2>先从一次免费扫描开始</h2>
+				<p>60 秒看到你的网站在中文 AI 引擎眼里什么样。</p>
 				<div class="cta-buttons">
-					<a href="/blog" class="btn-dark">
-						浏览文章
+					<a href="/scan" class="btn-cta">
+						免费扫描我的网站
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
 					</a>
 					<a href="mailto:hi@geochina.co" class="btn-outline">
@@ -467,10 +466,59 @@ const posts = (await getCollection('blog'))
 		color: var(--text-muted);
 	}
 
-	/* ==================== TECH ==================== */
-	.tech-section {
-		padding: 4em 0 2em;
+	/* ==================== PILLARS ==================== */
+	.pillars-section {
+		padding: 4em 0 3em;
 		border-bottom: 1px solid var(--border);
+	}
+	.pillars-title {
+		font-size: 2em;
+		margin: 0.5em 0 1.2em;
+	}
+	.pillars-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.4em;
+	}
+	.pillar-card {
+		display: flex;
+		flex-direction: column;
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+		padding: 1.8em;
+		text-decoration: none;
+		color: var(--text);
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+	.pillar-card:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+	}
+	.pillar-num {
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin-bottom: 1em;
+	}
+	.pillar-card h3 {
+		font-family: 'Inter', 'Noto Sans SC', sans-serif;
+		font-size: 1.15em;
+		font-weight: 700;
+		margin-bottom: 0.6em;
+	}
+	.pillar-card p {
+		font-size: 14px;
+		color: var(--text-secondary);
+		line-height: 1.75;
+		flex: 1;
+		margin-bottom: 1.2em;
+	}
+	.pillar-link {
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--accent);
 	}
 	.section-label {
 		display: flex;
@@ -489,43 +537,6 @@ const posts = (await getCollection('blog'))
 		background: var(--black);
 		display: inline-block;
 	}
-	.tech-list {
-		display: flex;
-		flex-direction: column;
-	}
-	.tech-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 1.4em 0;
-		border-top: 1px solid var(--border-light);
-		text-decoration: none;
-		color: var(--text);
-		transition: padding-left 0.2s;
-	}
-	.tech-row:hover {
-		padding-left: 12px;
-	}
-	.tech-num {
-		font-size: 14px;
-		color: var(--text-muted);
-		min-width: 40px;
-	}
-	.tech-title {
-		flex: 1;
-		font-size: 1.15em;
-		font-weight: 700;
-	}
-	.tech-arrow {
-		font-size: 1.2em;
-		color: var(--text-muted);
-		transition: transform 0.2s;
-	}
-	.tech-row:hover .tech-arrow {
-		transform: translate(3px, -3px);
-		color: var(--black);
-	}
-
 	/* ==================== WHAT ==================== */
 	.what-section {
 		padding: 4em 0;
@@ -728,5 +739,6 @@ const posts = (await getCollection('blog'))
 		.stat-value { font-size: 2em; }
 		.scroll-hint { display: none; }
 		.what-grid { grid-template-columns: 1fr; gap: 1.5em; }
+		.pillars-grid { grid-template-columns: 1fr; }
 	}
 </style>

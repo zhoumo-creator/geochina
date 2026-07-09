@@ -1,0 +1,436 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+// 精读拆解后筛出的推荐清单（star 数截至 2026-07 调研）
+const curated = [
+	{
+		repo: 'AgriciDaniel/claude-seo',
+		stars: '10.6k',
+		tag: '工程最重',
+		why: '25 个 skills + 18 个 agents，技术审计、schema、E-E-A-T、报告全链路都有。想一次装齐整套 SEO/GEO 能力，从它开始。',
+		url: 'https://github.com/AgriciDaniel/claude-seo',
+	},
+	{
+		repo: 'onvoyage-ai/gtm-engineer-skills',
+		stars: '1.25k',
+		tag: '给修复不给报告',
+		why: '不止打分——按你用的框架（Next.js 等）直接生成代码级修复。「交付修改而非报告」这条路上走得最远的开源项目。',
+		url: 'https://github.com/onvoyage-ai/gtm-engineer-skills',
+	},
+	{
+		repo: 'aaron-he-zhu/aaron-marketing-skills',
+		stars: '2.3k',
+		tag: '质量门设计',
+		why: '120 个营销 skills，亮点是 8 道 auditor「质量门」：内容生成完先过审再交付，防 AI 说空话的机制值得学。',
+		url: 'https://github.com/aaron-he-zhu/aaron-marketing-skills',
+	},
+	{
+		repo: 'Auriti-Labs/geo-optimizer-skill',
+		stars: '561',
+		tag: 'AEO/GEO 工具箱',
+		why: '审计 + 优化 + 追踪 ChatGPT/Perplexity/Gemini 引用，CLI、Python、MCP 三种用法。轻量入门的好选择。',
+		url: 'https://github.com/Auriti-Labs/geo-optimizer-skill',
+	},
+	{
+		repo: 'coreyhaines31/marketingskills',
+		stars: '36.7k',
+		tag: '营销全家桶',
+		why: 'star 最多的营销 skills 合集，SEO/GEO 只是其中一角，偏方法论 prompt。适合顺手装一份当参考库。',
+		url: 'https://github.com/coreyhaines31/marketingskills',
+	},
+];
+
+const ours = [
+	{
+		name: 'cn-crawler-check',
+		status: 'live',
+		statusLabel: '已上线网页版',
+		desc: '中文 AI 爬虫可达性检查：Bytespider（豆包）、Baiduspider（文心）、Sogou（元宝）、YisouSpider（通义/夸克）、360Spider 一次查清——出海教程教你屏蔽的爬虫，做中文市场恰恰要放行。',
+		link: '/scan',
+		linkLabel: '在线体验 →',
+	},
+	{
+		name: 'cn-visibility-monitor',
+		status: 'building',
+		statusLabel: '开发中',
+		desc: '5 大中文引擎真实提问监控：向豆包、Kimi、元宝、文心、通义提出你所在行业的真实问题，记录谁被推荐、谁被引用、你和竞品的位置每周怎么变。',
+	},
+	{
+		name: 'geo-content-cn',
+		status: 'planned',
+		statusLabel: '规划中',
+		desc: '中文可引用内容改写：把现有页面改成 AI 爱引用的格式——答案块、对比表格、数据点、步骤清单，按中文引擎的偏好来。',
+	},
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead
+			title="开源 GEO Skills — 精选拆解 + 中文 GEO 自研 | GEO China"
+			description="我们精读拆解了市面上主流开源 GEO/SEO skills（claude-seo、gtm-engineer-skills 等），只推荐真正能出活的；同时自研中文 5 引擎（豆包/Kimi/元宝/文心/通义）GEO skills——开源生态确认的空白。"
+		/>
+	</head>
+	<body>
+		<Header altHref="/en/skills" />
+
+		<main>
+			<section class="skills-hero">
+				<div class="section-label"><span class="label-dot"></span> 开源 GEO Skills</div>
+				<h1>给 Claude Code 装上 GEO 能力</h1>
+				<p class="lead">
+					市面上的开源 GEO skills 我们逐个精读、拆解、跑过，这页只留下真正能出活的。同时，「中文 5 引擎监控」在整个开源生态里还是空白——这块我们自己在补。
+				</p>
+				<ul class="trust-band">
+					<li><span class="trust-check">✓</span> 全部开源可查</li>
+					<li><span class="trust-check">✓</span> 每个都精读过再推荐</li>
+					<li><span class="trust-check">✓</span> 数据截至 2026-07</li>
+				</ul>
+			</section>
+
+			<section class="ours-section">
+				<div class="section-label"><span class="label-dot"></span> 自研 · 中文 GEO Skills</div>
+				<h2>开源生态的空白，我们来补</h2>
+				<p class="section-lead">
+					诊断、schema、内容生成，开源实现已经很充足；但「中文 5 引擎可见度监控」至今没有一个真实现——唯一声称覆盖的项目拆开只是个 mock 数据的壳。这正是我们在做的：
+				</p>
+				<div class="ours-grid">
+					{ours.map((s) => (
+						<div class="ours-card">
+							<div class="ours-head">
+								<code class="skill-name">{s.name}</code>
+								<span class={`status status-${s.status}`}>{s.statusLabel}</span>
+							</div>
+							<p>{s.desc}</p>
+							{s.link && <a href={s.link} class="ours-link">{s.linkLabel}</a>}
+						</div>
+					))}
+				</div>
+				<div class="ours-cta">
+					<p>Skills 陆续开源到 GitHub。想在上线第一时间拿到：</p>
+					<div class="cta-row">
+						<a href="https://github.com/zhoumo-creator" target="_blank" rel="noopener" class="btn-dark">
+							GitHub 关注
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+						</a>
+						<button class="btn-outline-dark" id="wechat-btn" data-wechat="Moumlbius">复制微信号 Moumlbius</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="curated-section">
+				<div class="section-label"><span class="label-dot"></span> 精选 · 社区开源 Skills</div>
+				<h2>精读拆解后，值得装的 5 个</h2>
+				<p class="section-lead">
+					都是社区作者的开源项目（版权归原作者），我们的价值是替你读完、跑完、筛完——每个只说一句：为什么值得装。
+				</p>
+				<div class="repo-list">
+					{curated.map((r) => (
+						<a href={r.url} target="_blank" rel="noopener" class="repo-row">
+							<div class="repo-main">
+								<div class="repo-title">
+									<strong>{r.repo}</strong>
+									<span class="repo-tag">{r.tag}</span>
+								</div>
+								<p>{r.why}</p>
+							</div>
+							<div class="repo-side">
+								<span class="repo-stars">★ {r.stars}</span>
+								<span class="repo-arrow">↗</span>
+							</div>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<section class="matrix-section">
+				<div class="section-label"><span class="label-dot"></span> 能力矩阵</div>
+				<h2>开源 GEO 生态：哪里充足，哪里空白</h2>
+				<div class="matrix-wrap">
+					<table class="matrix-table">
+						<thead>
+							<tr><th>能力维度</th><th>开源现状</th><th>代表项目</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>诊断 / 审计</td><td><span class="dot dot-good"></span>充足</td><td>claude-seo · gtm-engineer · geo-optimizer</td></tr>
+							<tr><td>技术 SEO 修复</td><td><span class="dot dot-good"></span>有代码级实现</td><td>gtm-engineer · claude-seo</td></tr>
+							<tr><td>结构化数据 / schema</td><td><span class="dot dot-good"></span>充足</td><td>claude-seo 等</td></tr>
+							<tr><td>内容生成 / 评分</td><td><span class="dot dot-good"></span>充足但同质</td><td>aaron · marketingskills</td></tr>
+							<tr><td>英文 AI 可见度追踪</td><td><span class="dot dot-ok"></span>早期、碎片化</td><td>aperture · searchstack</td></tr>
+							<tr class="row-gap"><td><strong>中文 5 引擎监控</strong></td><td><span class="dot dot-bad"></span><strong>确认空白</strong></td><td><strong>我们在做 ↑</strong></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<section class="cta-section">
+				<h2>先看看你的网站现在什么水平</h2>
+				<p>60 秒免费扫描：中文引擎 + 海外引擎双轨就绪度，附最该先做的优化清单。</p>
+				<div class="cta-buttons">
+					<a href="/scan" class="btn-cta">
+						免费扫描我的网站
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+					</a>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+
+		<script>
+			document.getElementById('wechat-btn')?.addEventListener('click', async (e) => {
+				const el = e.currentTarget;
+				try {
+					await navigator.clipboard.writeText(el.dataset.wechat);
+					const old = el.textContent;
+					el.textContent = '已复制微信号 ✓';
+					setTimeout(() => (el.textContent = old), 2500);
+				} catch {
+					el.textContent = '微信号：Moumlbius（请手动复制）';
+				}
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	main {
+		width: var(--max-w-wide);
+		max-width: calc(100% - 3em);
+	}
+	.skills-hero {
+		padding: 4.5em 0 3em;
+		border-bottom: 1px solid var(--border);
+	}
+	.skills-hero h1 {
+		font-size: 3.2em;
+		line-height: 1.12;
+		letter-spacing: -0.025em;
+		margin: 0.4em 0 0.4em;
+	}
+	.lead {
+		font-size: 1.12em;
+		color: var(--text-secondary);
+		line-height: 1.75;
+		max-width: 680px;
+		margin-bottom: 1.8em;
+	}
+	.section-lead {
+		font-size: 15px;
+		color: var(--text-secondary);
+		line-height: 1.8;
+		max-width: 680px;
+		margin: 0.4em 0 2em;
+	}
+	.ours-section, .curated-section, .matrix-section {
+		padding: 4em 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.ours-section h2, .curated-section h2, .matrix-section h2 {
+		margin-top: 0.5em;
+		font-size: 2em;
+	}
+
+	/* 自研卡片 */
+	.ours-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.4em;
+		margin-bottom: 2em;
+	}
+	.ours-card {
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+		padding: 1.8em;
+		display: flex;
+		flex-direction: column;
+	}
+	.ours-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 0.9em;
+		flex-wrap: wrap;
+	}
+	.skill-name {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 14px;
+		font-weight: 600;
+		background: transparent;
+		color: var(--black);
+		padding: 0;
+	}
+	.status {
+		font-size: 11px;
+		font-weight: 600;
+		padding: 4px 10px;
+		border-radius: 980px;
+		white-space: nowrap;
+	}
+	.status-live { background: #e3f6e8; color: #1a7a4c; }
+	.status-building { background: #fff3d6; color: #8a5a0a; }
+	.status-planned { background: #ececf1; color: #515154; }
+	.ours-card p {
+		font-size: 14px;
+		line-height: 1.75;
+		color: var(--text-secondary);
+		margin: 0;
+		flex: 1;
+	}
+	.ours-link {
+		margin-top: 1em;
+		font-size: 14px;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.ours-cta {
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+		padding: 1.8em 2em;
+	}
+	.ours-cta p {
+		margin: 0 0 1em;
+		font-size: 15px;
+		color: var(--text-secondary);
+	}
+	.cta-row {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	.cta-row .btn-outline-dark {
+		cursor: pointer;
+		font-family: inherit;
+	}
+
+	/* 精选列表 */
+	.repo-list {
+		display: flex;
+		flex-direction: column;
+	}
+	.repo-row {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 2em;
+		padding: 1.5em 0;
+		border-top: 1px solid var(--border-light);
+		text-decoration: none;
+		color: var(--text);
+		transition: padding-left 0.2s;
+	}
+	.repo-row:last-child { border-bottom: 1px solid var(--border-light); }
+	.repo-row:hover { padding-left: 12px; }
+	.repo-title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		margin-bottom: 6px;
+	}
+	.repo-title strong {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 15px;
+		color: var(--black);
+	}
+	.repo-tag {
+		font-size: 11px;
+		font-weight: 600;
+		padding: 3px 10px;
+		border-radius: 980px;
+		background: var(--accent-light);
+		color: var(--accent);
+	}
+	.repo-main p {
+		font-size: 14px;
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin: 0;
+		max-width: 720px;
+	}
+	.repo-side {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		flex-shrink: 0;
+	}
+	.repo-stars {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 13px;
+		color: var(--gold-hover);
+		font-weight: 600;
+		white-space: nowrap;
+	}
+	.repo-arrow {
+		font-size: 1.2em;
+		color: var(--text-muted);
+		transition: transform 0.2s;
+	}
+	.repo-row:hover .repo-arrow {
+		transform: translate(3px, -3px);
+		color: var(--black);
+	}
+
+	/* 能力矩阵 */
+	.matrix-wrap { overflow-x: auto; }
+	.matrix-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 14px;
+	}
+	.matrix-table th, .matrix-table td {
+		padding: 0.9em 1em;
+		text-align: left;
+		border-bottom: 1px solid var(--border-light);
+	}
+	.matrix-table thead th {
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--text-muted);
+		border-bottom: 2px solid var(--border);
+	}
+	.matrix-table td:first-child { min-width: 140px; }
+	.matrix-table td:last-child { color: var(--text-secondary); }
+	.row-gap td { background: var(--bg-section); }
+	.dot {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		margin-right: 8px;
+		vertical-align: middle;
+	}
+	.dot-good { background: #34c759; }
+	.dot-ok { background: #ff9f0a; }
+	.dot-bad { background: #ff3b30; }
+
+	/* CTA */
+	.cta-section {
+		text-align: center;
+		padding: 5em 2em;
+		margin: 2em 0;
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+	}
+	.cta-section h2 { margin-bottom: 0.4em; font-size: 2em; }
+	.cta-section p { margin-bottom: 1.5em; font-size: 16px; }
+	.cta-buttons {
+		display: flex;
+		gap: 12px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 720px) {
+		.skills-hero h1 { font-size: 2.1em; }
+		.repo-row { flex-direction: column; gap: 0.8em; }
+		.repo-side { align-self: flex-start; }
+	}
+</style>

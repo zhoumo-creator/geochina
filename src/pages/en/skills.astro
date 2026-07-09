@@ -1,0 +1,418 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+// Curated after deep-reading each repo (star counts as of July 2026)
+const curated = [
+	{
+		repo: 'AgriciDaniel/claude-seo',
+		stars: '10.6k',
+		tag: 'Heaviest engineering',
+		why: '25 skills + 18 agents covering technical audits, schema, E-E-A-T and reporting end to end. If you want the full SEO/GEO stack in one install, start here.',
+		url: 'https://github.com/AgriciDaniel/claude-seo',
+	},
+	{
+		repo: 'onvoyage-ai/gtm-engineer-skills',
+		stars: '1.25k',
+		tag: 'Fixes, not reports',
+		why: 'Goes beyond scoring — generates code-level fixes tailored to your framework (Next.js etc.). The open-source project furthest along the "ship fixes, not reports" path.',
+		url: 'https://github.com/onvoyage-ai/gtm-engineer-skills',
+	},
+	{
+		repo: 'aaron-he-zhu/aaron-marketing-skills',
+		stars: '2.3k',
+		tag: 'Quality gates',
+		why: '120 marketing skills; the highlight is 8 auditor "quality gates" — generated content must pass review before delivery. A great anti-fluff mechanism to learn from.',
+		url: 'https://github.com/aaron-he-zhu/aaron-marketing-skills',
+	},
+	{
+		repo: 'Auriti-Labs/geo-optimizer-skill',
+		stars: '561',
+		tag: 'AEO/GEO toolbox',
+		why: 'Audit + optimize + track citations across ChatGPT/Perplexity/Gemini, usable via CLI, Python or MCP. A great lightweight entry point.',
+		url: 'https://github.com/Auriti-Labs/geo-optimizer-skill',
+	},
+	{
+		repo: 'coreyhaines31/marketingskills',
+		stars: '36.7k',
+		tag: 'Marketing megapack',
+		why: 'The most-starred marketing skills collection; SEO/GEO is one corner of it, mostly methodology prompts. Worth installing as a reference library.',
+		url: 'https://github.com/coreyhaines31/marketingskills',
+	},
+];
+
+const ours = [
+	{
+		name: 'cn-crawler-check',
+		status: 'live',
+		statusLabel: 'Live as web tool',
+		desc: 'Chinese AI crawler reachability check: Bytespider (Doubao), Baiduspider (ERNIE), Sogou (Yuanbao), YisouSpider (Qwen/Quark) and 360Spider in one pass — the very crawlers overseas guides tell you to block are the ones the Chinese market needs you to allow.',
+		link: '/en/scan',
+		linkLabel: 'Try it online →',
+	},
+	{
+		name: 'cn-visibility-monitor',
+		status: 'building',
+		statusLabel: 'In development',
+		desc: 'Real-query monitoring across the 5 major Chinese engines: ask Doubao, Kimi, Yuanbao, ERNIE and Qwen real questions from your industry, and track who gets recommended, who gets cited, and how you vs. competitors shift week over week.',
+	},
+	{
+		name: 'geo-content-cn',
+		status: 'planned',
+		statusLabel: 'Planned',
+		desc: 'Chinese citation-ready content rewriting: reshape existing pages into the formats AI loves to quote — answer blocks, comparison tables, data points, step lists — tuned to Chinese engine preferences.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Open-Source GEO Skills — curated teardowns + Chinese GEO R&D | GEO China"
+			description="We deep-read and tore down the leading open-source GEO/SEO skills (claude-seo, gtm-engineer-skills and more) and recommend only what actually ships results — while building the confirmed open-source blank: Chinese 5-engine (Doubao/Kimi/Yuanbao/ERNIE/Qwen) GEO skills."
+		/>
+	</head>
+	<body>
+		<Header lang="en" altHref="/skills" />
+
+		<main>
+			<section class="skills-hero">
+				<div class="section-label"><span class="label-dot"></span> Open-Source GEO Skills</div>
+				<h1>Give Claude Code real GEO capability</h1>
+				<p class="lead">
+					We deep-read, tore down and actually ran the open-source GEO skills out there — this page keeps only the ones that ship results. Meanwhile, "Chinese 5-engine monitoring" is still a blank across the entire open-source ecosystem. That's the part we're building ourselves.
+				</p>
+				<ul class="trust-band">
+					<li><span class="trust-check">✓</span> All open source, all verifiable</li>
+					<li><span class="trust-check">✓</span> Deep-read before recommended</li>
+					<li><span class="trust-check">✓</span> Data as of July 2026</li>
+				</ul>
+			</section>
+
+			<section class="ours-section">
+				<div class="section-label"><span class="label-dot"></span> Our Own · Chinese GEO Skills</div>
+				<h2>The open-source blank, filled</h2>
+				<p class="section-lead">
+					Audits, schema and content generation are well covered by open source. But "Chinese 5-engine visibility monitoring" has zero real implementations — the only project claiming coverage turned out to be a mock-data shell. That's exactly what we're building:
+				</p>
+				<div class="ours-grid">
+					{ours.map((s) => (
+						<div class="ours-card">
+							<div class="ours-head">
+								<code class="skill-name">{s.name}</code>
+								<span class={`status status-${s.status}`}>{s.statusLabel}</span>
+							</div>
+							<p>{s.desc}</p>
+							{s.link && <a href={s.link} class="ours-link">{s.linkLabel}</a>}
+						</div>
+					))}
+				</div>
+				<div class="ours-cta">
+					<p>Skills are being open-sourced to GitHub. Be the first to know:</p>
+					<div class="cta-row">
+						<a href="https://github.com/zhoumo-creator" target="_blank" rel="noopener" class="btn-dark">
+							Follow on GitHub
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+						</a>
+						<span class="cta-alt">or email hi@geochina.co</span>
+					</div>
+				</div>
+			</section>
+
+			<section class="curated-section">
+				<div class="section-label"><span class="label-dot"></span> Curated · Community Skills</div>
+				<h2>5 worth installing, after deep-reading them all</h2>
+				<p class="section-lead">
+					These are community projects by their original authors (all credit theirs). Our value: we read, ran and filtered them for you — one line each on why it's worth installing.
+				</p>
+				<div class="repo-list">
+					{curated.map((r) => (
+						<a href={r.url} target="_blank" rel="noopener" class="repo-row">
+							<div class="repo-main">
+								<div class="repo-title">
+									<strong>{r.repo}</strong>
+									<span class="repo-tag">{r.tag}</span>
+								</div>
+								<p>{r.why}</p>
+							</div>
+							<div class="repo-side">
+								<span class="repo-stars">★ {r.stars}</span>
+								<span class="repo-arrow">↗</span>
+							</div>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<section class="matrix-section">
+				<div class="section-label"><span class="label-dot"></span> Capability Matrix</div>
+				<h2>The open-source GEO ecosystem: what's covered, what's blank</h2>
+				<div class="matrix-wrap">
+					<table class="matrix-table">
+						<thead>
+							<tr><th>Capability</th><th>Open-source status</th><th>Representative projects</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Audits / diagnostics</td><td><span class="dot dot-good"></span>Well covered</td><td>claude-seo · gtm-engineer · geo-optimizer</td></tr>
+							<tr><td>Technical SEO fixes</td><td><span class="dot dot-good"></span>Code-level implementations exist</td><td>gtm-engineer · claude-seo</td></tr>
+							<tr><td>Structured data / schema</td><td><span class="dot dot-good"></span>Well covered</td><td>claude-seo and others</td></tr>
+							<tr><td>Content generation / scoring</td><td><span class="dot dot-good"></span>Plentiful but similar</td><td>aaron · marketingskills</td></tr>
+							<tr><td>English AI visibility tracking</td><td><span class="dot dot-ok"></span>Early, fragmented</td><td>aperture · searchstack</td></tr>
+							<tr class="row-gap"><td><strong>Chinese 5-engine monitoring</strong></td><td><span class="dot dot-bad"></span><strong>Confirmed blank</strong></td><td><strong>We're building it ↑</strong></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<section class="cta-section">
+				<h2>First, see where your site stands</h2>
+				<p>Free 60-second scan: dual-track readiness for Chinese + global AI engines, with a prioritized fix list.</p>
+				<div class="cta-buttons">
+					<a href="/en/scan" class="btn-cta">
+						Scan my site for free
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+					</a>
+				</div>
+			</section>
+		</main>
+
+		<Footer lang="en" />
+	</body>
+</html>
+
+<style>
+	main {
+		width: var(--max-w-wide);
+		max-width: calc(100% - 3em);
+	}
+	.skills-hero {
+		padding: 4.5em 0 3em;
+		border-bottom: 1px solid var(--border);
+	}
+	.skills-hero h1 {
+		font-size: 3.2em;
+		line-height: 1.12;
+		letter-spacing: -0.025em;
+		margin: 0.4em 0 0.4em;
+	}
+	.lead {
+		font-size: 1.12em;
+		color: var(--text-secondary);
+		line-height: 1.75;
+		max-width: 680px;
+		margin-bottom: 1.8em;
+	}
+	.section-lead {
+		font-size: 15px;
+		color: var(--text-secondary);
+		line-height: 1.8;
+		max-width: 680px;
+		margin: 0.4em 0 2em;
+	}
+	.ours-section, .curated-section, .matrix-section {
+		padding: 4em 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.ours-section h2, .curated-section h2, .matrix-section h2 {
+		margin-top: 0.5em;
+		font-size: 2em;
+	}
+
+	.ours-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.4em;
+		margin-bottom: 2em;
+	}
+	.ours-card {
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+		padding: 1.8em;
+		display: flex;
+		flex-direction: column;
+	}
+	.ours-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 0.9em;
+		flex-wrap: wrap;
+	}
+	.skill-name {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 14px;
+		font-weight: 600;
+		background: transparent;
+		color: var(--black);
+		padding: 0;
+	}
+	.status {
+		font-size: 11px;
+		font-weight: 600;
+		padding: 4px 10px;
+		border-radius: 980px;
+		white-space: nowrap;
+	}
+	.status-live { background: #e3f6e8; color: #1a7a4c; }
+	.status-building { background: #fff3d6; color: #8a5a0a; }
+	.status-planned { background: #ececf1; color: #515154; }
+	.ours-card p {
+		font-size: 14px;
+		line-height: 1.75;
+		color: var(--text-secondary);
+		margin: 0;
+		flex: 1;
+	}
+	.ours-link {
+		margin-top: 1em;
+		font-size: 14px;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.ours-cta {
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+		padding: 1.8em 2em;
+	}
+	.ours-cta p {
+		margin: 0 0 1em;
+		font-size: 15px;
+		color: var(--text-secondary);
+	}
+	.cta-row {
+		display: flex;
+		gap: 14px;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	.cta-alt {
+		font-size: 14px;
+		color: var(--text-muted);
+	}
+
+	.repo-list {
+		display: flex;
+		flex-direction: column;
+	}
+	.repo-row {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 2em;
+		padding: 1.5em 0;
+		border-top: 1px solid var(--border-light);
+		text-decoration: none;
+		color: var(--text);
+		transition: padding-left 0.2s;
+	}
+	.repo-row:last-child { border-bottom: 1px solid var(--border-light); }
+	.repo-row:hover { padding-left: 12px; }
+	.repo-title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		margin-bottom: 6px;
+	}
+	.repo-title strong {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 15px;
+		color: var(--black);
+	}
+	.repo-tag {
+		font-size: 11px;
+		font-weight: 600;
+		padding: 3px 10px;
+		border-radius: 980px;
+		background: var(--accent-light);
+		color: var(--accent);
+	}
+	.repo-main p {
+		font-size: 14px;
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin: 0;
+		max-width: 720px;
+	}
+	.repo-side {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		flex-shrink: 0;
+	}
+	.repo-stars {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 13px;
+		color: var(--gold-hover);
+		font-weight: 600;
+		white-space: nowrap;
+	}
+	.repo-arrow {
+		font-size: 1.2em;
+		color: var(--text-muted);
+		transition: transform 0.2s;
+	}
+	.repo-row:hover .repo-arrow {
+		transform: translate(3px, -3px);
+		color: var(--black);
+	}
+
+	.matrix-wrap { overflow-x: auto; }
+	.matrix-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 14px;
+	}
+	.matrix-table th, .matrix-table td {
+		padding: 0.9em 1em;
+		text-align: left;
+		border-bottom: 1px solid var(--border-light);
+	}
+	.matrix-table thead th {
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--text-muted);
+		border-bottom: 2px solid var(--border);
+	}
+	.matrix-table td:first-child { min-width: 160px; }
+	.matrix-table td:last-child { color: var(--text-secondary); }
+	.row-gap td { background: var(--bg-section); }
+	.dot {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		margin-right: 8px;
+		vertical-align: middle;
+	}
+	.dot-good { background: #34c759; }
+	.dot-ok { background: #ff9f0a; }
+	.dot-bad { background: #ff3b30; }
+
+	.cta-section {
+		text-align: center;
+		padding: 5em 2em;
+		margin: 2em 0;
+		background: var(--bg-section);
+		border-radius: var(--radius-lg);
+	}
+	.cta-section h2 { margin-bottom: 0.4em; font-size: 2em; }
+	.cta-section p { margin-bottom: 1.5em; font-size: 16px; }
+	.cta-buttons {
+		display: flex;
+		gap: 12px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 720px) {
+		.skills-hero h1 { font-size: 2.1em; }
+		.repo-row { flex-direction: column; gap: 0.8em; }
+		.repo-side { align-self: flex-start; }
+	}
+</style>

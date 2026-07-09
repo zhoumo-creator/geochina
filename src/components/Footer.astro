@@ -17,7 +17,9 @@ const today = new Date();
 			</div>
 			<div class="footer-links">
 				<a href={`${prefix}/`}>{isEn ? 'Home' : '首页'}</a>
-				<a href="/blog">{isEn ? 'Blog' : '博客'}</a>
+				<a href={`${prefix}/scan`}>{isEn ? 'Scan' : '免费扫描'}</a>
+				<a href={`${prefix}/skills`}>Skills</a>
+				<a href={`${prefix}/blog`}>{isEn ? 'Blog' : '博客'}</a>
 				<a href={`${prefix}/services`}>{isEn ? 'Services' : '服务'}</a>
 				<a href={`${prefix}/about`}>{isEn ? 'About' : '关于'}</a>
 				<a href="/rss.xml">RSS</a>

@@ -1,26 +1,26 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 	<head>
 		<BaseHead
-			title="免费中文 GEO 扫描 — 你的网站，AI 引擎推荐吗？ | GEO China"
-			description="输入你的网站，60 秒生成中文 AI 引擎（豆包/Kimi/元宝/文心/通义）+ 海外 AI 引擎双轨就绪度报告：爬虫可达性、SSR、结构化数据、可引用性打分和优化清单。"
+			title="Free Chinese GEO Scan — Do Chinese AI engines recommend your site? | GEO China"
+			description="Enter your website and get a 60-second dual-track AI readiness report: Chinese AI engines (Doubao/Kimi/Yuanbao/ERNIE/Qwen) + global AI engines — crawler reachability, SSR, structured data, citability score and a prioritized fix list."
 		/>
 	</head>
 	<body>
-		<Header altHref="/en/scan" />
+		<Header lang="en" altHref="/scan" />
 
 		<main>
 			<section class="scan-hero">
-				<div class="section-label"><span class="label-dot"></span> 免费工具</div>
-				<h1>你的网站，中文 AI 引擎推荐吗？</h1>
+				<div class="section-label"><span class="label-dot"></span> Free Tool</div>
+				<h1>Do Chinese AI engines recommend your site?</h1>
 				<p class="lead">
-					豆包、Kimi、元宝、文心、通义正在替你的客户做推荐。输入网址，60 秒看到你的「AI 引擎就绪度」——中文引擎和海外引擎双轨打分，附最该先做的优化清单。
+					Doubao, Kimi, Yuanbao, ERNIE and Qwen are making recommendations to your customers right now. Enter a URL and see your AI-engine readiness in 60 seconds — dual-track scoring for Chinese and global engines, plus the fixes to make first.
 				</p>
 
 				<div class="scan-box">
@@ -28,19 +28,19 @@ import Header from '../components/Header.astro';
 						<input
 							id="scan-url"
 							type="text"
-							placeholder="输入你的网站，例如 example.com"
+							placeholder="Enter your website, e.g. example.com"
 							autocomplete="url"
 							required
 						/>
-						<button type="submit" class="btn-primary" id="scan-btn">免费扫描</button>
+						<button type="submit" class="btn-primary" id="scan-btn">Scan for free</button>
 					</form>
 					<p class="scan-hint" id="scan-status"></p>
 				</div>
 
 				<ul class="trust-band">
-					<li><span class="trust-check">✓</span> 免费</li>
-					<li><span class="trust-check">✓</span> 无需注册</li>
-					<li><span class="trust-check">✓</span> 60 秒出结果</li>
+					<li><span class="trust-check">✓</span> Free</li>
+					<li><span class="trust-check">✓</span> No sign-up</li>
+					<li><span class="trust-check">✓</span> Results in 60s</li>
 				</ul>
 			</section>
 
@@ -48,63 +48,63 @@ import Header from '../components/Header.astro';
 				<div class="score-panel">
 					<div class="score-main">
 						<div class="score-ring" id="score-ring"><span id="score-overall">0</span></div>
-						<div class="score-caption">AI 引擎就绪度</div>
+						<div class="score-caption">AI Engine Readiness</div>
 					</div>
 					<div class="score-tracks">
 						<div class="track">
-							<div class="track-head"><strong>中文引擎轨</strong><span id="score-cn">0</span></div>
+							<div class="track-head"><strong>Chinese engines</strong><span id="score-cn">0</span></div>
 							<div class="bar"><div class="bar-fill cn" id="bar-cn"></div></div>
-							<p class="track-note">豆包 · Kimi · 元宝 · 文心 · 通义</p>
+							<p class="track-note">Doubao · Kimi · Yuanbao · ERNIE · Qwen</p>
 						</div>
 						<div class="track">
-							<div class="track-head"><strong>海外引擎轨</strong><span id="score-global">0</span></div>
+							<div class="track-head"><strong>Global engines</strong><span id="score-global">0</span></div>
 							<div class="bar"><div class="bar-fill gl" id="bar-global"></div></div>
 							<p class="track-note">ChatGPT · Perplexity · Claude · Gemini</p>
 						</div>
 					</div>
-					<button class="btn-secondary" id="download-btn">下载报告</button>
+					<button class="btn-secondary" id="download-btn">Download report</button>
 				</div>
 
 				<div class="result-grid">
 					<div class="card">
-						<h3>中文引擎爬虫可达性</h3>
+						<h3>Chinese engine crawler reachability</h3>
 						<table class="mini-table" id="table-cn"></table>
-						<p class="card-note">出海教程常建议屏蔽 Bytespider——但做中文市场恰恰要放行它，否则豆包看不到你。</p>
+						<p class="card-note">Overseas-facing guides often say "block Bytespider" — but for the Chinese market you must allow it, or Doubao can't see you.</p>
 					</div>
 					<div class="card">
-						<h3>海外引擎爬虫可达性</h3>
+						<h3>Global engine crawler reachability</h3>
 						<table class="mini-table" id="table-global"></table>
 					</div>
 					<div class="card">
-						<h3>基础设施检查</h3>
+						<h3>Infrastructure checks</h3>
 						<ul class="check-list" id="check-list"></ul>
 					</div>
 					<div class="card">
-						<h3>可引用性元素</h3>
+						<h3>Citation-worthy elements</h3>
 						<ul class="check-list" id="trigger-list"></ul>
-						<p class="card-note">AI 回答时偏爱直接引用表格、数据和步骤——这些元素越多，被"抄进"答案的机会越大。</p>
+						<p class="card-note">AI answers love quoting tables, numbers and step lists — the more of these you have, the more often you get "copied into" an answer.</p>
 					</div>
 				</div>
 
 				<div class="card actions-card">
-					<h3>最该先做的优化</h3>
+					<h3>Fixes to make first</h3>
 					<ol class="action-list" id="action-list"></ol>
 				</div>
 
 				<div class="cta-block">
-					<h3>想知道豆包、Kimi 现在到底怎么回答你所在行业的问题？</h3>
+					<h3>Want to know how Doubao and Kimi actually answer questions in your industry?</h3>
 					<p>
-						以上是网站体检。<strong>真实的可见度</strong>——5 大中文引擎会不会推荐你、推荐了哪个竞品、引用了谁——需要逐个引擎真实提问验证。我们每周帮客户盯着这些变化，并直接交付内容和修改。
+						The scan above is a site checkup. <strong>Real visibility</strong> — whether the 5 major Chinese engines recommend you, which competitor they name, whose content they cite — requires asking each engine real questions. We watch those shifts weekly for clients and ship the content and fixes directly.
 					</p>
 					<div class="cta-row">
-						<button class="btn-primary" id="wechat-btn" data-wechat="Moumlbius">复制微信号，聊聊你的行业</button>
-						<span class="cta-alt">或邮件 hi@geochina.co</span>
+						<a class="btn-primary" href="mailto:hi@geochina.co">Email us about your industry</a>
+						<span class="cta-alt">or WeChat: Moumlbius</span>
 					</div>
 				</div>
 			</section>
 		</main>
 
-		<Footer />
+		<Footer lang="en" />
 
 		<script>
 			const form = document.getElementById('scan-form');
@@ -114,10 +114,10 @@ import Header from '../components/Header.astro';
 			let lastData = null;
 
 			const STATUS_STEPS = [
-				'正在抓取网站…',
-				'检查 robots.txt 里的 AI 爬虫配置…',
-				'分析结构化数据和可引用性元素…',
-				'计算双轨就绪度…',
+				'Fetching your site…',
+				'Checking AI crawler rules in robots.txt…',
+				'Analyzing structured data and citability elements…',
+				'Computing dual-track readiness…',
 			];
 
 			form.addEventListener('submit', async (e) => {
@@ -126,7 +126,7 @@ import Header from '../components/Header.astro';
 				if (!url) return;
 
 				btn.disabled = true;
-				btn.textContent = '扫描中…';
+				btn.textContent = 'Scanning…';
 				result.hidden = true;
 				let step = 0;
 				statusEl.textContent = STATUS_STEPS[0];
@@ -139,40 +139,27 @@ import Header from '../components/Header.astro';
 					const res = await fetch('/api/scan', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ url }),
+						body: JSON.stringify({ url, lang: 'en' }),
 					});
 					const data = await res.json();
 					clearInterval(ticker);
 					if (!data.ok) {
-						statusEl.textContent = data.error || '扫描失败，请稍后重试';
+						statusEl.textContent = data.error || 'Scan failed, please try again later';
 						return;
 					}
-					statusEl.textContent = data.cached ? '完成（7 天内扫描过，展示缓存结果）' : '扫描完成';
+					statusEl.textContent = data.cached ? 'Done (scanned within 7 days — showing cached result)' : 'Scan complete';
 					lastData = data;
 					render(data);
 				} catch {
 					clearInterval(ticker);
-					statusEl.textContent = '网络错误，请稍后重试';
+					statusEl.textContent = 'Network error, please try again later';
 				} finally {
 					btn.disabled = false;
-					btn.textContent = '免费扫描';
+					btn.textContent = 'Scan for free';
 				}
 			});
 
-			// 一键复制微信号
-			document.getElementById('wechat-btn').addEventListener('click', async (e) => {
-				const el = e.currentTarget;
-				try {
-					await navigator.clipboard.writeText(el.dataset.wechat);
-					const old = el.textContent;
-					el.textContent = '已复制微信号 Moumlbius ✓';
-					setTimeout(() => (el.textContent = old), 2500);
-				} catch {
-					el.textContent = '微信号：Moumlbius（请手动复制）';
-				}
-			});
-
-			// 一键下载 Markdown 报告
+			// One-click Markdown report download
 			document.getElementById('download-btn').addEventListener('click', () => {
 				if (!lastData) return;
 				const md = buildReport(lastData);
@@ -186,7 +173,7 @@ import Header from '../components/Header.astro';
 			});
 
 			function statusLabel(s) {
-				return s === 'blocked' ? '已屏蔽' : s === 'allowed' ? '明确放行' : '默认放行';
+				return s === 'blocked' ? 'Blocked' : s === 'allowed' ? 'Explicitly allowed' : 'Allowed by default';
 			}
 			function statusDot(s) {
 				const cls = s === 'blocked' ? 'dot-bad' : s === 'allowed' ? 'dot-good' : 'dot-ok';
@@ -196,56 +183,60 @@ import Header from '../components/Header.astro';
 				return `<span class="dot ${ok ? 'dot-good' : 'dot-bad'}"></span>`;
 			}
 
+			function buildChecks(ck) {
+				return [
+					[ck.ssr, "Server-side rendering (AI crawlers don't run JS)"],
+					[ck.robotsTxt, 'robots.txt'],
+					[ck.sitemap, `sitemap${ck.sitemapUrls ? ` (${ck.sitemapUrls} URLs)` : ''}`],
+					[ck.llmsTxt, 'llms.txt'],
+					[ck.schemaTypes.length > 0, `Structured data${ck.schemaTypes.length ? ': ' + ck.schemaTypes.slice(0, 3).join(', ') : ''}`],
+					[ck.hasUpdateTimestamp, 'Visible update timestamp'],
+				];
+			}
+
 			function buildReport(d) {
 				const line = (c) => `| ${c.engine} | ${c.name} | ${statusLabel(c.status)} |`;
 				const ck = d.checks;
-				const checks = [
-					[ck.ssr, '服务端渲染（AI 爬虫不执行 JS）'],
-					[ck.robotsTxt, 'robots.txt'],
-					[ck.sitemap, `sitemap${ck.sitemapUrls ? `（${ck.sitemapUrls} 个 URL）` : ''}`],
-					[ck.llmsTxt, 'llms.txt'],
-					[ck.schemaTypes.length > 0, `结构化数据${ck.schemaTypes.length ? '：' + ck.schemaTypes.join(', ') : ''}`],
-					[ck.hasUpdateTimestamp, '页面更新时间标记'],
-				];
-				return `# AI 引擎就绪度报告：${new URL(d.url).hostname}
+				const checks = buildChecks(ck);
+				return `# AI Engine Readiness Report: ${new URL(d.url).hostname}
 
-> 扫描时间：${d.scannedAt.slice(0, 10)} ｜ 工具：geochina.co/scan（免费）
+> Scanned: ${d.scannedAt.slice(0, 10)} | Tool: geochina.co/en/scan (free)
 
-## 总分：${d.scores.overall} / 100
+## Overall score: ${d.scores.overall} / 100
 
-| 轨道 | 得分 |
+| Track | Score |
 |---|---|
-| 中文引擎轨（豆包 · Kimi · 元宝 · 文心 · 通义） | ${d.scores.china} |
-| 海外引擎轨（ChatGPT · Perplexity · Claude · Gemini） | ${d.scores.global} |
+| Chinese engines (Doubao · Kimi · Yuanbao · ERNIE · Qwen) | ${d.scores.china} |
+| Global engines (ChatGPT · Perplexity · Claude · Gemini) | ${d.scores.global} |
 
-## 中文引擎爬虫可达性
+## Chinese engine crawler reachability
 
-| 引擎 | 爬虫 | 状态 |
+| Engine | Crawler | Status |
 |---|---|---|
 ${d.crawlers.cn.map(line).join('\n')}
 
-## 海外引擎爬虫可达性
+## Global engine crawler reachability
 
-| 引擎 | 爬虫 | 状态 |
+| Engine | Crawler | Status |
 |---|---|---|
 ${d.crawlers.global.map(line).join('\n')}
 
-## 基础设施检查
+## Infrastructure checks
 
 ${checks.map(([ok, label]) => `- ${ok ? '✅' : '❌'} ${label}`).join('\n')}
 
-## 可引用性元素
+## Citation-worthy elements
 
 ${ck.triggers.map((t) => `- ${t.found ? '✅' : '❌'} ${t.label}`).join('\n')}
 
-## 最该先做的优化
+## Fixes to make first
 
 ${d.actions.map((a, i) => `${i + 1}. **[${a.priority}] ${a.title}**\n   ${a.why}`).join('\n\n')}
 
 ---
 
-想知道 5 大中文引擎现在怎么回答你所在行业的问题、推荐了谁？
-微信 Moumlbius ｜ hi@geochina.co ｜ https://geochina.co
+Want to know how the 5 major Chinese AI engines answer questions in your industry — and who they recommend?
+WeChat Moumlbius | hi@geochina.co | https://geochina.co
 `;
 			}
 
@@ -264,20 +255,12 @@ ${d.actions.map((a, i) => `${i + 1}. **[${a.priority}] ${a.title}**\n   ${a.why}
 				document.getElementById('table-cn').innerHTML = d.crawlers.cn.map(row).join('');
 				document.getElementById('table-global').innerHTML = d.crawlers.global.map(row).join('');
 
-				const ck = d.checks;
-				const checks = [
-					[ck.ssr, '服务端渲染（AI 爬虫不执行 JS）'],
-					[ck.robotsTxt, 'robots.txt'],
-					[ck.sitemap, `sitemap${ck.sitemapUrls ? `（${ck.sitemapUrls} 个 URL）` : ''}`],
-					[ck.llmsTxt, 'llms.txt'],
-					[ck.schemaTypes.length > 0, `结构化数据${ck.schemaTypes.length ? '：' + ck.schemaTypes.slice(0, 3).join(', ') : ''}`],
-					[ck.hasUpdateTimestamp, '页面更新时间标记'],
-				];
+				const checks = buildChecks(d.checks);
 				document.getElementById('check-list').innerHTML = checks
 					.map(([ok, label]) => `<li>${checkDot(ok)} ${label}</li>`)
 					.join('');
 
-				document.getElementById('trigger-list').innerHTML = ck.triggers
+				document.getElementById('trigger-list').innerHTML = d.checks.triggers
 					.map((t) => `<li>${checkDot(t.found)} ${t.label}</li>`)
 					.join('');
 
@@ -296,7 +279,7 @@ ${d.actions.map((a, i) => `${i + 1}. **[${a.priority}] ${a.title}**\n   ${a.why}
 </html>
 
 <style>
-	/* ─── Apple 扁平风：大留白、软灰卡片、胶囊按钮、无边框无投影 ─── */
+	/* ─── Apple-flat: generous whitespace, soft gray cards, pill buttons ─── */
 	.scan-hero {
 		padding: 4.5em 0 3em;
 	}
@@ -421,7 +404,7 @@ ${d.actions.map((a, i) => `${i + 1}. **[${a.priority}] ${a.title}**\n   ${a.why}
 		font-weight: 700;
 	}
 
-	/* ─── 结果区 ─── */
+	/* ─── Results ─── */
 	.scan-result {
 		padding: 1em 0 5em;
 	}

@@ -3,19 +3,22 @@ import HeaderLink from './HeaderLink.astro';
 
 interface Props {
 	lang?: string;
+	/** 当前页在另一语言下的对应路径（供语言切换保持同页），缺省跳对应语言首页 */
+	altHref?: string;
 }
 
-const { lang = 'zh' } = Astro.props;
+const { lang = 'zh', altHref } = Astro.props;
 const isEn = lang === 'en';
 const prefix = isEn ? '/en' : '';
+const switchHref = altHref || (isEn ? '/' : '/en/');
 ---
 
 <header>
 	<nav>
 		<div class="nav-left">
-			<HeaderLink href={`${prefix}/`}>Homepage</HeaderLink>
+			<HeaderLink href={`${prefix}/scan`}>Scan</HeaderLink>
+			<HeaderLink href={`${prefix}/skills`}>Skills</HeaderLink>
 			<HeaderLink href={`${prefix}/blog`}>Blog</HeaderLink>
-			<HeaderLink href={`${prefix}/services`}>Services</HeaderLink>
 		</div>
 		<a href={`${prefix}/`} class="site-logo">
 			<svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -26,13 +29,14 @@ const prefix = isEn ? '/en' : '';
 			</svg>
 		</a>
 		<div class="nav-right">
+			<HeaderLink href={`${prefix}/services`}>Services</HeaderLink>
 			<HeaderLink href={`${prefix}/about`}>About</HeaderLink>
 			<div class="lang-switch">
-				<a href={isEn ? '/' : '/en/'} class="lang-btn" title={isEn ? '切换到中文' : 'Switch to English'}>
+				<a href={switchHref} class="lang-btn" title={isEn ? '切换到中文' : 'Switch to English'}>
 					{isEn ? '中文' : 'EN'}
 				</a>
 			</div>
-			<a href="mailto:hello@geochina.co" class="nav-link-external">
+			<a href="mailto:hi@geochina.co" class="nav-link-external">
 				Contact
 				<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
 			</a>

@@ -3,7 +3,7 @@
  * 移植自 geo-agent/geo-scanner.js v0.1，为 geochina.co 在线扫描改造：
  * - 双轨评分：中文 AI 引擎就绪度 + 海外 AI 引擎就绪度
  * - 新增：中文引擎关联爬虫检查、llms.txt、SSR 启发式检测
- * - 输出 JSON（由前端渲染），不再输出 Markdown
+ * - 输出 JSON（由前端渲染），支持 zh / en 双语（scanSite 第二参数）
  */
 
 import { load } from 'cheerio';
@@ -13,29 +13,50 @@ import { load } from 'cheerio';
 // 注意：Bytespider 在出海视角常被建议屏蔽（训练爬虫），
 // 但屏蔽它等于把豆包生态挡在门外——这是中文 GEO 与出海 GEO 打法相反的地方。
 const CN_CRAWLERS = [
-  { name: 'Bytespider', engine: '豆包', desc: '字节跳动（豆包/头条搜索生态）' },
-  { name: 'Baiduspider', engine: '文心一言', desc: '百度搜索（文心的检索底座）' },
-  { name: 'Sogou web spider', key: 'sogou', engine: '腾讯元宝', desc: '搜狗（元宝/微信搜一搜生态）' },
-  { name: 'YisouSpider', engine: '通义/夸克', desc: '神马搜索（阿里系检索通道）' },
-  { name: '360Spider', engine: '360 AI 搜索', desc: '360 搜索' },
+  {
+    name: 'Bytespider',
+    engine: { zh: '豆包', en: 'Doubao' },
+    desc: { zh: '字节跳动（豆包/头条搜索生态）', en: 'ByteDance (Doubao / Toutiao search ecosystem)' },
+  },
+  {
+    name: 'Baiduspider',
+    engine: { zh: '文心一言', en: 'ERNIE Bot' },
+    desc: { zh: '百度搜索（文心的检索底座）', en: 'Baidu Search (retrieval layer behind ERNIE)' },
+  },
+  {
+    name: 'Sogou web spider',
+    key: 'sogou',
+    engine: { zh: '腾讯元宝', en: 'Tencent Yuanbao' },
+    desc: { zh: '搜狗（元宝/微信搜一搜生态）', en: 'Sogou (Yuanbao / WeChat Search ecosystem)' },
+  },
+  {
+    name: 'YisouSpider',
+    engine: { zh: '通义/夸克', en: 'Qwen / Quark' },
+    desc: { zh: '神马搜索（阿里系检索通道）', en: 'Shenma Search (Alibaba retrieval channel)' },
+  },
+  {
+    name: '360Spider',
+    engine: { zh: '360 AI 搜索', en: '360 AI Search' },
+    desc: { zh: '360 搜索', en: '360 Search' },
+  },
 ];
 
 const GLOBAL_CRAWLERS = [
-  { name: 'GPTBot', engine: 'ChatGPT', desc: 'OpenAI 索引' },
-  { name: 'OAI-SearchBot', engine: 'ChatGPT Search', desc: 'OpenAI 搜索' },
-  { name: 'PerplexityBot', engine: 'Perplexity', desc: 'Perplexity AI' },
-  { name: 'ClaudeBot', engine: 'Claude', desc: 'Anthropic' },
-  { name: 'Google-Extended', engine: 'Gemini / AIO', desc: 'Google AI' },
+  { name: 'GPTBot', engine: { zh: 'ChatGPT', en: 'ChatGPT' }, desc: { zh: 'OpenAI 索引', en: 'OpenAI indexing' } },
+  { name: 'OAI-SearchBot', engine: { zh: 'ChatGPT Search', en: 'ChatGPT Search' }, desc: { zh: 'OpenAI 搜索', en: 'OpenAI search' } },
+  { name: 'PerplexityBot', engine: { zh: 'Perplexity', en: 'Perplexity' }, desc: { zh: 'Perplexity AI', en: 'Perplexity AI' } },
+  { name: 'ClaudeBot', engine: { zh: 'Claude', en: 'Claude' }, desc: { zh: 'Anthropic', en: 'Anthropic' } },
+  { name: 'Google-Extended', engine: { zh: 'Gemini / AIO', en: 'Gemini / AIO' }, desc: { zh: 'Google AI', en: 'Google AI' } },
 ];
 
 const CITATION_TRIGGERS = [
-  { key: 'comparison_tables', label: '对比表格', stars: 5 },
-  { key: 'pricing_data', label: '价格数据', stars: 5 },
-  { key: 'percentage_stats', label: '数据统计', stars: 4 },
-  { key: 'step_by_step', label: '步骤指南', stars: 4 },
-  { key: 'comparisons', label: '对比内容', stars: 4 },
-  { key: 'year_references', label: '年份标记', stars: 3 },
-  { key: 'definitions', label: '定义型内容', stars: 4 },
+  { key: 'comparison_tables', label: { zh: '对比表格', en: 'Comparison tables' }, stars: 5 },
+  { key: 'pricing_data', label: { zh: '价格数据', en: 'Pricing data' }, stars: 5 },
+  { key: 'percentage_stats', label: { zh: '数据统计', en: 'Statistics & percentages' }, stars: 4 },
+  { key: 'step_by_step', label: { zh: '步骤指南', en: 'Step-by-step guides' }, stars: 4 },
+  { key: 'comparisons', label: { zh: '对比内容', en: 'Comparison content' }, stars: 4 },
+  { key: 'year_references', label: { zh: '年份标记', en: 'Year references' }, stars: 3 },
+  { key: 'definitions', label: { zh: '定义型内容', en: 'Definition-style content' }, stars: 4 },
 ];
 
 // ─── 抓取 ─────────────────────────────────────────────
@@ -111,11 +132,16 @@ function crawlerStatus(rules, crawler) {
   return 'default_allowed'; // 无 robots.txt 或未提及 = 默认放行
 }
 
-function analyzeRobots(robotsBody) {
+function analyzeRobots(robotsBody, lang) {
   const exists = robotsBody.length > 0;
   const rules = exists ? parseRobots(robotsBody) : {};
   const check = (list) =>
-    list.map((c) => ({ ...c, status: exists ? crawlerStatus(rules, c) : 'default_allowed' }));
+    list.map((c) => ({
+      name: c.name,
+      engine: c.engine[lang],
+      desc: c.desc[lang],
+      status: exists ? crawlerStatus(rules, c) : 'default_allowed',
+    }));
   return {
     exists,
     hasSitemapRef: exists && robotsBody.toLowerCase().includes('sitemap:'),
@@ -212,72 +238,118 @@ function scoreCommon(page, sitemap, robots) {
   return s; // 满分 100
 }
 
-// ─── 建议生成 ─────────────────────────────────────────
+// ─── 建议生成（双语文案） ─────────────────────────────
 
-function buildActions(page, sitemap, robots, llmsTxtExists) {
+const ACTION_TEXT = {
+  zh: {
+    cnBlocked: (names, engines) => ({
+      title: `解除对中文引擎爬虫的屏蔽：${names.join('、')}`,
+      why: `这直接影响 ${engines.join('、')} 能否收录你的内容。注意：出海教程常建议屏蔽 Bytespider，但做中文市场恰恰要放行它（豆包生态）。`,
+    }),
+    csr: {
+      title: '页面疑似纯客户端渲染（CSR），改为服务端渲染或预渲染',
+      why: 'AI 引擎的爬虫基本不执行 JavaScript——纯 CSR 站在它们眼里是空白页，这一项不解决其他优化都白做。',
+    },
+    globalBlocked: (names, engines) => ({
+      title: `解除对海外 AI 爬虫的屏蔽：${names.join('、')}`,
+      why: `影响 ${engines.join('、')} 的收录。`,
+    }),
+    schema: {
+      title: '添加 JSON-LD 结构化数据（Organization + Article/Product）',
+      why: 'AI 引擎靠结构化数据快速确认"你是谁、卖什么"，没有它就只能靠猜。',
+    },
+    triggers: (missing) => ({
+      title: `补充可引用内容元素：${missing.join('、')}`,
+      why: 'AI 回答时偏爱直接引用表格、数据、步骤——没有这些元素，你的页面很难被"抄进"答案里。',
+    }),
+    timestamp: {
+      title: '给页面加可见的"更新于 YYYY-MM"时间标记',
+      why: '新鲜度是 AI 引用的重要信号，3 个月不更新被引概率显著下降。',
+    },
+    sitemap: {
+      title: '创建 sitemap.xml 并在 robots.txt 中引用',
+      why: '帮助所有引擎发现你的内容资产。',
+    },
+    llmsTxt: {
+      title: '添加 /llms.txt',
+      why: '新兴标准，成本极低。目前对引用排名影响有限，但能让 AI 工具快速理解站点结构。',
+    },
+    unreachable: (url, reason) => `无法访问 ${url}（${reason}），请确认网址正确且网站在线。`,
+  },
+  en: {
+    cnBlocked: (names, engines) => ({
+      title: `Unblock Chinese AI crawlers: ${names.join(', ')}`,
+      why: `This directly decides whether ${engines.join(', ')} can index your content. Note: overseas-facing guides often recommend blocking Bytespider — but for the Chinese market you must allow it (it feeds the Doubao ecosystem).`,
+    }),
+    csr: {
+      title: 'Page looks client-side rendered (CSR) — switch to SSR or prerendering',
+      why: "AI engine crawlers generally don't execute JavaScript. A pure CSR site is a blank page to them; until this is fixed, every other optimization is wasted.",
+    },
+    globalBlocked: (names, engines) => ({
+      title: `Unblock global AI crawlers: ${names.join(', ')}`,
+      why: `Affects indexing by ${engines.join(', ')}.`,
+    }),
+    schema: {
+      title: 'Add JSON-LD structured data (Organization + Article/Product)',
+      why: 'AI engines rely on structured data to quickly confirm who you are and what you sell — without it, they have to guess.',
+    },
+    triggers: (missing) => ({
+      title: `Add citation-worthy content elements: ${missing.join(', ')}`,
+      why: 'AI answers love to quote tables, numbers and step-by-step lists directly — without these elements, your page rarely gets "copied into" an answer.',
+    }),
+    timestamp: {
+      title: 'Add a visible "Updated YYYY-MM" timestamp to pages',
+      why: 'Freshness is a key citation signal — pages untouched for 3+ months see a sharp drop in citation probability.',
+    },
+    sitemap: {
+      title: 'Create sitemap.xml and reference it in robots.txt',
+      why: 'Helps every engine discover your content assets.',
+    },
+    llmsTxt: {
+      title: 'Add /llms.txt',
+      why: 'An emerging standard with near-zero cost. Limited ranking impact today, but it lets AI tools grasp your site structure instantly.',
+    },
+    unreachable: (url, reason) => `Could not reach ${url} (${reason}). Please check the URL and make sure the site is online.`,
+  },
+};
+
+function buildActions(page, sitemap, robots, llmsTxtExists, lang) {
+  const t = ACTION_TEXT[lang];
   const actions = [];
 
   const cnBlocked = robots.cn.filter((c) => c.status === 'blocked');
   if (cnBlocked.length > 0) {
-    actions.push({
-      priority: 'P0',
-      title: `解除对中文引擎爬虫的屏蔽：${cnBlocked.map((c) => c.name).join('、')}`,
-      why: `这直接影响 ${cnBlocked.map((c) => c.engine).join('、')} 能否收录你的内容。注意：出海教程常建议屏蔽 Bytespider，但做中文市场恰恰要放行它（豆包生态）。`,
-    });
+    actions.push({ priority: 'P0', ...t.cnBlocked(cnBlocked.map((c) => c.name), cnBlocked.map((c) => c.engine)) });
   }
 
   if (page.likelyCSR) {
-    actions.push({
-      priority: 'P0',
-      title: '页面疑似纯客户端渲染（CSR），改为服务端渲染或预渲染',
-      why: 'AI 引擎的爬虫基本不执行 JavaScript——纯 CSR 站在它们眼里是空白页，这一项不解决其他优化都白做。',
-    });
+    actions.push({ priority: 'P0', ...t.csr });
   }
 
   const globalBlocked = robots.global.filter((c) => c.status === 'blocked');
   if (globalBlocked.length > 0) {
-    actions.push({
-      priority: 'P1',
-      title: `解除对海外 AI 爬虫的屏蔽：${globalBlocked.map((c) => c.name).join('、')}`,
-      why: `影响 ${globalBlocked.map((c) => c.engine).join('、')} 的收录。`,
-    });
+    actions.push({ priority: 'P1', ...t.globalBlocked(globalBlocked.map((c) => c.name), globalBlocked.map((c) => c.engine)) });
   }
 
   if (page.schemaTypes.length === 0) {
-    actions.push({
-      priority: 'P1',
-      title: '添加 JSON-LD 结构化数据（Organization + Article/Product）',
-      why: 'AI 引擎靠结构化数据快速确认"你是谁、卖什么"，没有它就只能靠猜。',
-    });
+    actions.push({ priority: 'P1', ...t.schema });
   }
 
   if (page.triggers.length < 4) {
-    const missing = CITATION_TRIGGERS.filter((t) => !page.triggers.includes(t.key)).map((t) => t.label);
-    actions.push({
-      priority: 'P1',
-      title: `补充可引用内容元素：${missing.slice(0, 3).join('、')}`,
-      why: 'AI 回答时偏爱直接引用表格、数据、步骤——没有这些元素，你的页面很难被"抄进"答案里。',
-    });
+    const missing = CITATION_TRIGGERS.filter((tr) => !page.triggers.includes(tr.key)).map((tr) => tr.label[lang]);
+    actions.push({ priority: 'P1', ...t.triggers(missing.slice(0, 3)) });
   }
 
   if (!page.hasUpdateTimestamp) {
-    actions.push({
-      priority: 'P2',
-      title: '给页面加可见的"更新于 YYYY-MM"时间标记',
-      why: '新鲜度是 AI 引用的重要信号，3 个月不更新被引概率显著下降。',
-    });
+    actions.push({ priority: 'P2', ...t.timestamp });
   }
 
   if (!sitemap.exists) {
-    actions.push({ priority: 'P2', title: '创建 sitemap.xml 并在 robots.txt 中引用', why: '帮助所有引擎发现你的内容资产。' });
+    actions.push({ priority: 'P2', ...t.sitemap });
   }
 
   if (!llmsTxtExists) {
-    actions.push({
-      priority: 'P3',
-      title: '添加 /llms.txt',
-      why: '新兴标准，成本极低。目前对引用排名影响有限，但能让 AI 工具快速理解站点结构。',
-    });
+    actions.push({ priority: 'P3', ...t.llmsTxt });
   }
 
   const order = { P0: 0, P1: 1, P2: 2, P3: 3 };
@@ -287,7 +359,9 @@ function buildActions(page, sitemap, robots, llmsTxtExists) {
 
 // ─── 主入口 ───────────────────────────────────────────
 
-export async function scanSite(siteUrl) {
+export async function scanSite(siteUrl, lang = 'zh') {
+  if (!ACTION_TEXT[lang]) lang = 'zh';
+
   const [home, robots, sitemap0, llmsTxt] = await Promise.all([
     fetchSafe(siteUrl),
     fetchSafe(`${siteUrl}/robots.txt`, 6000),
@@ -308,10 +382,10 @@ export async function scanSite(siteUrl) {
   }
 
   if (!home.ok) {
-    return { ok: false, error: `无法访问 ${siteUrl}（${home.error || 'HTTP ' + home.status}），请确认网址正确且网站在线。` };
+    return { ok: false, error: ACTION_TEXT[lang].unreachable(siteUrl, home.error || 'HTTP ' + home.status) };
   }
 
-  const robotsA = analyzeRobots(robots.ok ? robots.body : '');
+  const robotsA = analyzeRobots(robots.ok ? robots.body : '', lang);
   const page = analyzePage(home.body);
   const sitemapA = analyzeSitemap(sitemap.ok ? sitemap.body : '');
   const llmsTxtExists = llmsTxt.ok && llmsTxt.body.trim().length > 0 && !llmsTxt.body.trim().startsWith('<');
@@ -331,6 +405,7 @@ export async function scanSite(siteUrl) {
   return {
     ok: true,
     url: siteUrl,
+    lang,
     scannedAt: new Date().toISOString(),
     scores: { overall, china: cnScore, global: globalScore },
     crawlers: { cn: robotsA.cn, global: robotsA.global },
@@ -343,9 +418,9 @@ export async function scanSite(siteUrl) {
       schemaTypes: page.schemaTypes,
       hasUpdateTimestamp: page.hasUpdateTimestamp,
       contentLanguage: page.cjkRatio > 0.3 ? 'chinese' : page.cjkRatio > 0.1 ? 'mixed' : 'english',
-      triggers: CITATION_TRIGGERS.map((t) => ({ ...t, found: page.triggers.includes(t.key) })),
+      triggers: CITATION_TRIGGERS.map((t) => ({ key: t.key, stars: t.stars, label: t.label[lang], found: page.triggers.includes(t.key) })),
     },
     pageMeta: { title: page.title, h1: page.h1, description: page.metaDescription.slice(0, 120) },
-    actions: buildActions(page, sitemapA, robotsA, llmsTxtExists).slice(0, 5),
+    actions: buildActions(page, sitemapA, robotsA, llmsTxtExists, lang).slice(0, 5),
   };
 }

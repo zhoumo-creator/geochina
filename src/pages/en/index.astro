@@ -32,12 +32,12 @@ const posts = (await getCollection('blog'))
 					A GEO Agent for Chinese-speaking B2B teams. Coverage across 9 AI engines, merge-ready PRs every week — you click Merge, rankings move.
 				</p>
 				<div class="hero-ctas">
-					<a href="/scan" class="btn-cta">
+					<a href="/en/scan" class="btn-cta">
 						Free AI Visibility Scan
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
 					</a>
-					<a href="/en/services" class="btn-outline-dark">
-						See PR Demo
+					<a href="/en/skills" class="btn-outline-dark">
+						Browse Open-Source Skills
 					</a>
 				</div>
 				<ul class="trust-band">
@@ -101,29 +101,28 @@ const posts = (await getCollection('blog'))
 		</section>
 
 		<main>
-			<!-- Tech / What we do -->
-			<section class="tech-section">
-				<div class="section-label"><span class="label-dot"></span> What the Agent Does</div>
-				<div class="tech-list">
-					<a href="/en/services" class="tech-row">
-						<span class="tech-num">01</span>
-						<span class="tech-title">9-engine AI Visibility Tracking (Chinese 5 + Western 4)</span>
-						<span class="tech-arrow">↗</span>
+			<!-- Product pillars -->
+			<section class="pillars-section">
+				<div class="section-label"><span class="label-dot"></span> Three Entry Points, One Path</div>
+				<h2 class="pillars-title">Try it, adopt it, then hand it to us</h2>
+				<div class="pillars-grid">
+					<a href="/en/scan" class="pillar-card">
+						<span class="pillar-num">01 · Free Tool</span>
+						<h3>Online GEO Scan</h3>
+						<p>Enter a URL and get a 60-second dual-track readiness report — Chinese + global AI engines: crawler reachability, SSR, structured data, citability, with a prioritized fix list.</p>
+						<span class="pillar-link">Scan for free →</span>
 					</a>
-					<a href="/en/services" class="tech-row">
-						<span class="tech-num">02</span>
-						<span class="tech-title">Merge-Ready PR Bots (Schema · Meta · Internal Link · robots)</span>
-						<span class="tech-arrow">↗</span>
+					<a href="/en/skills" class="pillar-card">
+						<span class="pillar-num">02 · Open-Source Skills</span>
+						<h3>Curated + Original GEO Skills</h3>
+						<p>We deep-read and tore down the open-source GEO skills out there, keeping only what ships results — and we're filling the confirmed blank ourselves: Chinese 5-engine monitoring, open-sourced as we go.</p>
+						<span class="pillar-link">Browse skills →</span>
 					</a>
-					<a href="/en/services" class="tech-row">
-						<span class="tech-num">03</span>
-						<span class="tech-title">5-Layer Competitor Reverse-Engineering</span>
-						<span class="tech-arrow">↗</span>
-					</a>
-					<a href="/en/services" class="tech-row">
-						<span class="tech-num">04</span>
-						<span class="tech-title">Cross-Platform Integrated Marketing (via vetted provider network)</span>
-						<span class="tech-arrow">↗</span>
+					<a href="/en/services" class="pillar-card">
+						<span class="pillar-num">03 · Subscription</span>
+						<h3>A GEO Agent That Delivers Weekly</h3>
+						<p>Don't want to DIY? Subscribe and receive every week: a 5-engine Chinese visibility dashboard, competitor moves, publish-ready content and merge-ready fixes — you just click Merge.</p>
+						<span class="pillar-link">See services →</span>
 					</a>
 				</div>
 			</section>
@@ -219,7 +218,7 @@ const posts = (await getCollection('blog'))
 				<h2>Start with a free scan</h2>
 				<p>Mix and match Agent + Services. We listen first, then quote — and we'll tell you if we're not the fit.</p>
 				<div class="cta-buttons">
-					<a href="/scan" class="btn-cta">
+					<a href="/en/scan" class="btn-cta">
 						Free AI Visibility Scan
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
 					</a>
@@ -343,15 +342,16 @@ const posts = (await getCollection('blog'))
 	.partner-text { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -0.02em; }
 	.partner-text span { font-size: 0.6em; color: var(--text-muted); font-weight: 500; }
 
-	/* Tech */
-	.tech-section { padding: 4em 0 2em; border-bottom: 1px solid var(--border); }
-	.tech-list { display: flex; flex-direction: column; }
-	.tech-row { display: flex; align-items: center; justify-content: space-between; padding: 1.4em 0; border-top: 1px solid var(--border-light); text-decoration: none; color: var(--text); transition: padding-left 0.2s; }
-	.tech-row:hover { padding-left: 12px; }
-	.tech-num { font-size: 14px; color: var(--text-muted); min-width: 40px; }
-	.tech-title { flex: 1; font-size: 1.15em; font-weight: 700; }
-	.tech-arrow { font-size: 1.2em; color: var(--text-muted); transition: transform 0.2s; }
-	.tech-row:hover .tech-arrow { transform: translate(3px, -3px); color: var(--black); }
+	/* Pillars */
+	.pillars-section { padding: 4em 0 3em; border-bottom: 1px solid var(--border); }
+	.pillars-title { font-size: 2em; margin: 0.5em 0 1.2em; }
+	.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4em; }
+	.pillar-card { display: flex; flex-direction: column; background: var(--bg-section); border-radius: var(--radius-lg); padding: 1.8em; text-decoration: none; color: var(--text); transition: transform 0.2s, box-shadow 0.2s; }
+	.pillar-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07); }
+	.pillar-num { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1em; }
+	.pillar-card h3 { font-family: var(--font-sans); font-size: 1.15em; font-weight: 700; margin-bottom: 0.6em; }
+	.pillar-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; flex: 1; margin-bottom: 1.2em; }
+	.pillar-link { font-size: 14px; font-weight: 600; color: var(--accent); }
 
 	/* What */
 	.what-section { padding: 4em 0; border-bottom: 1px solid var(--border); }
@@ -402,5 +402,6 @@ const posts = (await getCollection('blog'))
 		.stats-inner { grid-template-columns: 1fr; gap: 2em; }
 		.stat-value { font-size: 2em; }
 		.what-grid { grid-template-columns: 1fr; gap: 1.5em; }
+		.pillars-grid { grid-template-columns: 1fr; }
 	}
 </style>
