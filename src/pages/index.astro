@@ -38,11 +38,6 @@ const posts = (await getCollection('blog'))
 						看开源 Skills
 					</a>
 				</div>
-				<ul class="trust-band">
-					<li><span class="trust-check">✓</span> 30 天退款</li>
-					<li><span class="trust-check">✓</span> 代码归你</li>
-					<li><span class="trust-check">✓</span> 随时停服</li>
-				</ul>
 			</div>
 			<div class="hero-canvas">
 				<DitherIsland client:load />
@@ -73,15 +68,18 @@ const posts = (await getCollection('blog'))
 			<div class="stats-inner">
 				<div class="stat-item">
 					<span class="stat-value">33 <small>×</small></span>
-					<span class="stat-desc">Rootly 的 AI 引用率增长倍数，在实施 GEO 策略后的显著提升</span>
+					<span class="stat-desc">Rootly 实施 GEO 策略后的 AI 引用率增长倍数</span>
+					<span class="stat-src">来源：Rootly 2025 案例公开数据</span>
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">78.72 <small>%</small></span>
-					<span class="stat-desc">GEO 优化后内容被 AI 摘要引用的概率，基于 Princeton 研究数据</span>
+					<span class="stat-desc">GEO 优化后内容被 AI 摘要引用的概率</span>
+					<span class="stat-src">来源：Princeton KDD 2024 论文</span>
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">100 <small>M</small></span>
-					<span class="stat-desc">每周通过 AI 搜索引擎获取信息的中文用户数量（估算）</span>
+					<span class="stat-desc">每周通过 AI 搜索引擎获取信息的中文用户数量</span>
+					<span class="stat-src">来源：QuestMobile 2025 估算</span>
 				</div>
 			</div>
 			<div class="scroll-hint">
@@ -90,16 +88,9 @@ const posts = (await getCollection('blog'))
 			</div>
 		</section>
 
-		<!-- Partners / Ecosystem -->
-		<section class="partners-section">
-			<div class="partners-inner">
-				<p class="partners-title">合作生态与品牌</p>
-				<div class="partners-logos">
-					<img src="/partners/voyaga.jpeg" alt="Voyaga" class="partner-img rounded" />
-					<img src="/partners/speedrun.svg" alt="a16z SPEEDRUN" class="partner-img" />
-					<span class="partner-text">youragent<span>.cc</span></span>
-				</div>
-			</div>
+		<!-- Mission -->
+		<section class="mission-section">
+			<p class="mission-text">目标是成为业内最好用的 GEO Agent。</p>
 		</section>
 
 		<!-- Technology Section -->
@@ -152,14 +143,14 @@ const posts = (await getCollection('blog'))
 			<!-- Comparison Table -->
 			<section class="compare-section">
 				<div class="section-label"><span class="label-dot"></span> 对比</div>
-				<h2>GEO Agent vs 传统 SEO 工具</h2>
+				<h2>GeoChina Agent vs 传统 SEO 工具</h2>
 				<p class="compare-lead">传统工具停在「告诉你该做什么」。GEO Agent 直接「帮你做完」。</p>
 				<div class="compare-wrap">
 					<table class="compare-table">
 						<thead>
 							<tr>
 								<th></th>
-								<th class="col-us">GEO China Agent</th>
+								<th class="col-us">GeoChina Agent</th>
 								<th>Ahrefs / SEMrush</th>
 							</tr>
 						</thead>
@@ -190,9 +181,9 @@ const posts = (await getCollection('blog'))
 								<td>N/A</td>
 							</tr>
 							<tr>
-								<td>起价</td>
-								<td class="col-us">¥199/月</td>
-								<td>$99/月（仅报告）</td>
+								<td>模式</td>
+								<td class="col-us">问卷 + Agent 即服务</td>
+								<td>自助 SaaS 月费</td>
 							</tr>
 						</tbody>
 					</table>
@@ -233,7 +224,6 @@ const posts = (await getCollection('blog'))
 				</div>
 			</section>
 
-			<p class="page-updated">最后更新：2026 年 5 月</p>
 		</main>
 		<Footer />
 
@@ -453,6 +443,12 @@ const posts = (await getCollection('blog'))
 		color: var(--text-secondary);
 		line-height: 1.6;
 	}
+	.stat-src {
+		display: block;
+		font-size: 11px;
+		color: var(--text-muted);
+		margin-top: 4px;
+	}
 	.scroll-hint {
 		position: absolute;
 		bottom: 2em;
@@ -652,15 +648,9 @@ const posts = (await getCollection('blog'))
 		box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 	}
 
-	/* ==================== PARTNERS ==================== */
-	.partners-section { max-width: var(--max-w-wide); margin: 0 auto; padding: 4em 1.5em; border-bottom: 1px solid var(--border); text-align: center; }
-	.partners-title { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2.5em; }
-	.partners-logos { display: flex; align-items: center; justify-content: center; gap: 5em; flex-wrap: wrap; filter: grayscale(100%) opacity(0.7); transition: all 0.3s ease; }
-	.partners-logos:hover { filter: grayscale(0%) opacity(1); }
-	.partner-img { height: 32px; object-fit: contain; }
-	.partner-img.rounded { border-radius: 6px; }
-	.partner-text { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -0.02em; }
-	.partner-text span { font-size: 0.6em; color: var(--text-muted); font-weight: 500; }
+	/* ==================== MISSION ==================== */
+	.mission-section { max-width: var(--max-w-wide); margin: 0 auto; padding: 3em 1.5em; border-bottom: 1px solid var(--border); text-align: center; }
+	.mission-text { font-family: var(--font-serif); font-size: 1.4em; color: var(--text-secondary); font-weight: 400; margin: 0; letter-spacing: -0.01em; }
 
 	/* ==================== COMPARE TABLE ==================== */
 	.compare-section {
@@ -715,14 +705,6 @@ const posts = (await getCollection('blog'))
 		background: var(--bg-soft);
 	}
 
-	/* ==================== UPDATED ==================== */
-	.page-updated {
-		text-align: center;
-		font-size: 12px;
-		color: var(--text-muted);
-		padding: 2em 0 0;
-		margin: 0;
-	}
 
 	/* ==================== RESPONSIVE ==================== */
 	@media (max-width: 720px) {

@@ -40,11 +40,6 @@ const posts = (await getCollection('blog'))
 						Browse Open-Source Skills
 					</a>
 				</div>
-				<ul class="trust-band">
-					<li><span class="trust-check">✓</span> 30-day refund</li>
-					<li><span class="trust-check">✓</span> Code stays with you</li>
-					<li><span class="trust-check">✓</span> Cancel anytime</li>
-				</ul>
 			</div>
 			<div class="hero-canvas">
 				<DitherIsland client:load />
@@ -76,28 +71,24 @@ const posts = (await getCollection('blog'))
 				<div class="stat-item">
 					<span class="stat-value">33 <small>×</small></span>
 					<span class="stat-desc">Rootly's AI citation growth after implementing GEO strategies</span>
+					<span class="stat-src">Source: Rootly 2025 public case study</span>
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">78.72 <small>%</small></span>
 					<span class="stat-desc">Probability of being cited in AI summaries with structured GEO</span>
+					<span class="stat-src">Source: Princeton KDD 2024 paper</span>
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">100 <small>M</small></span>
 					<span class="stat-desc">Weekly users getting answers via AI search engines in China</span>
+					<span class="stat-src">Source: QuestMobile 2025 estimate</span>
 				</div>
 			</div>
 		</section>
 
-		<!-- Partners -->
-		<section class="partners-section">
-			<div class="partners-inner">
-				<p class="partners-title">Trusted By & Associated Ecosystem</p>
-				<div class="partners-logos">
-					<img src="/partners/voyaga.jpeg" alt="Voyaga" class="partner-img rounded" />
-					<img src="/partners/speedrun.svg" alt="a16z SPEEDRUN" class="partner-img" />
-					<span class="partner-text">youragent<span>.cc</span></span>
-				</div>
-			</div>
+		<!-- Mission -->
+		<section class="mission-section">
+			<p class="mission-text">Our goal: build the most useful GEO Agent in the industry.</p>
 		</section>
 
 		<main>
@@ -148,14 +139,14 @@ const posts = (await getCollection('blog'))
 			<!-- Comparison Table -->
 			<section class="compare-section">
 				<div class="section-label"><span class="label-dot"></span> Compare</div>
-				<h2>GEO Agent vs Traditional SEO Tools</h2>
+				<h2>GeoChina Agent vs Traditional SEO Tools</h2>
 				<p class="compare-lead">Traditional tools stop at "telling you what to fix." GEO Agent ships the fix.</p>
 				<div class="compare-wrap">
 					<table class="compare-table">
 						<thead>
 							<tr>
 								<th></th>
-								<th class="col-us">GEO China Agent</th>
+								<th class="col-us">GeoChina Agent</th>
 								<th>Ahrefs / SEMrush</th>
 							</tr>
 						</thead>
@@ -186,9 +177,9 @@ const posts = (await getCollection('blog'))
 								<td>N/A</td>
 							</tr>
 							<tr>
-								<td>Starting price</td>
-								<td class="col-us">$99/mo</td>
-								<td>$99/mo (reports only)</td>
+								<td>Model</td>
+								<td class="col-us">Questionnaire + Agent-as-a-Service</td>
+								<td>Self-serve SaaS subscription</td>
 							</tr>
 						</tbody>
 					</table>
@@ -226,7 +217,6 @@ const posts = (await getCollection('blog'))
 				</div>
 			</section>
 
-			<p class="page-updated">Last updated: May 2026</p>
 		</main>
 		<Footer lang="en" />
 	</body>
@@ -331,16 +321,11 @@ const posts = (await getCollection('blog'))
 	.stat-value { display: block; font-family: var(--font-serif); font-size: 3.5em; font-weight: 400; color: var(--black); letter-spacing: -0.02em; line-height: 1; margin-bottom: 16px; }
 	.stat-value small { font-size: 0.5em; color: var(--text-muted); font-weight: 400; }
 	.stat-desc { display: block; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+	.stat-src { display: block; font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 
-	/* Partners */
-	.partners-section { max-width: var(--max-w-wide); margin: 0 auto; padding: 4em 1.5em; border-bottom: 1px solid var(--border); text-align: center; }
-	.partners-title { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2.5em; }
-	.partners-logos { display: flex; align-items: center; justify-content: center; gap: 5em; flex-wrap: wrap; filter: grayscale(100%) opacity(0.7); transition: all 0.3s ease; }
-	.partners-logos:hover { filter: grayscale(0%) opacity(1); }
-	.partner-img { height: 32px; object-fit: contain; }
-	.partner-img.rounded { border-radius: 6px; }
-	.partner-text { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -0.02em; }
-	.partner-text span { font-size: 0.6em; color: var(--text-muted); font-weight: 500; }
+	/* Mission */
+	.mission-section { max-width: var(--max-w-wide); margin: 0 auto; padding: 3em 1.5em; border-bottom: 1px solid var(--border); text-align: center; }
+	.mission-text { font-family: var(--font-serif); font-size: 1.4em; color: var(--text-secondary); font-weight: 400; margin: 0; letter-spacing: -0.01em; }
 
 	/* Pillars */
 	.pillars-section { padding: 4em 0 3em; border-bottom: 1px solid var(--border); }
@@ -390,8 +375,6 @@ const posts = (await getCollection('blog'))
 	.compare-table td:first-child { font-weight: 600; color: var(--text-secondary); min-width: 110px; }
 	.compare-table td.col-us { color: var(--accent); font-weight: 600; }
 	.compare-table tbody tr:hover { background: var(--bg-soft); }
-	.page-updated { text-align: center; font-size: 12px; color: var(--text-muted); padding: 2em 0 0; margin: 0; }
-
 	@media (max-width: 720px) {
 		.hero { grid-template-columns: 1fr; padding-top: 2.5em; }
 		.hero h1 { font-size: 2.4em; }

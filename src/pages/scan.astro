@@ -18,87 +18,83 @@ import Header from '../components/Header.astro';
 		<main>
 			<section class="scan-hero">
 				<div class="section-label"><span class="label-dot"></span> 免费工具</div>
-				<h1>你的网站，中文 AI 引擎推荐吗？</h1>
+				<h1>你的网站，<br />中文 AI 引擎推荐吗？</h1>
 				<p class="lead">
-					豆包、Kimi、元宝、文心、通义正在替你的客户做推荐。输入网址，60 秒看到你的「AI 引擎就绪度」——中文引擎和海外引擎双轨打分，附最该先做的优化清单。
+					豆包、Kimi、元宝、文心、通义正在替你的客户做推荐。<br />
+					输入网址，60 秒看到双轨打分和优化清单。
 				</p>
 
 				<div class="scan-box">
 					<form id="scan-form" class="scan-form">
-						<input
-							id="scan-url"
-							type="text"
-							placeholder="输入你的网站，例如 example.com"
-							autocomplete="url"
-							required
-						/>
-						<button type="submit" class="btn-primary" id="scan-btn">免费扫描</button>
+						<input id="scan-url" type="text" placeholder="输入网址，例如 example.com" autocomplete="url" required />
+						<button type="submit" class="btn-scan" id="scan-btn">扫描</button>
 					</form>
 					<p class="scan-hint" id="scan-status"></p>
 				</div>
 
-				<ul class="trust-band">
-					<li><span class="trust-check">✓</span> 免费</li>
-					<li><span class="trust-check">✓</span> 无需注册</li>
-					<li><span class="trust-check">✓</span> 60 秒出结果</li>
+				<ul class="trust-row">
+					<li>免费</li>
+					<li>无需注册</li>
+					<li>60 秒出结果</li>
 				</ul>
 			</section>
 
 			<section class="scan-result" id="result" hidden>
-				<div class="score-panel">
-					<div class="score-main">
-						<div class="score-ring" id="score-ring"><span id="score-overall">0</span></div>
-						<div class="score-caption">AI 引擎就绪度</div>
-					</div>
-					<div class="score-tracks">
-						<div class="track">
-							<div class="track-head"><strong>中文引擎轨</strong><span id="score-cn">0</span></div>
+				<div class="score-section">
+					<div class="score-ring" id="score-ring"><span id="score-overall">0</span></div>
+					<p class="score-label">AI 引擎就绪度<span class="score-verdict" id="score-verdict"></span></p>
+
+					<div class="score-bars">
+						<div class="score-bar-row">
+							<span class="bar-label">中文引擎</span>
 							<div class="bar"><div class="bar-fill cn" id="bar-cn"></div></div>
-							<p class="track-note">豆包 · Kimi · 元宝 · 文心 · 通义</p>
+							<span class="bar-val" id="score-cn">0</span>
 						</div>
-						<div class="track">
-							<div class="track-head"><strong>海外引擎轨</strong><span id="score-global">0</span></div>
+						<div class="score-bar-row">
+							<span class="bar-label">海外引擎</span>
 							<div class="bar"><div class="bar-fill gl" id="bar-global"></div></div>
-							<p class="track-note">ChatGPT · Perplexity · Claude · Gemini</p>
+							<span class="bar-val" id="score-global">0</span>
 						</div>
 					</div>
-					<button class="btn-secondary" id="download-btn">下载报告</button>
+
+					<button class="btn-dl" id="download-btn">下载报告</button>
 				</div>
 
-				<div class="result-grid">
+				<div class="grid-2">
 					<div class="card">
-						<h3>中文引擎爬虫可达性</h3>
-						<table class="mini-table" id="table-cn"></table>
-						<p class="card-note">出海教程常建议屏蔽 Bytespider——但做中文市场恰恰要放行它，否则豆包看不到你。</p>
+						<h3>中文引擎爬虫</h3>
+						<table class="tbl" id="table-cn"></table>
+						<p class="note">做中文市场要放行 Bytespider，否则豆包看不到你。</p>
 					</div>
 					<div class="card">
-						<h3>海外引擎爬虫可达性</h3>
-						<table class="mini-table" id="table-global"></table>
-					</div>
-					<div class="card">
-						<h3>基础设施检查</h3>
-						<ul class="check-list" id="check-list"></ul>
-					</div>
-					<div class="card">
-						<h3>可引用性元素</h3>
-						<ul class="check-list" id="trigger-list"></ul>
-						<p class="card-note">AI 回答时偏爱直接引用表格、数据和步骤——这些元素越多，被"抄进"答案的机会越大。</p>
+						<h3>海外引擎爬虫</h3>
+						<table class="tbl" id="table-global"></table>
 					</div>
 				</div>
 
-				<div class="card actions-card">
-					<h3>最该先做的优化</h3>
-					<ol class="action-list" id="action-list"></ol>
+				<div class="grid-2">
+					<div class="card">
+						<h3>基础设施</h3>
+						<ul class="ck" id="check-list"></ul>
+					</div>
+					<div class="card">
+						<h3>可引用性</h3>
+						<ul class="ck" id="trigger-list"></ul>
+						<p class="note">AI 偏爱引用表格、数据和步骤——星越多，被引用的概率越大。</p>
+					</div>
 				</div>
 
-				<div class="cta-block">
-					<h3>想知道豆包、Kimi 现在到底怎么回答你所在行业的问题？</h3>
-					<p>
-						以上是网站体检。<strong>真实的可见度</strong>——5 大中文引擎会不会推荐你、推荐了哪个竞品、引用了谁——需要逐个引擎真实提问验证。我们每周帮客户盯着这些变化，并直接交付内容和修改。
-					</p>
+				<div class="card" id="actions-card" hidden>
+					<h3>优先修复</h3>
+					<ol class="act" id="action-list"></ol>
+				</div>
+
+				<div class="cta">
+					<p class="cta-title">想知道豆包、Kimi 现在怎么回答你所在行业的问题？</p>
+					<p class="cta-body">以上是网站体检。真实的可见度——5 大中文引擎会不会推荐你、引用了谁——需要逐个引擎真实提问验证。</p>
 					<div class="cta-row">
-						<button class="btn-primary" id="wechat-btn" data-wechat="Moumlbius">复制微信号，聊聊你的行业</button>
-						<span class="cta-alt">或邮件 hi@geochina.co</span>
+						<button class="btn-scan" id="wechat-btn" data-wechat="Moumlbius">复制微信号</button>
+						<span class="cta-alt">或 <a href="mailto:hi@geochina.co">hi@geochina.co</a></span>
 					</div>
 				</div>
 			</section>
@@ -113,515 +109,212 @@ import Header from '../components/Header.astro';
 			const result = document.getElementById('result');
 			let lastData = null;
 
-			const STATUS_STEPS = [
-				'正在抓取网站…',
-				'检查 robots.txt 里的 AI 爬虫配置…',
-				'分析结构化数据和可引用性元素…',
-				'计算双轨就绪度…',
-			];
+			const STEPS = ['正在抓取网站…','检查 AI 爬虫配置…','分析结构化数据…','计算双轨就绪度…'];
 
 			form.addEventListener('submit', async (e) => {
 				e.preventDefault();
 				const url = document.getElementById('scan-url').value.trim();
 				if (!url) return;
-
-				btn.disabled = true;
-				btn.textContent = '扫描中…';
+				btn.disabled = true; btn.textContent = '扫描中…';
 				result.hidden = true;
 				let step = 0;
-				statusEl.textContent = STATUS_STEPS[0];
-				const ticker = setInterval(() => {
-					step = Math.min(step + 1, STATUS_STEPS.length - 1);
-					statusEl.textContent = STATUS_STEPS[step];
-				}, 2500);
-
+				statusEl.textContent = STEPS[0];
+				const ticker = setInterval(() => { step = Math.min(step+1, STEPS.length-1); statusEl.textContent = STEPS[step]; }, 2500);
 				try {
-					const res = await fetch('/api/scan', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ url }),
-					});
+					const res = await fetch('/api/scan', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({url}) });
 					const data = await res.json();
 					clearInterval(ticker);
-					if (!data.ok) {
-						statusEl.textContent = data.error || '扫描失败，请稍后重试';
-						return;
-					}
-					statusEl.textContent = data.cached ? '完成（7 天内扫描过，展示缓存结果）' : '扫描完成';
-					lastData = data;
-					render(data);
-				} catch {
-					clearInterval(ticker);
-					statusEl.textContent = '网络错误，请稍后重试';
-				} finally {
-					btn.disabled = false;
-					btn.textContent = '免费扫描';
-				}
+					if (!data.ok) { statusEl.textContent = data.error || '扫描失败'; return; }
+					statusEl.textContent = data.cached ? '完成（展示 7 天内缓存）' : '扫描完成';
+					lastData = data; render(data);
+				} catch { clearInterval(ticker); statusEl.textContent = '网络错误'; }
+				finally { btn.disabled = false; btn.textContent = '扫描'; }
 			});
 
-			// 一键复制微信号
 			document.getElementById('wechat-btn').addEventListener('click', async (e) => {
 				const el = e.currentTarget;
-				try {
-					await navigator.clipboard.writeText(el.dataset.wechat);
-					const old = el.textContent;
-					el.textContent = '已复制微信号 Moumlbius ✓';
-					setTimeout(() => (el.textContent = old), 2500);
-				} catch {
-					el.textContent = '微信号：Moumlbius（请手动复制）';
-				}
+				try { await navigator.clipboard.writeText(el.dataset.wechat); const t=el.textContent; el.textContent='已复制 Moumlbius ✓'; setTimeout(()=>el.textContent=t,2500); }
+				catch { el.textContent='微信号：Moumlbius'; }
 			});
 
-			// 一键下载 Markdown 报告
 			document.getElementById('download-btn').addEventListener('click', () => {
 				if (!lastData) return;
 				const md = buildReport(lastData);
-				const host = new URL(lastData.url).hostname.replace(/\./g, '-');
-				const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+				const host = new URL(lastData.url).hostname.replace(/\./g,'-');
+				const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
 				const a = document.createElement('a');
-				a.href = URL.createObjectURL(blob);
-				a.download = `geo-report-${host}-${lastData.scannedAt.slice(0, 10)}.md`;
-				a.click();
-				URL.revokeObjectURL(a.href);
+				a.href = URL.createObjectURL(blob); a.download = `geo-report-${host}.md`; a.click(); URL.revokeObjectURL(a.href);
 			});
 
-			function statusLabel(s) {
-				return s === 'blocked' ? '已屏蔽' : s === 'allowed' ? '明确放行' : '默认放行';
-			}
-			function statusDot(s) {
-				const cls = s === 'blocked' ? 'dot-bad' : s === 'allowed' ? 'dot-good' : 'dot-ok';
-				return `<span class="dot ${cls}"></span>${statusLabel(s)}`;
-			}
-			function checkDot(ok) {
-				return `<span class="dot ${ok ? 'dot-good' : 'dot-bad'}"></span>`;
-			}
+			function sLabel(s) { return s==='blocked'?'已屏蔽':s==='allowed'?'已放行':'默认放行'; }
+			function sDot(s) { return `<span class="d ${s==='blocked'?'d-r':s==='allowed'?'d-g':'d-y'}"></span>${sLabel(s)}`; }
+			function cDot(ok) { return `<span class="d ${ok?'d-g':'d-r'}"></span>`; }
 
 			function buildReport(d) {
-				const line = (c) => `| ${c.engine} | ${c.name} | ${statusLabel(c.status)} |`;
+				const line = c => `| ${c.engine} | ${c.name} | ${sLabel(c.status)} |`;
 				const ck = d.checks;
-				const checks = [
-					[ck.ssr, '服务端渲染（AI 爬虫不执行 JS）'],
-					[ck.robotsTxt, 'robots.txt'],
-					[ck.sitemap, `sitemap${ck.sitemapUrls ? `（${ck.sitemapUrls} 个 URL）` : ''}`],
-					[ck.llmsTxt, 'llms.txt'],
-					[ck.schemaTypes.length > 0, `结构化数据${ck.schemaTypes.length ? '：' + ck.schemaTypes.join(', ') : ''}`],
-					[ck.hasUpdateTimestamp, '页面更新时间标记'],
-				];
-				return `# AI 引擎就绪度报告：${new URL(d.url).hostname}
-
-> 扫描时间：${d.scannedAt.slice(0, 10)} ｜ 工具：geochina.co/scan（免费）
-
-## 总分：${d.scores.overall} / 100
-
-| 轨道 | 得分 |
-|---|---|
-| 中文引擎轨（豆包 · Kimi · 元宝 · 文心 · 通义） | ${d.scores.china} |
-| 海外引擎轨（ChatGPT · Perplexity · Claude · Gemini） | ${d.scores.global} |
-
-## 中文引擎爬虫可达性
-
-| 引擎 | 爬虫 | 状态 |
-|---|---|---|
-${d.crawlers.cn.map(line).join('\n')}
-
-## 海外引擎爬虫可达性
-
-| 引擎 | 爬虫 | 状态 |
-|---|---|---|
-${d.crawlers.global.map(line).join('\n')}
-
-## 基础设施检查
-
-${checks.map(([ok, label]) => `- ${ok ? '✅' : '❌'} ${label}`).join('\n')}
-
-## 可引用性元素
-
-${ck.triggers.map((t) => `- ${t.found ? '✅' : '❌'} ${t.label}`).join('\n')}
-
-## 最该先做的优化
-
-${d.actions.map((a, i) => `${i + 1}. **[${a.priority}] ${a.title}**\n   ${a.why}`).join('\n\n')}
-
----
-
-想知道 5 大中文引擎现在怎么回答你所在行业的问题、推荐了谁？
-微信 Moumlbius ｜ hi@geochina.co ｜ https://geochina.co
-`;
+				const checks = [[ck.ssr,'服务端渲染'],[ck.robotsTxt,'robots.txt'],[ck.sitemap,`sitemap${ck.sitemapUrls?`（${ck.sitemapUrls} URL）`:''}`],[ck.llmsTxt,'llms.txt'],[ck.schemaTypes.length>0,`结构化数据${ck.schemaTypes.length?'：'+ck.schemaTypes.join(', '):''}`],[ck.hasUpdateTimestamp,'更新时间标记']];
+				return `# AI 引擎就绪度报告：${new URL(d.url).hostname}\n\n> 扫描：${d.scannedAt.slice(0,10)} ｜ geochina.co/scan\n\n## 总分 ${d.scores.overall}/100\n\n| 轨道 | 分 |\n|---|---|\n| 中文引擎 | ${d.scores.china} |\n| 海外引擎 | ${d.scores.global} |\n\n## 中文爬虫\n\n| 引擎 | 爬虫 | 状态 |\n|---|---|---|\n${d.crawlers.cn.map(line).join('\n')}\n\n## 海外爬虫\n\n| 引擎 | 爬虫 | 状态 |\n|---|---|---|\n${d.crawlers.global.map(line).join('\n')}\n\n## 基础设施\n\n${checks.map(([ok,l])=>`- ${ok?'✅':'❌'} ${l}`).join('\n')}\n\n## 可引用性\n\n${ck.triggers.map(t=>`- ${t.found?'✅':'❌'} ${t.label}`).join('\n')}\n\n## 优先修复\n\n${d.actions.map((a,i)=>`${i+1}. **[${a.priority}] ${a.title}**\n   ${a.why}`).join('\n\n')}\n\n---\n微信 Moumlbius ｜ hi@geochina.co ｜ geochina.co\n`;
 			}
 
 			function render(d) {
-				document.getElementById('score-overall').textContent = d.scores.overall;
+				const o = d.scores.overall;
+				document.getElementById('score-overall').textContent = o;
 				document.getElementById('score-cn').textContent = d.scores.china;
 				document.getElementById('score-global').textContent = d.scores.global;
-				document.getElementById('bar-cn').style.width = d.scores.china + '%';
-				document.getElementById('bar-global').style.width = d.scores.global + '%';
-
+				document.getElementById('bar-cn').style.width = d.scores.china+'%';
+				document.getElementById('bar-global').style.width = d.scores.global+'%';
 				const ring = document.getElementById('score-ring');
-				ring.className = 'score-ring ' + (d.scores.overall >= 70 ? 'ring-good' : d.scores.overall >= 45 ? 'ring-mid' : 'ring-bad');
+				ring.className = 'score-ring '+(o>=70?'r-g':o>=45?'r-y':'r-r');
+				const v = document.getElementById('score-verdict');
+				v.textContent = o>=70?' · 优秀':o>=45?' · 良好':' · 需优化';
 
-				const row = (c) =>
-					`<tr><td><strong>${c.engine}</strong><span class="crawler-name">${c.name}</span></td><td class="td-status">${statusDot(c.status)}</td></tr>`;
+				const row = c => `<tr><td>${c.engine}<span class="sub">${c.name}</span></td><td class="r">${sDot(c.status)}</td></tr>`;
 				document.getElementById('table-cn').innerHTML = d.crawlers.cn.map(row).join('');
 				document.getElementById('table-global').innerHTML = d.crawlers.global.map(row).join('');
 
 				const ck = d.checks;
-				const checks = [
-					[ck.ssr, '服务端渲染（AI 爬虫不执行 JS）'],
-					[ck.robotsTxt, 'robots.txt'],
-					[ck.sitemap, `sitemap${ck.sitemapUrls ? `（${ck.sitemapUrls} 个 URL）` : ''}`],
-					[ck.llmsTxt, 'llms.txt'],
-					[ck.schemaTypes.length > 0, `结构化数据${ck.schemaTypes.length ? '：' + ck.schemaTypes.slice(0, 3).join(', ') : ''}`],
-					[ck.hasUpdateTimestamp, '页面更新时间标记'],
-				];
-				document.getElementById('check-list').innerHTML = checks
-					.map(([ok, label]) => `<li>${checkDot(ok)} ${label}</li>`)
-					.join('');
+				const checks = [[ck.ssr,'服务端渲染'],[ck.robotsTxt,'robots.txt'],[ck.sitemap,`sitemap${ck.sitemapUrls?`（${ck.sitemapUrls} URL）`:''}`],[ck.llmsTxt,'llms.txt'],[ck.schemaTypes.length>0,`结构化数据${ck.schemaTypes.length?'：'+ck.schemaTypes.slice(0,3).join(', '):''}`],[ck.hasUpdateTimestamp,'更新时间标记']];
+				document.getElementById('check-list').innerHTML = checks.map(([ok,l])=>`<li>${cDot(ok)}${l}</li>`).join('');
+				document.getElementById('trigger-list').innerHTML = ck.triggers.map(t=>`<li>${cDot(t.found)}<span class="stars">${'●'.repeat(t.stars)}${'○'.repeat(5-t.stars)}</span>${t.label}</li>`).join('');
 
-				document.getElementById('trigger-list').innerHTML = ck.triggers
-					.map((t) => `<li>${checkDot(t.found)} ${t.label}</li>`)
-					.join('');
-
-				document.getElementById('action-list').innerHTML = d.actions
-					.map(
-						(a) =>
-							`<li><span class="pri pri-${a.priority}">${a.priority}</span><div><strong>${a.title}</strong><p>${a.why}</p></div></li>`
-					)
-					.join('');
+				const ac = document.getElementById('actions-card');
+				if (d.actions && d.actions.length) {
+					ac.hidden = false;
+					document.getElementById('action-list').innerHTML = d.actions.map(a=>`<li><span class="pri p-${a.priority}">${a.priority}</span><div><strong>${a.title}</strong><p>${a.why}</p></div></li>`).join('');
+				} else { ac.hidden = true; }
 
 				result.hidden = false;
-				result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				result.scrollIntoView({behavior:'smooth',block:'start'});
 			}
 		</script>
 	</body>
 </html>
 
 <style>
-	/* ─── Apple 扁平风：大留白、软灰卡片、胶囊按钮、无边框无投影 ─── */
-	.scan-hero {
-		padding: 4.5em 0 3em;
-	}
-	.section-label {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		font-size: 12px;
-		font-weight: 600;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--text-muted);
-		margin-bottom: 1.5em;
-	}
-	.label-dot {
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: var(--accent);
-		display: inline-block;
-	}
-	.scan-hero h1 {
-		font-size: 2.8em;
-		line-height: 1.15;
-		letter-spacing: -0.02em;
-		font-weight: 700;
-		margin-bottom: 0.5em;
-	}
-	.lead {
-		font-size: 1.12em;
-		color: var(--text-secondary);
-		line-height: 1.7;
-		margin-bottom: 2.2em;
-		max-width: 640px;
-	}
-	.scan-box {
-		margin-bottom: 1.6em;
-		max-width: 640px;
-	}
-	.scan-form {
-		display: flex;
-		gap: 10px;
-		flex-wrap: wrap;
-	}
-	.scan-form input {
-		flex: 1;
-		min-width: 240px;
-		padding: 15px 20px;
-		font-size: 16px;
-		border: none;
-		border-radius: 14px;
-		background: #f5f5f7;
-		color: inherit;
-		outline: none;
-		transition: box-shadow 0.2s;
-	}
-	.scan-form input:focus {
-		box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.25);
-	}
-	.scan-hint {
-		margin: 0.9em 0 0;
-		font-size: 13px;
-		color: var(--text-muted);
-		min-height: 1.2em;
-	}
-	.btn-primary {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 15px 30px;
-		background: #0071e3;
-		color: #fff;
-		border: none;
-		cursor: pointer;
-		border-radius: 980px;
-		font-weight: 500;
-		font-size: 15px;
-		text-decoration: none;
-		transition: background 0.2s;
-	}
-	.btn-primary:hover {
-		background: #0077ed;
-		color: #fff;
-	}
-	.btn-primary:disabled {
-		opacity: 0.55;
-		cursor: wait;
-	}
-	.btn-secondary {
-		display: inline-flex;
-		align-items: center;
-		padding: 11px 24px;
-		background: transparent;
-		color: #0071e3;
-		border: 1px solid #0071e3;
-		cursor: pointer;
-		border-radius: 980px;
-		font-weight: 500;
-		font-size: 14px;
-		transition: background 0.2s;
-	}
-	.btn-secondary:hover {
-		background: rgba(0, 113, 227, 0.08);
-	}
-	.trust-band {
-		display: flex;
-		gap: 1.6em;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		flex-wrap: wrap;
-	}
-	.trust-band li {
-		font-size: 13px;
-		color: var(--text-muted);
-		display: flex;
-		align-items: center;
-		gap: 5px;
-	}
-	.trust-check {
-		color: var(--accent);
-		font-weight: 700;
-	}
+	main { width: 920px; }
 
-	/* ─── 结果区 ─── */
-	.scan-result {
-		padding: 1em 0 5em;
+	/* ─── Hero ─── */
+	.scan-hero { max-width: 600px; padding: 5em 0 3em; }
+	.section-label {
+		display: flex; align-items: center; gap: 6px;
+		font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+		text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.6em;
 	}
-	.score-panel {
-		display: flex;
-		gap: 3em;
-		align-items: center;
-		flex-wrap: wrap;
-		background: #f5f5f7;
-		border-radius: 20px;
-		padding: 2.5em;
-		margin-bottom: 1.4em;
+	.label-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+	.scan-hero h1 {
+		font-family: var(--font-serif);
+		font-size: 2.4em; line-height: 1.2; font-weight: 700;
+		letter-spacing: -0.02em; margin-bottom: 0.6em;
 	}
+	.lead { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2em; }
+	.scan-box { margin-bottom: 1.4em; }
+	.scan-form { display: flex; gap: 8px; }
+	.scan-form input {
+		flex: 1; padding: 12px 16px; font-size: 15px;
+		border: 1px solid var(--border); border-radius: 10px;
+		background: #fff; color: var(--text); outline: none;
+	}
+	.scan-form input:focus { border-color: #0071e3; box-shadow: 0 0 0 3px rgba(0,113,227,0.12); }
+	.scan-hint { margin: 0.7em 0 0; font-size: 13px; color: var(--text-muted); min-height: 1.2em; }
+	.btn-scan {
+		padding: 12px 24px; background: #0071e3; color: #fff; border: none;
+		border-radius: 10px; font-weight: 500; font-size: 15px;
+		cursor: pointer; white-space: nowrap;
+	}
+	.btn-scan:hover { background: #0077ed; }
+	.btn-scan:disabled { opacity: 0.5; cursor: wait; }
+	.trust-row {
+		display: flex; gap: 1.4em; list-style: none; padding: 0; margin: 0;
+		font-size: 12px; color: var(--text-muted);
+	}
+	.trust-row li::before { content: '✓ '; color: var(--accent); font-weight: 600; }
+
+	/* ─── Results ─── */
+	.scan-result { padding: 0 0 5em; }
+
+	/* Score */
+	.score-section { text-align: center; padding: 2em 0 2.4em; }
 	.score-ring {
-		width: 112px;
-		height: 112px;
-		border: 4px solid #d2d2d7;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 2.5em;
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		background: #fff;
+		width: 96px; height: 96px; margin: 0 auto 0.6em;
+		border: 3px solid #d2d2d7; border-radius: 50%;
+		display: flex; align-items: center; justify-content: center;
+		font-size: 2.2em; font-weight: 700; letter-spacing: -0.02em;
+		font-family: var(--font-sans); background: #fff;
 	}
-	.ring-good { border-color: #34c759; }
-	.ring-mid { border-color: #ff9f0a; }
-	.ring-bad { border-color: #ff3b30; }
-	.score-caption {
-		text-align: center;
-		margin-top: 0.7em;
-		font-size: 13px;
-		color: var(--text-muted);
-	}
-	.score-tracks {
-		flex: 1;
-		min-width: 260px;
-		display: flex;
-		flex-direction: column;
-		gap: 1.4em;
-	}
-	.track-head {
-		display: flex;
-		justify-content: space-between;
-		font-size: 14px;
-		margin-bottom: 7px;
-	}
-	.track-head span {
-		font-weight: 600;
-		font-variant-numeric: tabular-nums;
-	}
-	.bar {
-		height: 8px;
-		background: #e8e8ed;
-		border-radius: 4px;
-		overflow: hidden;
-	}
-	.bar-fill {
-		height: 100%;
-		width: 0;
-		border-radius: 4px;
-		transition: width 0.8s ease;
-	}
+	.r-g { border-color: #34c759; color: #1a7f37; }
+	.r-y { border-color: #ff9f0a; color: #9a6700; }
+	.r-r { border-color: #ff3b30; color: #d1242f; }
+	.score-label { font-size: 13px; color: var(--text-muted); margin-bottom: 1.6em; }
+	.score-verdict { font-weight: 600; }
+
+	.score-bars { max-width: 400px; margin: 0 auto 1.6em; }
+	.score-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+	.bar-label { font-size: 13px; color: var(--text-secondary); width: 64px; text-align: right; flex-shrink: 0; }
+	.bar { flex: 1; height: 5px; background: #e8e8ed; border-radius: 3px; overflow: hidden; }
+	.bar-fill { height: 100%; width: 0; border-radius: 3px; transition: width 0.8s ease; }
 	.bar-fill.cn { background: #ff3b30; }
 	.bar-fill.gl { background: #0071e3; }
-	.track-note {
-		margin: 7px 0 0;
-		font-size: 12px;
-		color: var(--text-muted);
+	.bar-val { font-size: 13px; font-weight: 600; width: 28px; text-align: left; font-variant-numeric: tabular-nums; color: var(--text); }
+
+	.btn-dl {
+		padding: 8px 20px; font-size: 13px; font-weight: 500;
+		background: none; border: 1px solid var(--border); border-radius: 980px;
+		color: var(--text-secondary); cursor: pointer;
 	}
-	.result-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.4em;
-		margin-bottom: 1.4em;
-	}
-	.card {
-		background: #f5f5f7;
-		border-radius: 20px;
-		padding: 1.8em;
-	}
-	.card h3 {
-		font-size: 1.02em;
-		font-weight: 600;
-		letter-spacing: -0.01em;
-		margin: 0 0 1em;
-	}
-	.card-note {
-		font-size: 12px;
-		color: var(--text-muted);
-		line-height: 1.6;
-		margin: 1em 0 0;
-	}
-	.mini-table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 14px;
-	}
-	.mini-table td {
-		padding: 9px 4px;
-		border-bottom: 1px solid #e8e8ed;
-	}
-	.mini-table tr:last-child td {
-		border-bottom: none;
-	}
-	.td-status {
-		white-space: nowrap;
-		text-align: right;
-		color: var(--text-secondary);
-		font-size: 13px;
-	}
-	.crawler-name {
-		display: block;
-		font-size: 11px;
-		color: var(--text-muted);
-	}
-	.check-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		font-size: 14px;
-		line-height: 2.1;
-	}
-	.dot {
-		display: inline-block;
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		margin-right: 8px;
-		vertical-align: middle;
-	}
-	.dot-good { background: #34c759; }
-	.dot-ok { background: #a2d39b; }
-	.dot-bad { background: #ff3b30; }
-	.actions-card {
-		margin-bottom: 1.4em;
-	}
-	.action-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 1.1em;
-	}
-	.action-list li {
-		display: flex;
-		gap: 12px;
-		align-items: flex-start;
-	}
-	.action-list p {
-		margin: 4px 0 0;
-		font-size: 13px;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
-	.pri {
-		flex-shrink: 0;
-		font-size: 11px;
-		font-weight: 600;
-		padding: 4px 10px;
-		border-radius: 980px;
-		margin-top: 1px;
-	}
-	.pri-P0 { background: #ffe5e3; color: #d70015; }
-	.pri-P1 { background: #ffefd6; color: #c93400; }
-	.pri-P2 { background: #fff8dd; color: #8a6d00; }
-	.pri-P3 { background: #e8e8ed; color: #515154; }
-	.cta-block {
-		background: #f5f5f7;
-		border-radius: 20px;
-		padding: 2.6em;
-	}
-	.cta-block h3 {
-		margin: 0 0 0.6em;
-		font-size: 1.35em;
-		font-weight: 600;
-		letter-spacing: -0.015em;
-	}
-	.cta-block p {
-		color: var(--text-secondary);
-		line-height: 1.7;
-		max-width: 640px;
-		margin-bottom: 1.5em;
-	}
-	.cta-row {
-		display: flex;
-		gap: 1.4em;
-		align-items: center;
-		flex-wrap: wrap;
-	}
-	.cta-alt {
-		font-size: 14px;
-		color: var(--text-muted);
-	}
+	.btn-dl:hover { border-color: var(--text-muted); color: var(--text); }
+
+	/* Cards */
+	.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+	.card { background: #f5f5f7; border-radius: 16px; padding: 1.4em 1.6em; }
+	.card h3 { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--text); margin: 0 0 0.8em; letter-spacing: 0; }
+	.note { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin: 0.8em 0 0; }
+
+	/* Tables (JS-injected, needs :global) */
+	.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+	.tbl :global(td) { padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--text); }
+	.tbl :global(tr:last-child td) { border-bottom: none; }
+	.tbl :global(.r) { text-align: right; font-size: 13px; color: var(--text-secondary); white-space: nowrap; }
+	.tbl :global(.sub) { display: block; font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+	/* Dots (JS-injected) */
+	:global(.d) { display: inline-block; width: 6px; height: 6px; min-width: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; flex-shrink: 0; }
+	:global(.d-g) { background: #34c759; }
+	:global(.d-y) { background: #a2d39b; }
+	:global(.d-r) { background: #ff3b30; }
+
+	/* Check lists (JS-injected) */
+	.ck { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+	.ck :global(li) { padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; gap: 2px; color: var(--text); }
+	.ck :global(li:last-child) { border-bottom: none; }
+	:global(.stars) { font-size: 9px; color: #d2d2d7; margin-right: 6px; letter-spacing: 0.5px; }
+	.ck :global(.d-g ~ .stars) { color: #ff9f0a; }
+
+	/* Actions (JS-injected) */
+	#actions-card { margin-bottom: 12px; }
+	.act { list-style: none; padding: 0; margin: 0; }
+	.act :global(li) { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+	.act :global(li:last-child) { border-bottom: none; }
+	.act :global(strong) { font-size: 14px; font-weight: 600; }
+	.act :global(p) { margin: 2px 0 0; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+	:global(.pri) { flex-shrink: 0; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-top: 2px; }
+	:global(.p-P0) { background: #fee; color: #c00; }
+	:global(.p-P1) { background: #fff3e0; color: #b45300; }
+	:global(.p-P2) { background: #fff9db; color: #8a6d00; }
+	:global(.p-P3) { background: #f0f0f0; color: #666; }
+
+	/* CTA */
+	.cta { background: #1d1d1f; border-radius: 16px; padding: 2em 2em; margin-top: 12px; }
+	.cta-title { font-family: var(--font-serif); font-size: 1.2em; font-weight: 600; color: #fff; margin: 0 0 0.5em; line-height: 1.3; }
+	.cta-body { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0 0 1.2em; max-width: 540px; }
+	.cta-row { display: flex; gap: 1em; align-items: center; flex-wrap: wrap; }
+	.cta .btn-scan { background: #0071e3; font-size: 14px; padding: 10px 22px; border-radius: 8px; }
+	.cta-alt { font-size: 13px; color: rgba(255,255,255,0.4); }
+	.cta-alt a { color: rgba(255,255,255,0.6); text-decoration: underline; text-underline-offset: 2px; }
 
 	@media (max-width: 720px) {
-		.scan-hero h1 { font-size: 1.9em; }
-		.score-panel { padding: 1.6em; gap: 1.6em; }
-		.card { padding: 1.4em; }
+		.scan-hero h1 { font-size: 1.8em; }
+		.grid-2 { grid-template-columns: 1fr; }
+		.card { padding: 1.2em; }
 	}
 </style>

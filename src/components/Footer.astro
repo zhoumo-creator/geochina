@@ -28,6 +28,7 @@ const today = new Date();
 		</div>
 		<div class="footer-bottom">
 			<span>&copy; {today.getFullYear()} GEO China. {isEn ? 'Get cited by AI.' : '让 AI 看到你的品牌。'}</span>
+			<span class="footer-updated">{isEn ? 'Last updated: July 2026' : '最后更新：2026 年 7 月'}</span>
 		</div>
 	</div>
 </footer>
@@ -41,5 +42,5 @@ const today = new Date();
 	.footer-links { display: flex; gap: 24px; }
 	.footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
 	.footer-links a:hover { color: var(--black); }
-	.footer-bottom { padding-top: 2em; border-top: 1px solid var(--border-light); font-size: 13px; color: var(--text-muted); }
+	.footer-bottom { padding-top: 2em; border-top: 1px solid var(--border-light); font-size: 13px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5em; }
 </style>

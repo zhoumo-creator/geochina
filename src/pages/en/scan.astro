@@ -18,86 +18,82 @@ import Header from '../../components/Header.astro';
 		<main>
 			<section class="scan-hero">
 				<div class="section-label"><span class="label-dot"></span> Free Tool</div>
-				<h1>Do Chinese AI engines recommend your site?</h1>
+				<h1>Do Chinese AI engines<br />recommend your site?</h1>
 				<p class="lead">
-					Doubao, Kimi, Yuanbao, ERNIE and Qwen are making recommendations to your customers right now. Enter a URL and see your AI-engine readiness in 60 seconds — dual-track scoring for Chinese and global engines, plus the fixes to make first.
+					Doubao, Kimi, Yuanbao, ERNIE and Qwen are making recommendations<br />
+					to your customers right now. Enter a URL — results in 60 seconds.
 				</p>
 
 				<div class="scan-box">
 					<form id="scan-form" class="scan-form">
-						<input
-							id="scan-url"
-							type="text"
-							placeholder="Enter your website, e.g. example.com"
-							autocomplete="url"
-							required
-						/>
-						<button type="submit" class="btn-primary" id="scan-btn">Scan for free</button>
+						<input id="scan-url" type="text" placeholder="Enter your website, e.g. example.com" autocomplete="url" required />
+						<button type="submit" class="btn-scan" id="scan-btn">Scan</button>
 					</form>
 					<p class="scan-hint" id="scan-status"></p>
 				</div>
 
-				<ul class="trust-band">
-					<li><span class="trust-check">✓</span> Free</li>
-					<li><span class="trust-check">✓</span> No sign-up</li>
-					<li><span class="trust-check">✓</span> Results in 60s</li>
+				<ul class="trust-row">
+					<li>Free</li>
+					<li>No sign-up</li>
+					<li>Results in 60s</li>
 				</ul>
 			</section>
 
 			<section class="scan-result" id="result" hidden>
-				<div class="score-panel">
-					<div class="score-main">
-						<div class="score-ring" id="score-ring"><span id="score-overall">0</span></div>
-						<div class="score-caption">AI Engine Readiness</div>
-					</div>
-					<div class="score-tracks">
-						<div class="track">
-							<div class="track-head"><strong>Chinese engines</strong><span id="score-cn">0</span></div>
+				<div class="score-section">
+					<div class="score-ring" id="score-ring"><span id="score-overall">0</span></div>
+					<p class="score-label">AI Engine Readiness<span class="score-verdict" id="score-verdict"></span></p>
+
+					<div class="score-bars">
+						<div class="score-bar-row">
+							<span class="bar-label">Chinese</span>
 							<div class="bar"><div class="bar-fill cn" id="bar-cn"></div></div>
-							<p class="track-note">Doubao · Kimi · Yuanbao · ERNIE · Qwen</p>
+							<span class="bar-val" id="score-cn">0</span>
 						</div>
-						<div class="track">
-							<div class="track-head"><strong>Global engines</strong><span id="score-global">0</span></div>
+						<div class="score-bar-row">
+							<span class="bar-label">Global</span>
 							<div class="bar"><div class="bar-fill gl" id="bar-global"></div></div>
-							<p class="track-note">ChatGPT · Perplexity · Claude · Gemini</p>
+							<span class="bar-val" id="score-global">0</span>
 						</div>
 					</div>
-					<button class="btn-secondary" id="download-btn">Download report</button>
+
+					<button class="btn-dl" id="download-btn">Download report</button>
 				</div>
 
-				<div class="result-grid">
+				<div class="grid-2">
 					<div class="card">
-						<h3>Chinese engine crawler reachability</h3>
-						<table class="mini-table" id="table-cn"></table>
-						<p class="card-note">Overseas-facing guides often say "block Bytespider" — but for the Chinese market you must allow it, or Doubao can't see you.</p>
+						<h3>Chinese engine crawlers</h3>
+						<table class="tbl" id="table-cn"></table>
+						<p class="note">For the Chinese market you must allow Bytespider — otherwise Doubao can't see you.</p>
 					</div>
 					<div class="card">
-						<h3>Global engine crawler reachability</h3>
-						<table class="mini-table" id="table-global"></table>
-					</div>
-					<div class="card">
-						<h3>Infrastructure checks</h3>
-						<ul class="check-list" id="check-list"></ul>
-					</div>
-					<div class="card">
-						<h3>Citation-worthy elements</h3>
-						<ul class="check-list" id="trigger-list"></ul>
-						<p class="card-note">AI answers love quoting tables, numbers and step lists — the more of these you have, the more often you get "copied into" an answer.</p>
+						<h3>Global engine crawlers</h3>
+						<table class="tbl" id="table-global"></table>
 					</div>
 				</div>
 
-				<div class="card actions-card">
-					<h3>Fixes to make first</h3>
-					<ol class="action-list" id="action-list"></ol>
+				<div class="grid-2">
+					<div class="card">
+						<h3>Infrastructure</h3>
+						<ul class="ck" id="check-list"></ul>
+					</div>
+					<div class="card">
+						<h3>Citability</h3>
+						<ul class="ck" id="trigger-list"></ul>
+						<p class="note">AI answers love quoting tables, numbers and step lists — the higher the rating, the more likely to be cited.</p>
+					</div>
 				</div>
 
-				<div class="cta-block">
-					<h3>Want to know how Doubao and Kimi actually answer questions in your industry?</h3>
-					<p>
-						The scan above is a site checkup. <strong>Real visibility</strong> — whether the 5 major Chinese engines recommend you, which competitor they name, whose content they cite — requires asking each engine real questions. We watch those shifts weekly for clients and ship the content and fixes directly.
-					</p>
+				<div class="card" id="actions-card" hidden>
+					<h3>Priority fixes</h3>
+					<ol class="act" id="action-list"></ol>
+				</div>
+
+				<div class="cta">
+					<p class="cta-title">Want to know how Doubao and Kimi answer questions in your industry?</p>
+					<p class="cta-body">The scan above is a site checkup. Real visibility — whether 5 major Chinese engines recommend you, who they cite — requires asking each engine real questions.</p>
 					<div class="cta-row">
-						<a class="btn-primary" href="mailto:hi@geochina.co">Email us about your industry</a>
+						<a class="btn-scan" href="mailto:hi@geochina.co">Email us</a>
 						<span class="cta-alt">or WeChat: Moumlbius</span>
 					</div>
 				</div>
@@ -113,498 +109,206 @@ import Header from '../../components/Header.astro';
 			const result = document.getElementById('result');
 			let lastData = null;
 
-			const STATUS_STEPS = [
-				'Fetching your site…',
-				'Checking AI crawler rules in robots.txt…',
-				'Analyzing structured data and citability elements…',
-				'Computing dual-track readiness…',
-			];
+			const STEPS = ['Fetching your site…','Checking AI crawler rules…','Analyzing structured data…','Computing dual-track readiness…'];
 
 			form.addEventListener('submit', async (e) => {
 				e.preventDefault();
 				const url = document.getElementById('scan-url').value.trim();
 				if (!url) return;
-
-				btn.disabled = true;
-				btn.textContent = 'Scanning…';
+				btn.disabled = true; btn.textContent = 'Scanning…';
 				result.hidden = true;
 				let step = 0;
-				statusEl.textContent = STATUS_STEPS[0];
-				const ticker = setInterval(() => {
-					step = Math.min(step + 1, STATUS_STEPS.length - 1);
-					statusEl.textContent = STATUS_STEPS[step];
-				}, 2500);
-
+				statusEl.textContent = STEPS[0];
+				const ticker = setInterval(() => { step = Math.min(step+1, STEPS.length-1); statusEl.textContent = STEPS[step]; }, 2500);
 				try {
-					const res = await fetch('/api/scan', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ url, lang: 'en' }),
-					});
+					const res = await fetch('/api/scan', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({url, lang:'en'}) });
 					const data = await res.json();
 					clearInterval(ticker);
-					if (!data.ok) {
-						statusEl.textContent = data.error || 'Scan failed, please try again later';
-						return;
-					}
-					statusEl.textContent = data.cached ? 'Done (scanned within 7 days — showing cached result)' : 'Scan complete';
-					lastData = data;
-					render(data);
-				} catch {
-					clearInterval(ticker);
-					statusEl.textContent = 'Network error, please try again later';
-				} finally {
-					btn.disabled = false;
-					btn.textContent = 'Scan for free';
-				}
+					if (!data.ok) { statusEl.textContent = data.error || 'Scan failed'; return; }
+					statusEl.textContent = data.cached ? 'Done (showing cached result from past 7 days)' : 'Scan complete';
+					lastData = data; render(data);
+				} catch { clearInterval(ticker); statusEl.textContent = 'Network error'; }
+				finally { btn.disabled = false; btn.textContent = 'Scan'; }
 			});
 
-			// One-click Markdown report download
 			document.getElementById('download-btn').addEventListener('click', () => {
 				if (!lastData) return;
 				const md = buildReport(lastData);
-				const host = new URL(lastData.url).hostname.replace(/\./g, '-');
-				const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+				const host = new URL(lastData.url).hostname.replace(/\./g,'-');
+				const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
 				const a = document.createElement('a');
-				a.href = URL.createObjectURL(blob);
-				a.download = `geo-report-${host}-${lastData.scannedAt.slice(0, 10)}.md`;
-				a.click();
-				URL.revokeObjectURL(a.href);
+				a.href = URL.createObjectURL(blob); a.download = `geo-report-${host}.md`; a.click(); URL.revokeObjectURL(a.href);
 			});
 
-			function statusLabel(s) {
-				return s === 'blocked' ? 'Blocked' : s === 'allowed' ? 'Explicitly allowed' : 'Allowed by default';
-			}
-			function statusDot(s) {
-				const cls = s === 'blocked' ? 'dot-bad' : s === 'allowed' ? 'dot-good' : 'dot-ok';
-				return `<span class="dot ${cls}"></span>${statusLabel(s)}`;
-			}
-			function checkDot(ok) {
-				return `<span class="dot ${ok ? 'dot-good' : 'dot-bad'}"></span>`;
-			}
-
-			function buildChecks(ck) {
-				return [
-					[ck.ssr, "Server-side rendering (AI crawlers don't run JS)"],
-					[ck.robotsTxt, 'robots.txt'],
-					[ck.sitemap, `sitemap${ck.sitemapUrls ? ` (${ck.sitemapUrls} URLs)` : ''}`],
-					[ck.llmsTxt, 'llms.txt'],
-					[ck.schemaTypes.length > 0, `Structured data${ck.schemaTypes.length ? ': ' + ck.schemaTypes.slice(0, 3).join(', ') : ''}`],
-					[ck.hasUpdateTimestamp, 'Visible update timestamp'],
-				];
-			}
+			function sLabel(s) { return s==='blocked'?'Blocked':s==='allowed'?'Allowed':'Default allow'; }
+			function sDot(s) { return `<span class="d ${s==='blocked'?'d-r':s==='allowed'?'d-g':'d-y'}"></span>${sLabel(s)}`; }
+			function cDot(ok) { return `<span class="d ${ok?'d-g':'d-r'}"></span>`; }
 
 			function buildReport(d) {
-				const line = (c) => `| ${c.engine} | ${c.name} | ${statusLabel(c.status)} |`;
+				const line = c => `| ${c.engine} | ${c.name} | ${sLabel(c.status)} |`;
 				const ck = d.checks;
-				const checks = buildChecks(ck);
-				return `# AI Engine Readiness Report: ${new URL(d.url).hostname}
-
-> Scanned: ${d.scannedAt.slice(0, 10)} | Tool: geochina.co/en/scan (free)
-
-## Overall score: ${d.scores.overall} / 100
-
-| Track | Score |
-|---|---|
-| Chinese engines (Doubao · Kimi · Yuanbao · ERNIE · Qwen) | ${d.scores.china} |
-| Global engines (ChatGPT · Perplexity · Claude · Gemini) | ${d.scores.global} |
-
-## Chinese engine crawler reachability
-
-| Engine | Crawler | Status |
-|---|---|---|
-${d.crawlers.cn.map(line).join('\n')}
-
-## Global engine crawler reachability
-
-| Engine | Crawler | Status |
-|---|---|---|
-${d.crawlers.global.map(line).join('\n')}
-
-## Infrastructure checks
-
-${checks.map(([ok, label]) => `- ${ok ? '✅' : '❌'} ${label}`).join('\n')}
-
-## Citation-worthy elements
-
-${ck.triggers.map((t) => `- ${t.found ? '✅' : '❌'} ${t.label}`).join('\n')}
-
-## Fixes to make first
-
-${d.actions.map((a, i) => `${i + 1}. **[${a.priority}] ${a.title}**\n   ${a.why}`).join('\n\n')}
-
----
-
-Want to know how the 5 major Chinese AI engines answer questions in your industry — and who they recommend?
-WeChat Moumlbius | hi@geochina.co | https://geochina.co
-`;
+				const checks = [[ck.ssr,'Server-side rendering'],[ck.robotsTxt,'robots.txt'],[ck.sitemap,`sitemap${ck.sitemapUrls?` (${ck.sitemapUrls} URLs)`:''}`],[ck.llmsTxt,'llms.txt'],[ck.schemaTypes.length>0,`Structured data${ck.schemaTypes.length?': '+ck.schemaTypes.join(', '):''}`],[ck.hasUpdateTimestamp,'Update timestamp']];
+				return `# AI Engine Readiness Report: ${new URL(d.url).hostname}\n\n> Scanned: ${d.scannedAt.slice(0,10)} | geochina.co/en/scan\n\n## Overall ${d.scores.overall}/100\n\n| Track | Score |\n|---|---|\n| Chinese engines | ${d.scores.china} |\n| Global engines | ${d.scores.global} |\n\n## Chinese crawlers\n\n| Engine | Crawler | Status |\n|---|---|---|\n${d.crawlers.cn.map(line).join('\n')}\n\n## Global crawlers\n\n| Engine | Crawler | Status |\n|---|---|---|\n${d.crawlers.global.map(line).join('\n')}\n\n## Infrastructure\n\n${checks.map(([ok,l])=>`- ${ok?'✅':'❌'} ${l}`).join('\n')}\n\n## Citability\n\n${ck.triggers.map(t=>`- ${t.found?'✅':'❌'} ${t.label}`).join('\n')}\n\n## Priority fixes\n\n${d.actions.map((a,i)=>`${i+1}. **[${a.priority}] ${a.title}**\n   ${a.why}`).join('\n\n')}\n\n---\nWeChat Moumlbius | hi@geochina.co | geochina.co\n`;
 			}
 
 			function render(d) {
-				document.getElementById('score-overall').textContent = d.scores.overall;
+				const o = d.scores.overall;
+				document.getElementById('score-overall').textContent = o;
 				document.getElementById('score-cn').textContent = d.scores.china;
 				document.getElementById('score-global').textContent = d.scores.global;
-				document.getElementById('bar-cn').style.width = d.scores.china + '%';
-				document.getElementById('bar-global').style.width = d.scores.global + '%';
-
+				document.getElementById('bar-cn').style.width = d.scores.china+'%';
+				document.getElementById('bar-global').style.width = d.scores.global+'%';
 				const ring = document.getElementById('score-ring');
-				ring.className = 'score-ring ' + (d.scores.overall >= 70 ? 'ring-good' : d.scores.overall >= 45 ? 'ring-mid' : 'ring-bad');
+				ring.className = 'score-ring '+(o>=70?'r-g':o>=45?'r-y':'r-r');
+				const v = document.getElementById('score-verdict');
+				v.textContent = o>=70?' · Good':o>=45?' · Fair':' · Needs work';
 
-				const row = (c) =>
-					`<tr><td><strong>${c.engine}</strong><span class="crawler-name">${c.name}</span></td><td class="td-status">${statusDot(c.status)}</td></tr>`;
+				const row = c => `<tr><td>${c.engine}<span class="sub">${c.name}</span></td><td class="r">${sDot(c.status)}</td></tr>`;
 				document.getElementById('table-cn').innerHTML = d.crawlers.cn.map(row).join('');
 				document.getElementById('table-global').innerHTML = d.crawlers.global.map(row).join('');
 
-				const checks = buildChecks(d.checks);
-				document.getElementById('check-list').innerHTML = checks
-					.map(([ok, label]) => `<li>${checkDot(ok)} ${label}</li>`)
-					.join('');
+				const ck = d.checks;
+				const checks = [[ck.ssr,'Server-side rendering'],[ck.robotsTxt,'robots.txt'],[ck.sitemap,`sitemap${ck.sitemapUrls?` (${ck.sitemapUrls} URLs)`:''}`],[ck.llmsTxt,'llms.txt'],[ck.schemaTypes.length>0,`Structured data${ck.schemaTypes.length?': '+ck.schemaTypes.slice(0,3).join(', '):''}`],[ck.hasUpdateTimestamp,'Update timestamp']];
+				document.getElementById('check-list').innerHTML = checks.map(([ok,l])=>`<li>${cDot(ok)}${l}</li>`).join('');
+				document.getElementById('trigger-list').innerHTML = ck.triggers.map(t=>`<li>${cDot(t.found)}<span class="stars">${'●'.repeat(t.stars)}${'○'.repeat(5-t.stars)}</span>${t.label}</li>`).join('');
 
-				document.getElementById('trigger-list').innerHTML = d.checks.triggers
-					.map((t) => `<li>${checkDot(t.found)} ${t.label}</li>`)
-					.join('');
-
-				document.getElementById('action-list').innerHTML = d.actions
-					.map(
-						(a) =>
-							`<li><span class="pri pri-${a.priority}">${a.priority}</span><div><strong>${a.title}</strong><p>${a.why}</p></div></li>`
-					)
-					.join('');
+				const ac = document.getElementById('actions-card');
+				if (d.actions && d.actions.length) {
+					ac.hidden = false;
+					document.getElementById('action-list').innerHTML = d.actions.map(a=>`<li><span class="pri p-${a.priority}">${a.priority}</span><div><strong>${a.title}</strong><p>${a.why}</p></div></li>`).join('');
+				} else { ac.hidden = true; }
 
 				result.hidden = false;
-				result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				result.scrollIntoView({behavior:'smooth',block:'start'});
 			}
 		</script>
 	</body>
 </html>
 
 <style>
-	/* ─── Apple-flat: generous whitespace, soft gray cards, pill buttons ─── */
-	.scan-hero {
-		padding: 4.5em 0 3em;
-	}
+	main { width: 920px; }
+
+	/* ─── Hero ─── */
+	.scan-hero { max-width: 600px; padding: 5em 0 3em; }
 	.section-label {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		font-size: 12px;
-		font-weight: 600;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--text-muted);
-		margin-bottom: 1.5em;
+		display: flex; align-items: center; gap: 6px;
+		font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+		text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.6em;
 	}
-	.label-dot {
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: var(--accent);
-		display: inline-block;
-	}
+	.label-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 	.scan-hero h1 {
-		font-size: 2.8em;
-		line-height: 1.15;
-		letter-spacing: -0.02em;
-		font-weight: 700;
-		margin-bottom: 0.5em;
+		font-family: var(--font-serif);
+		font-size: 2.4em; line-height: 1.2; font-weight: 700;
+		letter-spacing: -0.02em; margin-bottom: 0.6em;
 	}
-	.lead {
-		font-size: 1.12em;
-		color: var(--text-secondary);
-		line-height: 1.7;
-		margin-bottom: 2.2em;
-		max-width: 640px;
-	}
-	.scan-box {
-		margin-bottom: 1.6em;
-		max-width: 640px;
-	}
-	.scan-form {
-		display: flex;
-		gap: 10px;
-		flex-wrap: wrap;
-	}
+	.lead { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2em; }
+	.scan-box { margin-bottom: 1.4em; }
+	.scan-form { display: flex; gap: 8px; }
 	.scan-form input {
-		flex: 1;
-		min-width: 240px;
-		padding: 15px 20px;
-		font-size: 16px;
-		border: none;
-		border-radius: 14px;
-		background: #f5f5f7;
-		color: inherit;
-		outline: none;
-		transition: box-shadow 0.2s;
+		flex: 1; padding: 12px 16px; font-size: 15px;
+		border: 1px solid var(--border); border-radius: 10px;
+		background: #fff; color: var(--text); outline: none;
 	}
-	.scan-form input:focus {
-		box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.25);
+	.scan-form input:focus { border-color: #0071e3; box-shadow: 0 0 0 3px rgba(0,113,227,0.12); }
+	.scan-hint { margin: 0.7em 0 0; font-size: 13px; color: var(--text-muted); min-height: 1.2em; }
+	.btn-scan {
+		padding: 12px 24px; background: #0071e3; color: #fff; border: none;
+		border-radius: 10px; font-weight: 500; font-size: 15px;
+		cursor: pointer; white-space: nowrap; text-decoration: none;
+		display: inline-flex; align-items: center; justify-content: center;
 	}
-	.scan-hint {
-		margin: 0.9em 0 0;
-		font-size: 13px;
-		color: var(--text-muted);
-		min-height: 1.2em;
+	.btn-scan:hover { background: #0077ed; color: #fff; }
+	.btn-scan:disabled { opacity: 0.5; cursor: wait; }
+	.trust-row {
+		display: flex; gap: 1.4em; list-style: none; padding: 0; margin: 0;
+		font-size: 12px; color: var(--text-muted);
 	}
-	.btn-primary {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 15px 30px;
-		background: #0071e3;
-		color: #fff;
-		border: none;
-		cursor: pointer;
-		border-radius: 980px;
-		font-weight: 500;
-		font-size: 15px;
-		text-decoration: none;
-		transition: background 0.2s;
-	}
-	.btn-primary:hover {
-		background: #0077ed;
-		color: #fff;
-	}
-	.btn-primary:disabled {
-		opacity: 0.55;
-		cursor: wait;
-	}
-	.btn-secondary {
-		display: inline-flex;
-		align-items: center;
-		padding: 11px 24px;
-		background: transparent;
-		color: #0071e3;
-		border: 1px solid #0071e3;
-		cursor: pointer;
-		border-radius: 980px;
-		font-weight: 500;
-		font-size: 14px;
-		transition: background 0.2s;
-	}
-	.btn-secondary:hover {
-		background: rgba(0, 113, 227, 0.08);
-	}
-	.trust-band {
-		display: flex;
-		gap: 1.6em;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		flex-wrap: wrap;
-	}
-	.trust-band li {
-		font-size: 13px;
-		color: var(--text-muted);
-		display: flex;
-		align-items: center;
-		gap: 5px;
-	}
-	.trust-check {
-		color: var(--accent);
-		font-weight: 700;
-	}
+	.trust-row li::before { content: '✓ '; color: var(--accent); font-weight: 600; }
 
 	/* ─── Results ─── */
-	.scan-result {
-		padding: 1em 0 5em;
-	}
-	.score-panel {
-		display: flex;
-		gap: 3em;
-		align-items: center;
-		flex-wrap: wrap;
-		background: #f5f5f7;
-		border-radius: 20px;
-		padding: 2.5em;
-		margin-bottom: 1.4em;
-	}
+	.scan-result { padding: 0 0 5em; }
+
+	/* Score */
+	.score-section { text-align: center; padding: 2em 0 2.4em; }
 	.score-ring {
-		width: 112px;
-		height: 112px;
-		border: 4px solid #d2d2d7;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 2.5em;
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		background: #fff;
+		width: 96px; height: 96px; margin: 0 auto 0.6em;
+		border: 3px solid #d2d2d7; border-radius: 50%;
+		display: flex; align-items: center; justify-content: center;
+		font-size: 2.2em; font-weight: 700; letter-spacing: -0.02em;
+		font-family: var(--font-sans); background: #fff;
 	}
-	.ring-good { border-color: #34c759; }
-	.ring-mid { border-color: #ff9f0a; }
-	.ring-bad { border-color: #ff3b30; }
-	.score-caption {
-		text-align: center;
-		margin-top: 0.7em;
-		font-size: 13px;
-		color: var(--text-muted);
-	}
-	.score-tracks {
-		flex: 1;
-		min-width: 260px;
-		display: flex;
-		flex-direction: column;
-		gap: 1.4em;
-	}
-	.track-head {
-		display: flex;
-		justify-content: space-between;
-		font-size: 14px;
-		margin-bottom: 7px;
-	}
-	.track-head span {
-		font-weight: 600;
-		font-variant-numeric: tabular-nums;
-	}
-	.bar {
-		height: 8px;
-		background: #e8e8ed;
-		border-radius: 4px;
-		overflow: hidden;
-	}
-	.bar-fill {
-		height: 100%;
-		width: 0;
-		border-radius: 4px;
-		transition: width 0.8s ease;
-	}
+	.r-g { border-color: #34c759; color: #1a7f37; }
+	.r-y { border-color: #ff9f0a; color: #9a6700; }
+	.r-r { border-color: #ff3b30; color: #d1242f; }
+	.score-label { font-size: 13px; color: var(--text-muted); margin-bottom: 1.6em; }
+	.score-verdict { font-weight: 600; }
+
+	.score-bars { max-width: 400px; margin: 0 auto 1.6em; }
+	.score-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+	.bar-label { font-size: 13px; color: var(--text-secondary); width: 64px; text-align: right; flex-shrink: 0; }
+	.bar { flex: 1; height: 5px; background: #e8e8ed; border-radius: 3px; overflow: hidden; }
+	.bar-fill { height: 100%; width: 0; border-radius: 3px; transition: width 0.8s ease; }
 	.bar-fill.cn { background: #ff3b30; }
 	.bar-fill.gl { background: #0071e3; }
-	.track-note {
-		margin: 7px 0 0;
-		font-size: 12px;
-		color: var(--text-muted);
+	.bar-val { font-size: 13px; font-weight: 600; width: 28px; text-align: left; font-variant-numeric: tabular-nums; color: var(--text); }
+
+	.btn-dl {
+		padding: 8px 20px; font-size: 13px; font-weight: 500;
+		background: none; border: 1px solid var(--border); border-radius: 980px;
+		color: var(--text-secondary); cursor: pointer;
 	}
-	.result-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.4em;
-		margin-bottom: 1.4em;
-	}
-	.card {
-		background: #f5f5f7;
-		border-radius: 20px;
-		padding: 1.8em;
-	}
-	.card h3 {
-		font-size: 1.02em;
-		font-weight: 600;
-		letter-spacing: -0.01em;
-		margin: 0 0 1em;
-	}
-	.card-note {
-		font-size: 12px;
-		color: var(--text-muted);
-		line-height: 1.6;
-		margin: 1em 0 0;
-	}
-	.mini-table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 14px;
-	}
-	.mini-table td {
-		padding: 9px 4px;
-		border-bottom: 1px solid #e8e8ed;
-	}
-	.mini-table tr:last-child td {
-		border-bottom: none;
-	}
-	.td-status {
-		white-space: nowrap;
-		text-align: right;
-		color: var(--text-secondary);
-		font-size: 13px;
-	}
-	.crawler-name {
-		display: block;
-		font-size: 11px;
-		color: var(--text-muted);
-	}
-	.check-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		font-size: 14px;
-		line-height: 2.1;
-	}
-	.dot {
-		display: inline-block;
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		margin-right: 8px;
-		vertical-align: middle;
-	}
-	.dot-good { background: #34c759; }
-	.dot-ok { background: #a2d39b; }
-	.dot-bad { background: #ff3b30; }
-	.actions-card {
-		margin-bottom: 1.4em;
-	}
-	.action-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 1.1em;
-	}
-	.action-list li {
-		display: flex;
-		gap: 12px;
-		align-items: flex-start;
-	}
-	.action-list p {
-		margin: 4px 0 0;
-		font-size: 13px;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
-	.pri {
-		flex-shrink: 0;
-		font-size: 11px;
-		font-weight: 600;
-		padding: 4px 10px;
-		border-radius: 980px;
-		margin-top: 1px;
-	}
-	.pri-P0 { background: #ffe5e3; color: #d70015; }
-	.pri-P1 { background: #ffefd6; color: #c93400; }
-	.pri-P2 { background: #fff8dd; color: #8a6d00; }
-	.pri-P3 { background: #e8e8ed; color: #515154; }
-	.cta-block {
-		background: #f5f5f7;
-		border-radius: 20px;
-		padding: 2.6em;
-	}
-	.cta-block h3 {
-		margin: 0 0 0.6em;
-		font-size: 1.35em;
-		font-weight: 600;
-		letter-spacing: -0.015em;
-	}
-	.cta-block p {
-		color: var(--text-secondary);
-		line-height: 1.7;
-		max-width: 640px;
-		margin-bottom: 1.5em;
-	}
-	.cta-row {
-		display: flex;
-		gap: 1.4em;
-		align-items: center;
-		flex-wrap: wrap;
-	}
-	.cta-alt {
-		font-size: 14px;
-		color: var(--text-muted);
-	}
+	.btn-dl:hover { border-color: var(--text-muted); color: var(--text); }
+
+	/* Cards */
+	.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+	.card { background: #f5f5f7; border-radius: 16px; padding: 1.4em 1.6em; }
+	.card h3 { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--text); margin: 0 0 0.8em; letter-spacing: 0; }
+	.note { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin: 0.8em 0 0; }
+
+	/* Tables (JS-injected, needs :global) */
+	.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+	.tbl :global(td) { padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--text); }
+	.tbl :global(tr:last-child td) { border-bottom: none; }
+	.tbl :global(.r) { text-align: right; font-size: 13px; color: var(--text-secondary); white-space: nowrap; }
+	.tbl :global(.sub) { display: block; font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+	/* Dots (JS-injected) */
+	:global(.d) { display: inline-block; width: 6px; height: 6px; min-width: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; flex-shrink: 0; }
+	:global(.d-g) { background: #34c759; }
+	:global(.d-y) { background: #a2d39b; }
+	:global(.d-r) { background: #ff3b30; }
+
+	/* Check lists (JS-injected) */
+	.ck { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+	.ck :global(li) { padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; gap: 2px; color: var(--text); }
+	.ck :global(li:last-child) { border-bottom: none; }
+	:global(.stars) { font-size: 9px; color: #d2d2d7; margin-right: 6px; letter-spacing: 0.5px; }
+	.ck :global(.d-g ~ .stars) { color: #ff9f0a; }
+
+	/* Actions (JS-injected) */
+	#actions-card { margin-bottom: 12px; }
+	.act { list-style: none; padding: 0; margin: 0; }
+	.act :global(li) { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+	.act :global(li:last-child) { border-bottom: none; }
+	.act :global(strong) { font-size: 14px; font-weight: 600; }
+	.act :global(p) { margin: 2px 0 0; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+	:global(.pri) { flex-shrink: 0; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-top: 2px; }
+	:global(.p-P0) { background: #fee; color: #c00; }
+	:global(.p-P1) { background: #fff3e0; color: #b45300; }
+	:global(.p-P2) { background: #fff9db; color: #8a6d00; }
+	:global(.p-P3) { background: #f0f0f0; color: #666; }
+
+	/* CTA */
+	.cta { background: #1d1d1f; border-radius: 16px; padding: 2em 2em; margin-top: 12px; }
+	.cta-title { font-family: var(--font-serif); font-size: 1.2em; font-weight: 600; color: #fff; margin: 0 0 0.5em; line-height: 1.3; }
+	.cta-body { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0 0 1.2em; max-width: 540px; }
+	.cta-row { display: flex; gap: 1em; align-items: center; flex-wrap: wrap; }
+	.cta .btn-scan { background: #0071e3; font-size: 14px; padding: 10px 22px; border-radius: 8px; }
+	.cta-alt { font-size: 13px; color: rgba(255,255,255,0.4); }
 
 	@media (max-width: 720px) {
-		.scan-hero h1 { font-size: 1.9em; }
-		.score-panel { padding: 1.6em; gap: 1.6em; }
-		.card { padding: 1.4em; }
+		.scan-hero h1 { font-size: 1.8em; }
+		.grid-2 { grid-template-columns: 1fr; }
+		.card { padding: 1.2em; }
 	}
 </style>
