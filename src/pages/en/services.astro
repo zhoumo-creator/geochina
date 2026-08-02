@@ -8,83 +8,156 @@ import Header from '../../components/Header.astro';
 <html lang="en">
 	<head>
 		<BaseHead
-			title="Services — GEO China"
-			description="Three offerings: SEO/GEO Agent · Cross-platform Integrated Marketing · Custom Audit & Consulting. AI growth partner for Chinese-speaking B2B teams."
+			title="Services — GeoChina Agent"
+			description="GeoChina Agent standardized GEO service: questionnaire + onboarding call → Agent auto-diagnoses and fixes → weekly reports delivered. Coverage across 9 AI engines."
 		/>
 	</head>
 	<body>
 		<Header lang="en" />
 		<main>
 			<section class="page-header">
-				<div class="section-label"><span class="label-dot"></span> Services</div>
-				<h1>Three lines, one team.</h1>
+				<div class="section-label"><span class="label-dot"></span> GeoChina Agent</div>
+				<h1>Onboard with a questionnaire.<br/>Agent does the work. Weekly delivery.</h1>
 				<p class="page-desc">
-					One product line where the Agent auto-ships PRs. One service line where a vetted provider network runs integrated marketing. And one-shot consulting on demand.
+					Fill out a questionnaire + a 30-minute onboarding call, and the Agent starts working. Automatic scanning, fixing, and weekly reports — you review results, not processes.
 				</p>
 			</section>
 
-			<section class="services-row">
-				<div class="svc-card">
-					<span class="svc-tag tag-cta">Product · SaaS</span>
-					<h2>SEO / GEO Agent</h2>
-					<p class="svc-desc">
-						Coverage across 9 AI engines, merge-ready PRs every week. Code stays with you, 30-day refund, cancel anytime.
-					</p>
-					<p class="svc-meta">$99 / $999 monthly · EN + ZH</p>
-				</div>
+			<!-- How it works -->
+			<section class="flow-section">
+				<div class="section-label"><span class="label-dot"></span> How It Works</div>
+				<h2>From sign-up to delivery, 4 phases</h2>
 
-				<div class="svc-card">
-					<span class="svc-tag tag-gold">Service · Provider Network</span>
-					<h2>Integrated Marketing</h2>
-					<p class="svc-desc">
-						We do strategy and orchestration. A vetted provider network executes across Reddit / X / Xiaohongshu / Zhihu / B站 / 公众号 + offline hacker houses.
-					</p>
-					<p class="svc-meta">From $2.5k / month</p>
+				<div class="flow-grid">
+					<div class="flow-card">
+						<span class="flow-phase">Phase 1</span>
+						<span class="flow-time">Day 0–3</span>
+						<h3>Onboarding</h3>
+						<ul>
+							<li>Fill out a structured questionnaire (target customers, competitors, core queries, off-limits topics)</li>
+							<li>30-minute 1-on-1 call (brand voice, decision flow, priorities)</li>
+							<li>Agent merges questionnaire + scan data → generates client profile</li>
+						</ul>
+					</div>
+					<div class="flow-card">
+						<span class="flow-phase">Phase 2</span>
+						<span class="flow-time">Week 1–2</span>
+						<h3>First Diagnosis + Fix</h3>
+						<ul>
+							<li>Agent runs deep GEO diagnosis (9-engine crawlers, SSR, Schema, citability)</li>
+							<li>Generates framework-aware code patches (Astro / Next.js / WordPress…)</li>
+							<li>Delivers fixes → re-scans to verify → before/after comparison</li>
+						</ul>
+					</div>
+					<div class="flow-card">
+						<span class="flow-phase">Phase 3</span>
+						<span class="flow-time">Weekly</span>
+						<h3>Monitoring + Weekly Report</h3>
+						<ul>
+							<li>Automatic weekly re-scan of your site + competitor sites</li>
+							<li>Diff against last report → catch new issues or regressions</li>
+							<li>Standard weekly report: score changes, competitor moves, fixes done, next steps</li>
+						</ul>
+					</div>
+					<div class="flow-card">
+						<span class="flow-phase">Phase 4</span>
+						<span class="flow-time">Monthly</span>
+						<h3>Monthly Review</h3>
+						<ul>
+							<li>Monthly report = 4 weekly reports + score trend chart</li>
+							<li>30-minute monthly review call</li>
+							<li>Adjust next month's priorities and core queries</li>
+						</ul>
+					</div>
 				</div>
+			</section>
 
-				<div class="svc-card">
-					<span class="svc-tag tag-blue">Consulting · One-shot</span>
-					<h2>Audit & Consulting</h2>
-					<p class="svc-desc">
-						GEO technical audit, 5-layer competitor reverse engineering, going-global / China-entry strategy roadmap. For deep one-time deliverables.
-					</p>
-					<p class="svc-meta">From $400</p>
+			<!-- What you get -->
+			<section class="deliverables-section">
+				<div class="section-label"><span class="label-dot"></span> Deliverables</div>
+				<h2>What you get every week</h2>
+
+				<div class="del-grid">
+					<div class="del-item">
+						<span class="del-icon">01</span>
+						<div>
+							<h4>GEO Weekly Report</h4>
+							<p>Score changes (overall / Chinese track / global track), fixes completed this week, new issues found</p>
+						</div>
+					</div>
+					<div class="del-item">
+						<span class="del-icon">02</span>
+						<div>
+							<h4>Competitor Monitoring</h4>
+							<p>Competitor score comparison, their new Schema / content changes, gap trend between you and competitors</p>
+						</div>
+					</div>
+					<div class="del-item">
+						<span class="del-icon">03</span>
+						<div>
+							<h4>Code Patches</h4>
+							<p>Framework-aware fixes (robots.txt / Schema / llms.txt / meta tags), ready to apply</p>
+						</div>
+					</div>
+					<div class="del-item">
+						<span class="del-icon">04</span>
+						<div>
+							<h4>Next Week's Plan</h4>
+							<p>Action items ranked P0–P3, with expected score impact for each</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Coverage -->
+			<section class="coverage-section">
+				<div class="section-label"><span class="label-dot"></span> Coverage</div>
+				<h2>9 AI engines, dual-track monitoring</h2>
+				<div class="engines-row">
+					<div class="eng-group">
+						<span class="eng-label">Chinese engines</span>
+						<div class="eng-tags">
+							<span>Doubao</span><span>Kimi</span><span>Yuanbao</span><span>ERNIE</span><span>Qwen</span>
+						</div>
+					</div>
+					<div class="eng-group">
+						<span class="eng-label">Global engines</span>
+						<div class="eng-tags">
+							<span>ChatGPT</span><span>Perplexity</span><span>Claude</span><span>Google AIO</span>
+						</div>
+					</div>
 				</div>
 			</section>
 
 			<!-- Contact -->
 			<section class="contact-section">
-				<div class="section-label"><span class="label-dot"></span> Contact</div>
+				<div class="section-label"><span class="label-dot"></span> Get Started</div>
 				<h2 class="contact-title">Tell us what you're building</h2>
-				<p class="contact-lead">We listen first, quote second — and we'll tell you if we're not the fit. Copy the template below, send via your preferred channel, reply within 2 business days.</p>
+				<p class="contact-lead">We listen first, quote second — and we'll tell you if we're not the fit. Reply within 2 business days.</p>
 
 				<div class="contact-card">
 					<div class="template-head">
-						<span class="template-label">📋 Inquiry template</span>
+						<span class="template-label">Inquiry template</span>
 						<button class="copy-btn" type="button" onclick="navigator.clipboard.writeText(document.getElementById('email-template').innerText); this.textContent='Copied ✓'; setTimeout(()=>this.textContent='Copy',2000);">Copy</button>
 					</div>
-					<div id="email-template" class="template-body">I'm interested in (check all that apply):
-☐ SEO/GEO Agent (product)
-☐ Integrated marketing (provider service)
-☐ Audit & consulting
+					<div id="email-template" class="template-body">I'd like to learn about GeoChina Agent.
 
 Company / Website:
 Top problem right now:
 Outcome you want in 3 months:
-Budget range:
 Contact:</div>
 				</div>
 
 				<div class="contact-methods">
-					<a href="https://t.me/zhoumo_828" target="_blank" rel="noopener" class="cm-card">
-						<span class="cm-icon">✈</span>
-						<span class="cm-label">Telegram</span>
-						<span class="cm-value">@zhoumo_828</span>
-					</a>
 					<a href="mailto:hi@geochina.co" class="cm-card">
 						<span class="cm-icon">✉</span>
 						<span class="cm-label">Email</span>
 						<span class="cm-value">hi@geochina.co</span>
+					</a>
+					<a href="https://t.me/zhoumo_828" target="_blank" rel="noopener" class="cm-card">
+						<span class="cm-icon">✈</span>
+						<span class="cm-label">Telegram</span>
+						<span class="cm-value">@zhoumo_828</span>
 					</a>
 					<div class="cm-card">
 						<span class="cm-icon">💬</span>
@@ -94,11 +167,9 @@ Contact:</div>
 				</div>
 
 				<p class="contact-foot">
-					Not sure yet? Start with a <a href="/scan">free 9-engine AI visibility scan →</a>
+					Not sure yet? Start with a <a href="/en/scan">free scan →</a>
 				</p>
 			</section>
-
-			<p class="page-updated">Last updated: May 2026</p>
 		</main>
 		<Footer lang="en" />
 	</body>
@@ -106,50 +177,63 @@ Contact:</div>
 
 <style>
 	main { width: var(--max-w-wide); max-width: calc(100% - 3em); }
-	.page-header { padding: 5em 0 3em; }
-	.page-header h1 { margin-top: 0.6em; margin-bottom: 0.5em; font-size: 3.6em; line-height: 1.12; }
-	.page-desc { font-size: 1.15em; color: var(--text-secondary); max-width: 680px; line-height: 1.7; }
 
-	.services-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5em; padding: 2em 0 4em; }
-	.svc-card { padding: 2.2em 1.8em; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg); transition: all 0.2s; }
-	.svc-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26, 122, 76, 0.08); }
-	.svc-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.2em; }
-	.svc-tag.tag-cta { background: rgba(217, 75, 59, 0.12); color: var(--cta-hover); }
-	.svc-tag.tag-gold { background: rgba(232, 168, 56, 0.18); color: #8a5a0a; }
-	.svc-tag.tag-blue { background: #eff6ff; color: var(--blue); }
-	.svc-card h2 { font-size: 1.5em; margin-bottom: 0.6em; }
-	.svc-desc { font-size: 15px; line-height: 1.75; color: var(--text-secondary); margin-bottom: 1.2em; }
-	.svc-meta { font-size: 13px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; margin: 0; }
+	.page-header { padding: 5em 0 3em; }
+	.page-header h1 { margin-top: 0.6em; margin-bottom: 0.5em; font-size: 3em; line-height: 1.15; }
+	.page-desc { font-size: 1.1em; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
+
+	.flow-section { padding: 3em 0; border-top: 1px solid var(--border); }
+	.flow-section h2 { margin-top: 0.5em; margin-bottom: 1.5em; font-size: 1.8em; }
+	.flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2em; }
+	.flow-card { padding: 1.6em 1.4em; background: #f5f5f7; border-radius: 16px; display: flex; flex-direction: column; }
+	.flow-phase { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+	.flow-time { font-size: 12px; color: var(--text-muted); margin-bottom: 0.8em; }
+	.flow-card h3 { font-family: var(--font-sans); font-size: 1.05em; font-weight: 700; margin-bottom: 0.6em; }
+	.flow-card ul { list-style: none; padding: 0; margin: 0; }
+	.flow-card li { font-size: 14px; color: var(--text-secondary); line-height: 1.6; padding: 3px 0; padding-left: 14px; position: relative; }
+	.flow-card li::before { content: '·'; position: absolute; left: 0; color: var(--text-muted); font-weight: 700; }
+
+	.deliverables-section { padding: 3em 0; border-top: 1px solid var(--border); }
+	.deliverables-section h2 { margin-top: 0.5em; margin-bottom: 1.5em; font-size: 1.8em; }
+	.del-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+	.del-item { display: flex; gap: 1em; padding: 1.4em; background: #f5f5f7; border-radius: 16px; }
+	.del-icon { font-family: var(--font-serif); font-size: 1.4em; font-weight: 700; color: var(--text-muted); flex-shrink: 0; width: 32px; }
+	.del-item h4 { font-family: var(--font-sans); font-size: 14px; font-weight: 700; margin: 0 0 4px; }
+	.del-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+	.coverage-section { padding: 3em 0; border-top: 1px solid var(--border); }
+	.coverage-section h2 { margin-top: 0.5em; margin-bottom: 1.5em; font-size: 1.8em; }
+	.engines-row { display: flex; gap: 3em; flex-wrap: wrap; }
+	.eng-group { display: flex; flex-direction: column; gap: 0.6em; }
+	.eng-label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+	.eng-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+	.eng-tags span { font-size: 13px; font-weight: 500; padding: 6px 14px; background: #f5f5f7; border-radius: 8px; color: var(--text); }
 
 	.contact-section { padding: 4em 0 5em; border-top: 1px solid var(--border); }
-	.contact-title { margin-top: 0.6em; margin-bottom: 0.5em; font-size: 2.4em; }
-	.contact-lead { font-size: 1.05em; line-height: 1.75; max-width: 680px; margin-bottom: 2em; }
-
+	.contact-title { margin-top: 0.6em; margin-bottom: 0.5em; font-size: 2em; }
+	.contact-lead { font-size: 1em; line-height: 1.75; max-width: 640px; margin-bottom: 2em; }
 	.contact-card { background: var(--bg-section); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5em; }
 	.template-head { display: flex; justify-content: space-between; align-items: center; padding: 0.9em 1.4em; border-bottom: 1px solid var(--border); background: var(--bg); }
 	.template-label { font-size: 13px; font-weight: 700; color: var(--black); }
-	.copy-btn { font-size: 12px; font-weight: 600; padding: 7px 14px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+	.copy-btn { font-size: 12px; font-weight: 600; padding: 7px 14px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-family: inherit; }
 	.copy-btn:hover { background: var(--accent-hover); }
-	.template-body { font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 2; color: var(--text); padding: 1.5em 1.6em; white-space: pre-wrap; word-break: break-word; }
-
+	.template-body { font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 2; color: var(--text); padding: 1.5em 1.6em; white-space: pre-wrap; }
 	.contact-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9em; margin-bottom: 1.6em; }
 	.cm-card { display: flex; flex-direction: column; gap: 0.3em; padding: 1.2em 1.3em; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); text-decoration: none; color: var(--text); transition: all 0.2s; }
 	a.cm-card:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26, 122, 76, 0.08); }
 	.cm-icon { font-size: 18px; color: var(--accent); margin-bottom: 0.2em; }
 	.cm-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 700; }
 	.cm-value { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: var(--black); }
-
 	.contact-foot { font-size: 14px; color: var(--text-muted); margin: 0; }
 	.contact-foot a { color: var(--accent); font-weight: 600; }
 
-	.page-updated { text-align: center; font-size: 12px; color: var(--text-muted); padding: 2em 0 0; margin: 0; }
-
 	@media (max-width: 960px) {
-		.services-row { grid-template-columns: 1fr; }
+		.flow-grid { grid-template-columns: 1fr 1fr; }
+		.del-grid { grid-template-columns: 1fr; }
 		.contact-methods { grid-template-columns: 1fr; }
 	}
 	@media (max-width: 720px) {
-		.page-header h1 { font-size: 2.2em; }
-		.contact-title { font-size: 1.8em; }
+		.page-header h1 { font-size: 2em; }
+		.flow-grid { grid-template-columns: 1fr; }
 	}
 </style>

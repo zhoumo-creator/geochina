@@ -8,70 +8,143 @@ import Header from '../components/Header.astro';
 <html lang="zh-CN">
 	<head>
 		<BaseHead
-			title="服务 — GEO China"
-			description="GEO China 三大服务:SEO/GEO Agent · 增长整合营销 · 定制审计与咨询。中文 B2B 团队的 AI 增长伙伴。"
+			title="服务 — GeoChina Agent"
+			description="GeoChina Agent 标准化 GEO 服务：问卷+专访入驻 → Agent 自动诊断修复 → 每周交付周报。覆盖中西方 9 大 AI 引擎。"
 		/>
 	</head>
 	<body>
 		<Header />
 		<main>
 			<section class="page-header">
-				<div class="section-label"><span class="label-dot"></span> Services</div>
-				<h1>三条线,一起干。</h1>
+				<div class="section-label"><span class="label-dot"></span> GeoChina Agent</div>
+				<h1>问卷入驻，Agent 干活，<br/>每周交付。</h1>
 				<p class="page-desc">
-					一条产品线让 Agent 自动 ship PR;一条服务线由 provider 网络执行海内外整合营销;还有按需的单次咨询。
+					填完问卷 + 30 分钟专访，Agent 就开始工作。每周自动扫描、修复、出周报——你看结果，不用盯过程。
 				</p>
 			</section>
 
-			<section class="services-row">
-				<div class="svc-card">
-					<span class="svc-tag tag-cta">产品 · SaaS</span>
-					<h2>SEO / GEO Agent</h2>
-					<p class="svc-desc">
-						覆盖中西方 9 大 AI 引擎,每周自动产出可合并 PR。代码归你,30 天退款,随时停服。
-					</p>
-					<p class="svc-meta">¥199 / ¥1499 月付 · 中英双语</p>
-				</div>
+			<!-- How it works -->
+			<section class="flow-section">
+				<div class="section-label"><span class="label-dot"></span> 服务流程</div>
+				<h2>从签约到交付，4 个阶段</h2>
 
-				<div class="svc-card">
-					<span class="svc-tag tag-gold">服务 · Provider 网络</span>
-					<h2>增长整合营销</h2>
-					<p class="svc-desc">
-						我们策略统筹,严选 provider 执行 —— 跨 Reddit / X / 小红书 / 知乎 / B站 / 公众号,以及线下 hacker house。
-					</p>
-					<p class="svc-meta">¥15k+/月 起 · 海外 $2.5k+/月起</p>
+				<div class="flow-grid">
+					<div class="flow-card">
+						<span class="flow-phase">Phase 1</span>
+						<span class="flow-time">Day 0–3</span>
+						<h3>入驻</h3>
+						<ul>
+							<li>填写结构化问卷（目标客户、竞品、核心查询词、禁区）</li>
+							<li>30 分钟 1v1 专访（补充品牌语调、决策流程、优先级）</li>
+							<li>Agent 合并问卷 + 扫描数据 → 生成客户背景文件</li>
+						</ul>
+					</div>
+					<div class="flow-card">
+						<span class="flow-phase">Phase 2</span>
+						<span class="flow-time">Week 1–2</span>
+						<h3>首轮诊断 + 修复</h3>
+						<ul>
+							<li>Agent 跑深度 GEO 诊断（9 引擎爬虫、SSR、Schema、可引用性）</li>
+							<li>生成框架感知的代码补丁（Astro / Next.js / WordPress…）</li>
+							<li>交付修复 → 复扫验证 → before/after 对比</li>
+						</ul>
+					</div>
+					<div class="flow-card">
+						<span class="flow-phase">Phase 3</span>
+						<span class="flow-time">每周循环</span>
+						<h3>持续监控 + 周报</h3>
+						<ul>
+							<li>每周自动复扫你的站 + 竞品站</li>
+							<li>diff 上期报告 → 发现新问题 / 回归</li>
+							<li>标准周报：分数变化、竞品动态、本周修复、下周计划</li>
+						</ul>
+					</div>
+					<div class="flow-card">
+						<span class="flow-phase">Phase 4</span>
+						<span class="flow-time">每月</span>
+						<h3>月度复盘</h3>
+						<ul>
+							<li>月报 = 4 份周报汇总 + 分数趋势曲线</li>
+							<li>30 分钟月度通话 review</li>
+							<li>调整下月优先级和核心查询词</li>
+						</ul>
+					</div>
 				</div>
+			</section>
 
-				<div class="svc-card">
-					<span class="svc-tag tag-blue">咨询 · 单次</span>
-					<h2>定制审计与咨询</h2>
-					<p class="svc-desc">
-						GEO 技术审计、5 层竞品反向工程、出海/入华品牌策略路线图 —— 不订阅,要单次深度交付的找我们。
-					</p>
-					<p class="svc-meta">¥3,000 起</p>
+			<!-- What you get -->
+			<section class="deliverables-section">
+				<div class="section-label"><span class="label-dot"></span> 交付物</div>
+				<h2>每周你会收到什么</h2>
+
+				<div class="del-grid">
+					<div class="del-item">
+						<span class="del-icon">01</span>
+						<div>
+							<h4>GEO 周报</h4>
+							<p>分数变化（总分 / 中文轨 / 海外轨）、本周完成的修复项、新发现的问题</p>
+						</div>
+					</div>
+					<div class="del-item">
+						<span class="del-icon">02</span>
+						<div>
+							<h4>竞品监控</h4>
+							<p>竞品站分数对比、竞品新增的 Schema / 内容变化、你和竞品的差距趋势</p>
+						</div>
+					</div>
+					<div class="del-item">
+						<span class="del-icon">03</span>
+						<div>
+							<h4>代码补丁</h4>
+							<p>框架感知的修复代码（robots.txt / Schema / llms.txt / meta tags），可直接应用</p>
+						</div>
+					</div>
+					<div class="del-item">
+						<span class="del-icon">04</span>
+						<div>
+							<h4>下周计划</h4>
+							<p>按 P0-P3 排序的行动项，附每项预期提分</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Coverage -->
+			<section class="coverage-section">
+				<div class="section-label"><span class="label-dot"></span> 覆盖范围</div>
+				<h2>9 大 AI 引擎，双轨监控</h2>
+				<div class="engines-row">
+					<div class="eng-group">
+						<span class="eng-label">中文引擎</span>
+						<div class="eng-tags">
+							<span>豆包</span><span>Kimi</span><span>元宝</span><span>文心</span><span>通义</span>
+						</div>
+					</div>
+					<div class="eng-group">
+						<span class="eng-label">海外引擎</span>
+						<div class="eng-tags">
+							<span>ChatGPT</span><span>Perplexity</span><span>Claude</span><span>Google AIO</span>
+						</div>
+					</div>
 				</div>
 			</section>
 
 			<!-- Contact -->
 			<section class="contact-section">
-				<div class="section-label"><span class="label-dot"></span> Contact</div>
+				<div class="section-label"><span class="label-dot"></span> 开始</div>
 				<h2 class="contact-title">聊聊你想做什么</h2>
-				<p class="contact-lead">先听需求再给方案,不合适也直说。复制下方模板,选个你顺手的渠道发过来,2 个工作日内回复。</p>
+				<p class="contact-lead">先听需求再给方案，不合适也直说。2 个工作日内回复。</p>
 
 				<div class="contact-card">
 					<div class="template-head">
-						<span class="template-label">📋 咨询模板</span>
+						<span class="template-label">咨询模板</span>
 						<button class="copy-btn" type="button" onclick="navigator.clipboard.writeText(document.getElementById('email-template').innerText); this.textContent='已复制 ✓'; setTimeout(()=>this.textContent='一键复制',2000);">一键复制</button>
 					</div>
-					<div id="email-template" class="template-body">我对以下服务感兴趣（可多选）：
-☐ SEO/GEO Agent（产品）
-☐ 增长整合营销（provider 服务）
-☐ 定制审计与咨询
+					<div id="email-template" class="template-body">我想了解 GeoChina Agent 服务。
 
 公司 / 网站：
 当前主要问题：
 3 个月内期望成果：
-预算范围：
 联系方式：</div>
 				</div>
 
@@ -94,204 +167,89 @@ import Header from '../components/Header.astro';
 				</div>
 
 				<p class="contact-foot">
-					还没确定要不要聊?先 <a href="/scan">免费扫一份 9 引擎可见性报告 →</a>
+					还没确定？先 <a href="/scan">免费扫一次 →</a>
 				</p>
 			</section>
-
-			<p class="page-updated">最后更新：2026 年 5 月</p>
 		</main>
 		<Footer />
 	</body>
 </html>
 
 <style>
-	main {
-		width: var(--max-w-wide);
-		max-width: calc(100% - 3em);
-	}
-	.page-header { padding: 5em 0 3em; }
-	.page-header h1 {
-		margin-top: 0.6em;
-		margin-bottom: 0.5em;
-		font-size: 3.6em;
-		line-height: 1.12;
-	}
-	.page-desc {
-		font-size: 1.15em;
-		color: var(--text-secondary);
-		max-width: 680px;
-		line-height: 1.7;
-	}
+	main { width: var(--max-w-wide); max-width: calc(100% - 3em); }
 
-	/* Services row */
-	.services-row {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1.5em;
-		padding: 2em 0 4em;
+	/* Header */
+	.page-header { padding: 5em 0 3em; }
+	.page-header h1 { margin-top: 0.6em; margin-bottom: 0.5em; font-size: 3em; line-height: 1.15; }
+	.page-desc { font-size: 1.1em; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
+
+	/* Flow */
+	.flow-section { padding: 3em 0; border-top: 1px solid var(--border); }
+	.flow-section h2 { margin-top: 0.5em; margin-bottom: 1.5em; font-size: 1.8em; }
+	.flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2em; }
+	.flow-card {
+		padding: 1.6em 1.4em; background: #f5f5f7; border-radius: 16px;
+		display: flex; flex-direction: column;
 	}
-	.svc-card {
-		padding: 2.2em 1.8em;
-		border: 1px solid var(--border);
-		border-radius: var(--radius-lg);
-		background: var(--bg);
-		transition: all 0.2s;
+	.flow-phase { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+	.flow-time { font-size: 12px; color: var(--text-muted); margin-bottom: 0.8em; }
+	.flow-card h3 { font-family: var(--font-sans); font-size: 1.05em; font-weight: 700; margin-bottom: 0.6em; }
+	.flow-card ul { list-style: none; padding: 0; margin: 0; }
+	.flow-card li { font-size: 14px; color: var(--text-secondary); line-height: 1.6; padding: 3px 0; padding-left: 14px; position: relative; }
+	.flow-card li::before { content: '·'; position: absolute; left: 0; color: var(--text-muted); font-weight: 700; }
+
+	/* Deliverables */
+	.deliverables-section { padding: 3em 0; border-top: 1px solid var(--border); }
+	.deliverables-section h2 { margin-top: 0.5em; margin-bottom: 1.5em; font-size: 1.8em; }
+	.del-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+	.del-item {
+		display: flex; gap: 1em; padding: 1.4em; background: #f5f5f7; border-radius: 16px;
 	}
-	.svc-card:hover {
-		border-color: var(--accent);
-		transform: translateY(-2px);
-		box-shadow: 0 8px 24px rgba(26, 122, 76, 0.08);
+	.del-icon {
+		font-family: var(--font-serif); font-size: 1.4em; font-weight: 700;
+		color: var(--text-muted); flex-shrink: 0; width: 32px;
 	}
-	.svc-tag {
-		display: inline-block;
-		font-size: 11px;
-		font-weight: 700;
-		padding: 4px 10px;
-		border-radius: 4px;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		margin-bottom: 1.2em;
-	}
-	.svc-tag.tag-cta { background: rgba(217, 75, 59, 0.12); color: var(--cta-hover); }
-	.svc-tag.tag-gold { background: rgba(232, 168, 56, 0.18); color: #8a5a0a; }
-	.svc-tag.tag-blue { background: #eff6ff; color: var(--blue); }
-	.svc-card h2 {
-		font-size: 1.5em;
-		margin-bottom: 0.6em;
-	}
-	.svc-desc {
-		font-size: 15px;
-		line-height: 1.75;
-		color: var(--text-secondary);
-		margin-bottom: 1.2em;
-	}
-	.svc-meta {
-		font-size: 13px;
-		color: var(--text-muted);
-		font-family: 'JetBrains Mono', monospace;
-		margin: 0;
+	.del-item h4 { font-family: var(--font-sans); font-size: 14px; font-weight: 700; margin: 0 0 4px; }
+	.del-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+	/* Coverage */
+	.coverage-section { padding: 3em 0; border-top: 1px solid var(--border); }
+	.coverage-section h2 { margin-top: 0.5em; margin-bottom: 1.5em; font-size: 1.8em; }
+	.engines-row { display: flex; gap: 3em; flex-wrap: wrap; }
+	.eng-group { display: flex; flex-direction: column; gap: 0.6em; }
+	.eng-label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+	.eng-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+	.eng-tags span {
+		font-size: 13px; font-weight: 500; padding: 6px 14px;
+		background: #f5f5f7; border-radius: 8px; color: var(--text);
 	}
 
 	/* Contact */
-	.contact-section {
-		padding: 4em 0 5em;
-		border-top: 1px solid var(--border);
-	}
-	.contact-title {
-		margin-top: 0.6em;
-		margin-bottom: 0.5em;
-		font-size: 2.4em;
-	}
-	.contact-lead {
-		font-size: 1.05em;
-		line-height: 1.75;
-		max-width: 680px;
-		margin-bottom: 2em;
-	}
-
-	.contact-card {
-		background: var(--bg-section);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-lg);
-		overflow: hidden;
-		margin-bottom: 1.5em;
-	}
-	.template-head {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.9em 1.4em;
-		border-bottom: 1px solid var(--border);
-		background: var(--bg);
-	}
-	.template-label {
-		font-size: 13px;
-		font-weight: 700;
-		color: var(--black);
-	}
-	.copy-btn {
-		font-size: 12px;
-		font-weight: 600;
-		padding: 7px 14px;
-		background: var(--accent);
-		color: white;
-		border: none;
-		border-radius: 6px;
-		cursor: pointer;
-		font-family: inherit;
-		transition: background 0.2s;
-	}
+	.contact-section { padding: 4em 0 5em; border-top: 1px solid var(--border); }
+	.contact-title { margin-top: 0.6em; margin-bottom: 0.5em; font-size: 2em; }
+	.contact-lead { font-size: 1em; line-height: 1.75; max-width: 640px; margin-bottom: 2em; }
+	.contact-card { background: var(--bg-section); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5em; }
+	.template-head { display: flex; justify-content: space-between; align-items: center; padding: 0.9em 1.4em; border-bottom: 1px solid var(--border); background: var(--bg); }
+	.template-label { font-size: 13px; font-weight: 700; color: var(--black); }
+	.copy-btn { font-size: 12px; font-weight: 600; padding: 7px 14px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-family: inherit; }
 	.copy-btn:hover { background: var(--accent-hover); }
-	.template-body {
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 14px;
-		line-height: 2;
-		color: var(--text);
-		padding: 1.5em 1.6em;
-		white-space: pre-wrap;
-		word-break: break-word;
-	}
-
-	.contact-methods {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 0.9em;
-		margin-bottom: 1.6em;
-	}
-	.cm-card {
-		display: flex;
-		flex-direction: column;
-		gap: 0.3em;
-		padding: 1.2em 1.3em;
-		border: 1px solid var(--border);
-		border-radius: var(--radius);
-		background: var(--bg);
-		text-decoration: none;
-		color: var(--text);
-		transition: all 0.2s;
-	}
-	a.cm-card:hover {
-		border-color: var(--accent);
-		transform: translateY(-1px);
-		box-shadow: 0 4px 12px rgba(26, 122, 76, 0.08);
-	}
-	.cm-icon {
-		font-size: 18px;
-		color: var(--accent);
-		margin-bottom: 0.2em;
-	}
-	.cm-label {
-		font-size: 11px;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: var(--text-muted);
-		font-weight: 700;
-	}
-	.cm-value {
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 15px;
-		font-weight: 500;
-		color: var(--black);
-	}
-
-	.contact-foot {
-		font-size: 14px;
-		color: var(--text-muted);
-		margin: 0;
-	}
-	.contact-foot a {
-		color: var(--accent);
-		font-weight: 600;
-	}
-
-	.page-updated { text-align: center; font-size: 12px; color: var(--text-muted); padding: 2em 0 0; margin: 0; }
+	.template-body { font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 2; color: var(--text); padding: 1.5em 1.6em; white-space: pre-wrap; }
+	.contact-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9em; margin-bottom: 1.6em; }
+	.cm-card { display: flex; flex-direction: column; gap: 0.3em; padding: 1.2em 1.3em; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); text-decoration: none; color: var(--text); transition: all 0.2s; }
+	a.cm-card:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26, 122, 76, 0.08); }
+	.cm-icon { font-size: 18px; color: var(--accent); margin-bottom: 0.2em; }
+	.cm-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 700; }
+	.cm-value { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: var(--black); }
+	.contact-foot { font-size: 14px; color: var(--text-muted); margin: 0; }
+	.contact-foot a { color: var(--accent); font-weight: 600; }
 
 	@media (max-width: 960px) {
-		.services-row { grid-template-columns: 1fr; }
+		.flow-grid { grid-template-columns: 1fr 1fr; }
+		.del-grid { grid-template-columns: 1fr; }
 		.contact-methods { grid-template-columns: 1fr; }
 	}
 	@media (max-width: 720px) {
-		.page-header h1 { font-size: 2.2em; }
-		.contact-title { font-size: 1.8em; }
+		.page-header h1 { font-size: 2em; }
+		.flow-grid { grid-template-columns: 1fr; }
 	}
 </style>
